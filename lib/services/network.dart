@@ -89,6 +89,19 @@ class Network {
     }
   }
 
+  Future<IngredientSubstitute> getIngredientSubstitute(String query) async {
+    try {
+      final Response<dynamic> response = await _api
+          .get('/food/ingredients/substitutes?ingredientName=$query&');
+      final IngredientSubstitute _ingredientSubstitute =
+          response.data as IngredientSubstitute;
+
+      return _ingredientSubstitute;
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<IngredientSearchResult> searchIngredients(String query,
       {int number = 6}) async {
     try {

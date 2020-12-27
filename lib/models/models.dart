@@ -1,6 +1,7 @@
 export './global_search/global_search.dart';
 export './ingredient/ingredient.dart';
 export './ingredient/ingredient_search_result.dart';
+export './ingredient/ingredient_substitute.dart';
 export './jokes_trivia/random_joke.dart';
 export './jokes_trivia/random_trivia.dart';
 export './meal_plan/meal_plan_day.dart';
