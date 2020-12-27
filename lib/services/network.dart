@@ -248,4 +248,30 @@ class Network {
       return null;
     }
   }
+
+  /// Meal Plans
+
+  Future<MealPlanDay> getMealPlanDay(String diet, String exclude) async {
+    try {
+      final Response<dynamic> response = await _api.get(
+          '/mealplanner/generate?timeFrame=day&diet=$diet&exclude=$exclude&');
+      final MealPlanDay _mealPlanDay = response.data as MealPlanDay;
+
+      return _mealPlanDay;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<MealPlanWeek> getMealPlanWeek(String diet, String exclude) async {
+    try {
+      final Response<dynamic> response = await _api.get(
+          '/mealplanner/generate?timeFrame=week&diet=$diet&exclude=$exclude&');
+      final MealPlanWeek _mealPlanWeek = response.data as MealPlanWeek;
+
+      return _mealPlanWeek;
+    } catch (e) {
+      return null;
+    }
+  }
 }

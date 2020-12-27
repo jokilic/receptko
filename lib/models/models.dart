@@ -3,6 +3,8 @@ export './ingredient/ingredient.dart';
 export './ingredient/ingredient_search_result.dart';
 export './jokes_trivia/random_joke.dart';
 export './jokes_trivia/random_trivia.dart';
+export './meal_plan/meal_plan_day.dart';
+export './meal_plan/meal_plan_week.dart';
 export './menu_item/menu_item.dart';
 export './menu_item/menu_item_search_result.dart';
 export './product/product.dart';
@@ -15,5 +17,3 @@ export './wine/dish_for_wine_pairing.dart';
 export './wine/wine_description.dart';
 export './wine/wine_for_dish_pairing.dart';
 export './wine/wine_recommendation.dart';
-
-/// TODO: Generate Meal Plan
