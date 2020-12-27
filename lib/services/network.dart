@@ -129,4 +129,31 @@ class Network {
       return null;
     }
   }
+
+  /// Menu Items
+
+  Future<MenuItem> getMenuItemInformation(int id) async {
+    try {
+      final Response<dynamic> response = await _api.get('/food/menuItems/$id?');
+      final MenuItem _menuItem = response.data as MenuItem;
+
+      return _menuItem;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<MenuItemSearchResult> searchMenuItems(String query,
+      {int number = 6}) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/food/menuItems/search?query=$query&number=$number&');
+      final MenuItemSearchResult _menuItemSearchResult =
+          response.data as MenuItemSearchResult;
+
+      return _menuItemSearchResult;
+    } catch (e) {
+      return null;
+    }
+  }
 }
