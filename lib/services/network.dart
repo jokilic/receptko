@@ -102,4 +102,31 @@ class Network {
       return null;
     }
   }
+
+  /// Products
+
+  Future<Product> getProductInformation(int id) async {
+    try {
+      final Response<dynamic> response = await _api.get('/food/products/$id?');
+      final Product _product = response.data as Product;
+
+      return _product;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<ProductSearchResult> searchProducts(String query,
+      {int number = 6}) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/food/products/search?query=$query&number=$number&');
+      final ProductSearchResult _productSearchResult =
+          response.data as ProductSearchResult;
+
+      return _productSearchResult;
+    } catch (e) {
+      return null;
+    }
+  }
 }
