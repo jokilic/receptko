@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../models/ingredient_result.dart';
 import '../models/recipe.dart';
 import '../models/recipe_summary.dart';
 import '../models/search_result.dart';
@@ -38,7 +39,7 @@ class Network {
   }
 
   Future<List<SimilarRecipe>> getSimilarRecipes(int id,
-      {int number = 3}) async {
+      {int number = 6}) async {
     try {
       final Response<dynamic> response =
           await _api.get('/recipes/$id/similar?number=$number&');
@@ -69,6 +70,20 @@ class Network {
       final SearchResult _searchResult = response.data as SearchResult;
 
       return _searchResult;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<IngredientResult> searchIngredients(String query,
+      {int number = 6}) async {
+    try {
+      final Response<dynamic> response = await _api
+          .get('/food/ingredients/search?query=$query&number=$number&');
+      final IngredientResult _ingredientResult =
+          response.data as IngredientResult;
+
+      return _ingredientResult;
     } catch (e) {
       return null;
     }
