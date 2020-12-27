@@ -1,6 +1,8 @@
 export './global_search/global_search.dart';
 export './ingredient/ingredient.dart';
 export './ingredient/ingredient_search_result.dart';
+export './jokes_trivia/random_joke.dart';
+export './jokes_trivia/random_trivia.dart';
 export './menu_item/menu_item.dart';
 export './menu_item/menu_item_search_result.dart';
 export './product/product.dart';
@@ -14,6 +16,4 @@ export './wine/wine_description.dart';
 export './wine/wine_for_dish_pairing.dart';
 export './wine/wine_recommendation.dart';
 
-/// TODO: Random Food Joke
-/// TODO: Random Food Trivia
 /// TODO: Generate Meal Plan

@@ -224,4 +224,28 @@ class Network {
       return null;
     }
   }
+
+  /// Jokes & Trivia
+
+  Future<RandomJoke> getRandomJoke() async {
+    try {
+      final Response<dynamic> response = await _api.get('/food/jokes/random?');
+      final RandomJoke _randomJoke = response.data as RandomJoke;
+
+      return _randomJoke;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<RandomTrivia> getRandomTrivia() async {
+    try {
+      final Response<dynamic> response = await _api.get('/food/trivia/random?');
+      final RandomTrivia _randomTrivia = response.data as RandomTrivia;
+
+      return _randomTrivia;
+    } catch (e) {
+      return null;
+    }
+  }
 }
