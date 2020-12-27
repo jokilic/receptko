@@ -16,3 +16,28 @@
 
 ### SearchRecipesByIngredients
 - [ ] ingredients - comma separated
+
+# Read the Guides section in the API Docs
+
+- [ ] Authentication
+- [ ] Quotas
+- [ ] Show images
+- [ ] List of Ingredients
+- [ ] Nutrition
+- [ ] Diets
+- [ ] Intolerances
+- [ ] Cuisines
+- [ ] Meal Types
+- [ ] Recipe Sorting Options
+
+## Authentication
+
+* You have to put the `apiKey` in the Request URL for every Request.
+
+## Quotas
+
+* You have 150 points each day
+* API call usually costs 1 point
+* When daily quota is used, the API will respond with the error code `402`
+
+## ...
