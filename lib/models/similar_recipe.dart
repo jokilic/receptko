@@ -1,4 +1,4 @@
-class SimilarRecipes {
+class SimilarRecipe {
   int id;
   String imageType;
   String title;
@@ -6,7 +6,7 @@ class SimilarRecipes {
   int servings;
   String sourceUrl;
 
-  SimilarRecipes({
+  SimilarRecipe({
     this.id,
     this.imageType,
     this.title,
@@ -15,7 +15,7 @@ class SimilarRecipes {
     this.sourceUrl,
   });
 
-  SimilarRecipes.fromJson(Map<String, dynamic> json) {
+  SimilarRecipe.fromJson(Map<String, dynamic> json) {
     id = json['id'] as int;
     imageType = json['imageType'] as String;
     title = json['title'] as String;

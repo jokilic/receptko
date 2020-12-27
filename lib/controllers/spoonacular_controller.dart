@@ -2,7 +2,9 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:dio/dio.dart';
 
 import '../models/recipe.dart';
+import '../models/recipe_summary.dart';
 import '../models/search_result.dart';
+import '../models/similar_recipe.dart';
 import '../services/api.dart';
 
 class SpoonacularController extends GetxController {
@@ -17,10 +19,10 @@ class SpoonacularController extends GetxController {
   // ----------------------
   // API Calls
   // ----------------------
-  Future<Recipe> getRecipeInformation(int recipeId) async {
+  Future<Recipe> getRecipeInformation(int id) async {
     try {
       final Response<dynamic> response =
-          await _api.get('recipes/$recipeId/information?');
+          await _api.get('recipes/$id/information?');
       final Recipe _recipe = response.data as Recipe;
 
       return _recipe;
@@ -34,6 +36,31 @@ class SpoonacularController extends GetxController {
       final Response<dynamic> response =
           await _api.get('/recipes/random?number=$number&');
       final List<Recipe> _recipes = response.data as List<Recipe>;
+
+      return _recipes;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<List<SimilarRecipe>> getSimilarRecipes(int id,
+      {int number = 3}) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/recipes/$id/similar?number=$number&');
+      final List<SimilarRecipe> _recipes = response.data as List<SimilarRecipe>;
+
+      return _recipes;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<RecipeSummary> getRecipeSummary(int id) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/recipes/$id/summary?');
+      final RecipeSummary _recipes = response.data as RecipeSummary;
 
       return _recipes;
     } catch (e) {
