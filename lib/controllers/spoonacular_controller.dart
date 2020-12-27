@@ -17,11 +17,13 @@ class SpoonacularController extends GetxController {
   // ----------------------
   // API Calls
   // ----------------------
-  Future<Response<dynamic>> getRecipeInformation(int recipeId) async {
+  Future<Recipe> getRecipeInformation(int recipeId) async {
     try {
       final Response<dynamic> response =
           await _api.get('recipes/$recipeId/information?');
-      return response;
+      final Recipe _recipe = response.data as Recipe;
+
+      return _recipe;
     } catch (e) {
       return null;
     }
