@@ -156,4 +156,58 @@ class Network {
       return null;
     }
   }
+
+  /// Wines
+
+  Future<DishForWinePairing> getDishForWinePairing(String query) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/food/wine/dishes?wine=$query&');
+      final DishForWinePairing _dishForWinePairing =
+          response.data as DishForWinePairing;
+
+      return _dishForWinePairing;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<WineForDishPairing> getWineForDishPairing(String query) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/food/wine/pairing?food=$query&');
+      final WineForDishPairing _wineForDishPairing =
+          response.data as WineForDishPairing;
+
+      return _wineForDishPairing;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<WineDescription> getWineDescription(String query) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/food/wine/description?wine=$query&');
+      final WineDescription _wineDescription = response.data as WineDescription;
+
+      return _wineDescription;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<WineRecommendation> getWineRecommendation(String query,
+      {int number = 6}) async {
+    try {
+      final Response<dynamic> response = await _api
+          .get('/food/wine/recommendation?wine=$query&number=$number&');
+      final WineRecommendation _wineRecommendation =
+          response.data as WineRecommendation;
+
+      return _wineRecommendation;
+    } catch (e) {
+      return null;
+    }
+  }
 }
