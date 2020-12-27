@@ -1,18 +1,18 @@
-class SearchResult {
-  List<Results> results;
+class IngredientSearchResult {
+  List<IngredientResults> results;
   int offset;
   int number;
   int totalResults;
 
-  SearchResult({
+  IngredientSearchResult({
     this.results,
     this.offset,
     this.number,
     this.totalResults,
   });
 
-  SearchResult.fromJson(Map<String, dynamic> json) {
-    results = json['results'] as List<Results>;
+  IngredientSearchResult.fromJson(Map<String, dynamic> json) {
+    results = json['results'] as List<IngredientResults>;
     offset = json['offset'] as int;
     number = json['number'] as int;
     totalResults = json['totalResults'] as int;
@@ -30,33 +30,25 @@ class SearchResult {
   }
 }
 
-class Results {
+class IngredientResults {
   int id;
-  String title;
+  String name;
   String image;
-  String imageType;
 
-  Results({
-    this.id,
-    this.title,
-    this.image,
-    this.imageType,
-  });
+  IngredientResults({this.id, this.name, this.image});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  IngredientResults.fromJson(Map<String, dynamic> json) {
     id = json['id'] as int;
-    title = json['title'] as String;
+    name = json['name'] as String;
     image = json['image'] as String;
-    imageType = json['imageType'] as String;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 
     data['id'] = id;
-    data['title'] = title;
+    data['name'] = name;
     data['image'] = image;
-    data['imageType'] = imageType;
 
     return data;
   }

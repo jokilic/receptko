@@ -1,18 +1,16 @@
 import 'package:dio/dio.dart';
 
-import '../models/ingredient_result.dart';
-import '../models/recipe.dart';
-import '../models/recipe_summary.dart';
-import '../models/search_result.dart';
-import '../models/similar_recipe.dart';
+import '../models/models.dart';
 import '../services/api.dart';
 
 class Network {
   final Api _api = Api();
 
-  // ----------------------
+  /// ----------------------
   // API Calls
-  // ----------------------
+  /// ----------------------
+
+  /// Recipes
 
   Future<Recipe> getRecipeInformation(int id) async {
     try {
@@ -63,27 +61,43 @@ class Network {
     }
   }
 
-  Future<SearchResult> searchRecipes(String query, {int number = 10}) async {
+  Future<RecipeSearchResult> searchRecipes(String query,
+      {int number = 10}) async {
     try {
       final Response<dynamic> response =
           await _api.get('/recipes/complexSearch?query=$query&number=$number&');
-      final SearchResult _searchResult = response.data as SearchResult;
+      final RecipeSearchResult _recipeSearchResult =
+          response.data as RecipeSearchResult;
 
-      return _searchResult;
+      return _recipeSearchResult;
     } catch (e) {
       return null;
     }
   }
 
-  Future<IngredientResult> searchIngredients(String query,
+  /// Ingredients
+
+  Future<Ingredient> getIngredientInformation(int id) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/food/ingredients/$id/information?');
+      final Ingredient _ingredient = response.data as Ingredient;
+
+      return _ingredient;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<IngredientSearchResult> searchIngredients(String query,
       {int number = 6}) async {
     try {
       final Response<dynamic> response = await _api
           .get('/food/ingredients/search?query=$query&number=$number&');
-      final IngredientResult _ingredientResult =
-          response.data as IngredientResult;
+      final IngredientSearchResult _ingredientSearchResult =
+          response.data as IngredientSearchResult;
 
-      return _ingredientResult;
+      return _ingredientSearchResult;
     } catch (e) {
       return null;
     }
