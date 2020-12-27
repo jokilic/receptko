@@ -210,4 +210,18 @@ class Network {
       return null;
     }
   }
+
+  /// Global Search
+
+  Future<GlobalSearch> searchGlobal(String query, {int number = 10}) async {
+    try {
+      final Response<dynamic> response =
+          await _api.get('/food/search?query=$query&number=$number&');
+      final GlobalSearch _globalSearch = response.data as GlobalSearch;
+
+      return _globalSearch;
+    } catch (e) {
+      return null;
+    }
+  }
 }

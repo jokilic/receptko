@@ -1,3 +1,4 @@
+export './global_search/global_search.dart';
 export './ingredient/ingredient.dart';
 export './ingredient/ingredient_search_result.dart';
 export './menu_item/menu_item.dart';
@@ -13,8 +14,6 @@ export './wine/wine_description.dart';
 export './wine/wine_for_dish_pairing.dart';
 export './wine/wine_recommendation.dart';
 
-/// TODO: Wine - 'Add Wine Models & Refactored Models folder'
-/// TODO: Global Search
 /// TODO: Random Food Joke
 /// TODO: Random Food Trivia
 /// TODO: Generate Meal Plan
