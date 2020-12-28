@@ -8,6 +8,8 @@ class Ingredient {
   List<String> shoppingListUnits;
   String aisle;
   String image;
+  List<String> meta;
+  List<String> categoryPath;
 
   Ingredient({
     this.id,
@@ -19,33 +21,51 @@ class Ingredient {
     this.shoppingListUnits,
     this.aisle,
     this.image,
+    this.meta,
+    this.categoryPath,
   });
 
   Ingredient.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    original = json['original'] as String;
-    originalName = json['originalName'] as String;
-    name = json['name'] as String;
-    possibleUnits = json['possibleUnits'] as List<String>;
-    consistency = json['consistency'] as String;
-    shoppingListUnits = json['shoppingListUnits'] as List<String>;
-    aisle = json['aisle'] as String;
-    image = json['image'] as String;
+    id = json['id'];
+    original = json['original'];
+    originalName = json['originalName'];
+    name = json['name'];
+    possibleUnits = json['possibleUnits'].cast<String>();
+    consistency = json['consistency'];
+    shoppingListUnits = json['shoppingListUnits'].cast<String>();
+    aisle = json['aisle'];
+    image = json['image'];
+    if (json['meta'] != null) {
+      meta = new List<Null>();
+      json['meta'].forEach((v) {
+        meta.add(v);
+      });
+    }
+    if (json['categoryPath'] != null) {
+      categoryPath = new List<Null>();
+      json['categoryPath'].forEach((v) {
+        categoryPath.add(v);
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['original'] = original;
-    data['originalName'] = originalName;
-    data['name'] = name;
-    data['possibleUnits'] = possibleUnits;
-    data['consistency'] = consistency;
-    data['shoppingListUnits'] = shoppingListUnits;
-    data['aisle'] = aisle;
-    data['image'] = image;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['original'] = this.original;
+    data['originalName'] = this.originalName;
+    data['name'] = this.name;
+    data['possibleUnits'] = this.possibleUnits;
+    data['consistency'] = this.consistency;
+    data['shoppingListUnits'] = this.shoppingListUnits;
+    data['aisle'] = this.aisle;
+    data['image'] = this.image;
+    if (this.meta != null) {
+      data['meta'] = this.meta.map((v) => v).toList();
+    }
+    if (this.categoryPath != null) {
+      data['categoryPath'] = this.categoryPath.map((v) => v).toList();
+    }
     return data;
   }
 }

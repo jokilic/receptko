@@ -4,14 +4,14 @@ class MealPlanWeek {
   MealPlanWeek({this.week});
 
   MealPlanWeek.fromJson(Map<String, dynamic> json) {
-    week = json['week'] as Week;
+    week = json['week'] != null ? new Week.fromJson(json['week']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['week'] = week;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.week != null) {
+      data['week'] = this.week.toJson();
+    }
     return data;
   }
 }
@@ -36,52 +36,77 @@ class Week {
   });
 
   Week.fromJson(Map<String, dynamic> json) {
-    monday = json['monday'] as Day;
-    tuesday = json['tuesday'] as Day;
-    wednesday = json['wednesday'] as Day;
-    thursday = json['thursday'] as Day;
-    friday = json['friday'] as Day;
-    saturday = json['saturday'] as Day;
-    sunday = json['sunday'] as Day;
+    monday = json['monday'] != null ? new Day.fromJson(json['monday']) : null;
+    tuesday =
+        json['tuesday'] != null ? new Day.fromJson(json['tuesday']) : null;
+    wednesday =
+        json['wednesday'] != null ? new Day.fromJson(json['wednesday']) : null;
+    thursday =
+        json['thursday'] != null ? new Day.fromJson(json['thursday']) : null;
+    friday = json['friday'] != null ? new Day.fromJson(json['friday']) : null;
+    saturday =
+        json['saturday'] != null ? new Day.fromJson(json['saturday']) : null;
+    sunday = json['sunday'] != null ? new Day.fromJson(json['sunday']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['monday'] = monday;
-    data['tuesday'] = tuesday;
-    data['wednesday'] = wednesday;
-    data['thursday'] = thursday;
-    data['friday'] = friday;
-    data['saturday'] = saturday;
-    data['sunday'] = sunday;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.monday != null) {
+      data['monday'] = this.monday.toJson();
+    }
+    if (this.tuesday != null) {
+      data['tuesday'] = this.tuesday.toJson();
+    }
+    if (this.wednesday != null) {
+      data['wednesday'] = this.wednesday.toJson();
+    }
+    if (this.thursday != null) {
+      data['thursday'] = this.thursday.toJson();
+    }
+    if (this.friday != null) {
+      data['friday'] = this.friday.toJson();
+    }
+    if (this.saturday != null) {
+      data['saturday'] = this.saturday.toJson();
+    }
+    if (this.sunday != null) {
+      data['sunday'] = this.sunday.toJson();
+    }
     return data;
   }
 }
 
 class Day {
-  List<MealsWeek> meals;
-  NutrientsWeek nutrients;
+  List<WeekMeals> meals;
+  WeekNutrients nutrients;
 
   Day({this.meals, this.nutrients});
 
   Day.fromJson(Map<String, dynamic> json) {
-    meals = json['meals'] as List<MealsWeek>;
-    nutrients = json['nutrients'] as NutrientsWeek;
+    if (json['meals'] != null) {
+      meals = new List<WeekMeals>();
+      json['meals'].forEach((v) {
+        meals.add(new WeekMeals.fromJson(v));
+      });
+    }
+    nutrients = json['nutrients'] != null
+        ? new WeekNutrients.fromJson(json['nutrients'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['meals'] = meals;
-    data['nutrients'] = nutrients;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.meals != null) {
+      data['meals'] = this.meals.map((v) => v.toJson()).toList();
+    }
+    if (this.nutrients != null) {
+      data['nutrients'] = this.nutrients.toJson();
+    }
     return data;
   }
 }
 
-class MealsWeek {
+class WeekMeals {
   int id;
   String imageType;
   String title;
@@ -89,7 +114,7 @@ class MealsWeek {
   int servings;
   String sourceUrl;
 
-  MealsWeek({
+  WeekMeals({
     this.id,
     this.imageType,
     this.title,
@@ -98,57 +123,53 @@ class MealsWeek {
     this.sourceUrl,
   });
 
-  MealsWeek.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    imageType = json['imageType'] as String;
-    title = json['title'] as String;
-    readyInMinutes = json['readyInMinutes'] as int;
-    servings = json['servings'] as int;
-    sourceUrl = json['sourceUrl'] as String;
+  WeekMeals.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    imageType = json['imageType'];
+    title = json['title'];
+    readyInMinutes = json['readyInMinutes'];
+    servings = json['servings'];
+    sourceUrl = json['sourceUrl'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['imageType'] = imageType;
-    data['title'] = title;
-    data['readyInMinutes'] = readyInMinutes;
-    data['servings'] = servings;
-    data['sourceUrl'] = sourceUrl;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['imageType'] = this.imageType;
+    data['title'] = this.title;
+    data['readyInMinutes'] = this.readyInMinutes;
+    data['servings'] = this.servings;
+    data['sourceUrl'] = this.sourceUrl;
     return data;
   }
 }
 
-class NutrientsWeek {
+class WeekNutrients {
   double calories;
   double protein;
   double fat;
   double carbohydrates;
 
-  NutrientsWeek({
+  WeekNutrients({
     this.calories,
     this.protein,
     this.fat,
     this.carbohydrates,
   });
 
-  NutrientsWeek.fromJson(Map<String, dynamic> json) {
-    calories = json['calories'] as double;
-    protein = json['protein'] as double;
-    fat = json['fat'] as double;
-    carbohydrates = json['carbohydrates'] as double;
+  WeekNutrients.fromJson(Map<String, dynamic> json) {
+    calories = json['calories'];
+    protein = json['protein'];
+    fat = json['fat'];
+    carbohydrates = json['carbohydrates'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['calories'] = calories;
-    data['protein'] = protein;
-    data['fat'] = fat;
-    data['carbohydrates'] = carbohydrates;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['calories'] = this.calories;
+    data['protein'] = this.protein;
+    data['fat'] = this.fat;
+    data['carbohydrates'] = this.carbohydrates;
     return data;
   }
 }

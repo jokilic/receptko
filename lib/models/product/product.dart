@@ -5,7 +5,7 @@ class Product {
   int likes;
   List<String> badges;
   List<String> importantBadges;
-  Nutrition nutrition;
+  ProductNutrition nutrition;
   String servingSize;
   int numberOfServings;
   Servings servings;
@@ -48,69 +48,82 @@ class Product {
   });
 
   Product.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    title = json['title'] as String;
-    price = json['price'] as int;
-    likes = json['likes'] as int;
-    badges = json['badges'] as List<String>;
-    importantBadges = json['importantBadges'] as List<String>;
-    nutrition = json['nutrition'] as Nutrition;
-    servingSize = json['serving_size'] as String;
-    numberOfServings = json['number_of_servings'] as int;
-    servings = json['servings'] as Servings;
-    spoonacularScore = json['spoonacularScore'] as int;
-    breadcrumbs = json['breadcrumbs'] as List<String>;
-    aisle = json['aisle'] as String;
-    description = json['description'] as String;
-    generatedText = json['generatedText'] as String;
-    upc = json['upc'] as String;
-    brand = json['brand'] as String;
-    ingredients = json['ingredients'] as List<ProductIngredients>;
-    ingredientCount = json['ingredientCount'] as int;
-    ingredientList = json['ingredientList'] as String;
-    images = json['images'] as List<String>;
-    imageType = json['imageType'] as String;
+    id = json['id'];
+    title = json['title'];
+    price = json['price'];
+    likes = json['likes'];
+    badges = json['badges'].cast<String>();
+    importantBadges = json['importantBadges'].cast<String>();
+    nutrition = json['nutrition'] != null
+        ? new ProductNutrition.fromJson(json['nutrition'])
+        : null;
+    servingSize = json['serving_size'];
+    numberOfServings = json['number_of_servings'];
+    servings = json['servings'] != null
+        ? new Servings.fromJson(json['servings'])
+        : null;
+    spoonacularScore = json['spoonacularScore'];
+    breadcrumbs = json['breadcrumbs'].cast<String>();
+    aisle = json['aisle'];
+    description = json['description'];
+    generatedText = json['generatedText'];
+    upc = json['upc'];
+    brand = json['brand'];
+    if (json['ingredients'] != null) {
+      ingredients = new List<ProductIngredients>();
+      json['ingredients'].forEach((v) {
+        ingredients.add(new ProductIngredients.fromJson(v));
+      });
+    }
+    ingredientCount = json['ingredientCount'];
+    ingredientList = json['ingredientList'];
+    images = json['images'].cast<String>();
+    imageType = json['imageType'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['title'] = title;
-    data['price'] = price;
-    data['likes'] = likes;
-    data['badges'] = badges;
-    data['importantBadges'] = importantBadges;
-    data['nutrition'] = nutrition;
-    data['serving_size'] = servingSize;
-    data['number_of_servings'] = numberOfServings;
-    data['servings'] = servings;
-    data['spoonacularScore'] = spoonacularScore;
-    data['breadcrumbs'] = breadcrumbs;
-    data['aisle'] = aisle;
-    data['description'] = description;
-    data['generatedText'] = generatedText;
-    data['upc'] = upc;
-    data['brand'] = brand;
-    data['ingredients'] = ingredients;
-    data['ingredientCount'] = ingredientCount;
-    data['ingredientList'] = ingredientList;
-    data['images'] = images;
-    data['imageType'] = imageType;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['price'] = this.price;
+    data['likes'] = this.likes;
+    data['badges'] = this.badges;
+    data['importantBadges'] = this.importantBadges;
+    if (this.nutrition != null) {
+      data['nutrition'] = this.nutrition.toJson();
+    }
+    data['serving_size'] = this.servingSize;
+    data['number_of_servings'] = this.numberOfServings;
+    if (this.servings != null) {
+      data['servings'] = this.servings.toJson();
+    }
+    data['spoonacularScore'] = this.spoonacularScore;
+    data['breadcrumbs'] = this.breadcrumbs;
+    data['aisle'] = this.aisle;
+    data['description'] = this.description;
+    data['generatedText'] = this.generatedText;
+    data['upc'] = this.upc;
+    data['brand'] = this.brand;
+    if (this.ingredients != null) {
+      data['ingredients'] = this.ingredients.map((v) => v.toJson()).toList();
+    }
+    data['ingredientCount'] = this.ingredientCount;
+    data['ingredientList'] = this.ingredientList;
+    data['images'] = this.images;
+    data['imageType'] = this.imageType;
     return data;
   }
 }
 
-class Nutrition {
-  List<Nutrients> nutrients;
-  CaloricBreakdown caloricBreakdown;
+class ProductNutrition {
+  List<ProductNutrients> nutrients;
+  ProductCaloricBreakdown caloricBreakdown;
   int calories;
   String fat;
   String protein;
   String carbs;
 
-  Nutrition({
+  ProductNutrition({
     this.nutrients,
     this.caloricBreakdown,
     this.calories,
@@ -119,81 +132,87 @@ class Nutrition {
     this.carbs,
   });
 
-  Nutrition.fromJson(Map<String, dynamic> json) {
-    nutrients = json['nutrients'] as List<Nutrients>;
-    caloricBreakdown = json['caloricBreakdown'] as CaloricBreakdown;
-    calories = json['calories'] as int;
-    fat = json['fat'] as String;
-    protein = json['protein'] as String;
-    carbs = json['carbs'] as String;
+  ProductNutrition.fromJson(Map<String, dynamic> json) {
+    if (json['nutrients'] != null) {
+      nutrients = new List<ProductNutrients>();
+      json['nutrients'].forEach((v) {
+        nutrients.add(new ProductNutrients.fromJson(v));
+      });
+    }
+    caloricBreakdown = json['caloricBreakdown'] != null
+        ? new ProductCaloricBreakdown.fromJson(json['caloricBreakdown'])
+        : null;
+    calories = json['calories'];
+    fat = json['fat'];
+    protein = json['protein'];
+    carbs = json['carbs'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['nutrients'] = nutrients;
-    data['caloricBreakdown'] = caloricBreakdown;
-    data['calories'] = calories;
-    data['fat'] = fat;
-    data['protein'] = protein;
-    data['carbs'] = carbs;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.nutrients != null) {
+      data['nutrients'] = this.nutrients.map((v) => v.toJson()).toList();
+    }
+    if (this.caloricBreakdown != null) {
+      data['caloricBreakdown'] = this.caloricBreakdown.toJson();
+    }
+    data['calories'] = this.calories;
+    data['fat'] = this.fat;
+    data['protein'] = this.protein;
+    data['carbs'] = this.carbs;
     return data;
   }
 }
 
-class Nutrients {
+class ProductNutrients {
   String title;
   double amount;
   String unit;
   double percentOfDailyNeeds;
 
-  Nutrients({
+  ProductNutrients({
     this.title,
     this.amount,
     this.unit,
     this.percentOfDailyNeeds,
   });
 
-  Nutrients.fromJson(Map<String, dynamic> json) {
-    title = json['title'] as String;
-    amount = json['amount'] as double;
-    unit = json['unit'] as String;
-    percentOfDailyNeeds = json['percentOfDailyNeeds'] as double;
+  ProductNutrients.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    amount = json['amount'];
+    unit = json['unit'];
+    percentOfDailyNeeds = json['percentOfDailyNeeds'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['title'] = title;
-    data['amount'] = amount;
-    data['unit'] = unit;
-    data['percentOfDailyNeeds'] = percentOfDailyNeeds;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['amount'] = this.amount;
+    data['unit'] = this.unit;
+    data['percentOfDailyNeeds'] = this.percentOfDailyNeeds;
     return data;
   }
 }
 
-class CaloricBreakdown {
+class ProductCaloricBreakdown {
   double percentProtein;
   double percentFat;
   int percentCarbs;
 
-  CaloricBreakdown({this.percentProtein, this.percentFat, this.percentCarbs});
+  ProductCaloricBreakdown(
+      {this.percentProtein, this.percentFat, this.percentCarbs});
 
-  CaloricBreakdown.fromJson(Map<String, dynamic> json) {
-    percentProtein = json['percentProtein'] as double;
-    percentFat = json['percentFat'] as double;
-    percentCarbs = json['percentCarbs'] as int;
+  ProductCaloricBreakdown.fromJson(Map<String, dynamic> json) {
+    percentProtein = json['percentProtein'];
+    percentFat = json['percentFat'];
+    percentCarbs = json['percentCarbs'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['percentProtein'] = percentProtein;
-    data['percentFat'] = percentFat;
-    data['percentCarbs'] = percentCarbs;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['percentProtein'] = this.percentProtein;
+    data['percentFat'] = this.percentFat;
+    data['percentCarbs'] = this.percentCarbs;
     return data;
   }
 }
@@ -206,18 +225,16 @@ class Servings {
   Servings({this.number, this.size, this.unit});
 
   Servings.fromJson(Map<String, dynamic> json) {
-    number = json['number'] as int;
-    size = json['size'] as double;
-    unit = json['unit'] as String;
+    number = json['number'];
+    size = json['size'];
+    unit = json['unit'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['number'] = number;
-    data['size'] = size;
-    data['unit'] = unit;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['number'] = this.number;
+    data['size'] = this.size;
+    data['unit'] = this.unit;
     return data;
   }
 }
@@ -230,18 +247,16 @@ class ProductIngredients {
   ProductIngredients({this.name, this.safetyLevel, this.description});
 
   ProductIngredients.fromJson(Map<String, dynamic> json) {
-    name = json['name'] as String;
-    safetyLevel = json['safety_level'] as String;
-    description = json['description'] as String;
+    name = json['name'];
+    safetyLevel = json['safety_level'];
+    description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['name'] = name;
-    data['safety_level'] = safetyLevel;
-    data['description'] = description;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['safety_level'] = this.safetyLevel;
+    data['description'] = this.description;
     return data;
   }
 }

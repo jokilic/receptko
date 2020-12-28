@@ -18,26 +18,31 @@ class MenuItemSearchResult {
   });
 
   MenuItemSearchResult.fromJson(Map<String, dynamic> json) {
-    type = json['type'] as String;
-    menuItems = json['menuItems'] as List<MenuItems>;
-    offset = json['offset'] as int;
-    number = json['number'] as int;
-    totalMenuItems = json['totalMenuItems'] as int;
-    processingTimeMs = json['processingTimeMs'] as int;
-    expires = json['expires'] as int;
+    type = json['type'];
+    if (json['menuItems'] != null) {
+      menuItems = new List<MenuItems>();
+      json['menuItems'].forEach((v) {
+        menuItems.add(new MenuItems.fromJson(v));
+      });
+    }
+    offset = json['offset'];
+    number = json['number'];
+    totalMenuItems = json['totalMenuItems'];
+    processingTimeMs = json['processingTimeMs'];
+    expires = json['expires'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['type'] = type;
-    data['menuItems'] = menuItems;
-    data['offset'] = offset;
-    data['number'] = number;
-    data['totalMenuItems'] = totalMenuItems;
-    data['processingTimeMs'] = processingTimeMs;
-    data['expires'] = expires;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['type'] = this.type;
+    if (this.menuItems != null) {
+      data['menuItems'] = this.menuItems.map((v) => v.toJson()).toList();
+    }
+    data['offset'] = this.offset;
+    data['number'] = this.number;
+    data['totalMenuItems'] = this.totalMenuItems;
+    data['processingTimeMs'] = this.processingTimeMs;
+    data['expires'] = this.expires;
     return data;
   }
 }
@@ -62,26 +67,24 @@ class MenuItems {
   });
 
   MenuItems.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    title = json['title'] as String;
-    restaurantChain = json['restaurantChain'] as String;
-    servingSize = json['servingSize'] as String;
-    readableServingSize = json['readableServingSize'] as String;
-    image = json['image'] as String;
-    imageType = json['imageType'] as String;
+    id = json['id'];
+    title = json['title'];
+    restaurantChain = json['restaurantChain'];
+    servingSize = json['servingSize'];
+    readableServingSize = json['readableServingSize'];
+    image = json['image'];
+    imageType = json['imageType'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['title'] = title;
-    data['restaurantChain'] = restaurantChain;
-    data['servingSize'] = servingSize;
-    data['readableServingSize'] = readableServingSize;
-    data['image'] = image;
-    data['imageType'] = imageType;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['restaurantChain'] = this.restaurantChain;
+    data['servingSize'] = this.servingSize;
+    data['readableServingSize'] = this.readableServingSize;
+    data['image'] = this.image;
+    data['imageType'] = this.imageType;
     return data;
   }
 }

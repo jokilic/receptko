@@ -4,14 +4,12 @@ class WineDescription {
   WineDescription({this.wineDescription});
 
   WineDescription.fromJson(Map<String, dynamic> json) {
-    wineDescription = json['wineDescription'] as String;
+    wineDescription = json['wineDescription'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['wineDescription'] = wineDescription;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['wineDescription'] = this.wineDescription;
     return data;
   }
 }

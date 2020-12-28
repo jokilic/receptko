@@ -1,5 +1,5 @@
 class IngredientSearchResult {
-  List<IngredientResults> results;
+  List<IngredientSearchResults> results;
   int offset;
   int number;
   int totalResults;
@@ -12,44 +12,47 @@ class IngredientSearchResult {
   });
 
   IngredientSearchResult.fromJson(Map<String, dynamic> json) {
-    results = json['results'] as List<IngredientResults>;
-    offset = json['offset'] as int;
-    number = json['number'] as int;
-    totalResults = json['totalResults'] as int;
+    if (json['results'] != null) {
+      results = new List<IngredientSearchResults>();
+      json['results'].forEach((v) {
+        results.add(new IngredientSearchResults.fromJson(v));
+      });
+    }
+    offset = json['offset'];
+    number = json['number'];
+    totalResults = json['totalResults'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['results'] = results;
-    data['offset'] = offset;
-    data['number'] = number;
-    data['totalResults'] = totalResults;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.results != null) {
+      data['results'] = this.results.map((v) => v.toJson()).toList();
+    }
+    data['offset'] = this.offset;
+    data['number'] = this.number;
+    data['totalResults'] = this.totalResults;
     return data;
   }
 }
 
-class IngredientResults {
+class IngredientSearchResults {
   int id;
   String name;
   String image;
 
-  IngredientResults({this.id, this.name, this.image});
+  IngredientSearchResults({this.id, this.name, this.image});
 
-  IngredientResults.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    name = json['name'] as String;
-    image = json['image'] as String;
+  IngredientSearchResults.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['name'] = name;
-    data['image'] = image;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['image'] = this.image;
     return data;
   }
 }

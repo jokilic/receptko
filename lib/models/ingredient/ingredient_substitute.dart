@@ -4,24 +4,26 @@ class IngredientSubstitute {
   List<String> substitutes;
   String message;
 
-  IngredientSubstitute(
-      {this.status, this.ingredient, this.substitutes, this.message});
+  IngredientSubstitute({
+    this.status,
+    this.ingredient,
+    this.substitutes,
+    this.message,
+  });
 
   IngredientSubstitute.fromJson(Map<String, dynamic> json) {
-    status = json['status'] as String;
-    ingredient = json['ingredient'] as String;
-    substitutes = json['substitutes'] as List<String>;
-    message = json['message'] as String;
+    status = json['status'];
+    ingredient = json['ingredient'];
+    substitutes = json['substitutes'].cast<String>();
+    message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['status'] = status;
-    data['ingredient'] = ingredient;
-    data['substitutes'] = substitutes;
-    data['message'] = message;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status'] = this.status;
+    data['ingredient'] = this.ingredient;
+    data['substitutes'] = this.substitutes;
+    data['message'] = this.message;
     return data;
   }
 }

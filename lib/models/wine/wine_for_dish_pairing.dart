@@ -6,18 +6,24 @@ class WineForDishPairing {
   WineForDishPairing({this.pairedWines, this.pairingText, this.productMatches});
 
   WineForDishPairing.fromJson(Map<String, dynamic> json) {
-    pairedWines = json['pairedWines'] as List<String>;
-    pairingText = json['pairingText'] as String;
-    productMatches = json['productMatches'] as List<ProductMatches>;
+    pairedWines = json['pairedWines'].cast<String>();
+    pairingText = json['pairingText'];
+    if (json['productMatches'] != null) {
+      productMatches = new List<ProductMatches>();
+      json['productMatches'].forEach((v) {
+        productMatches.add(new ProductMatches.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['pairedWines'] = pairedWines;
-    data['pairingText'] = pairingText;
-    data['productMatches'] = productMatches;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['pairedWines'] = this.pairedWines;
+    data['pairingText'] = this.pairingText;
+    if (this.productMatches != null) {
+      data['productMatches'] =
+          this.productMatches.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
@@ -28,7 +34,7 @@ class ProductMatches {
   String description;
   String price;
   String imageUrl;
-  int averageRating;
+  double averageRating;
   int ratingCount;
   double score;
   String link;
@@ -46,30 +52,28 @@ class ProductMatches {
   });
 
   ProductMatches.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    title = json['title'] as String;
-    description = json['description'] as String;
-    price = json['price'] as String;
-    imageUrl = json['imageUrl'] as String;
-    averageRating = json['averageRating'] as int;
-    ratingCount = json['ratingCount'] as int;
-    score = json['score'] as double;
-    link = json['link'] as String;
+    id = json['id'];
+    title = json['title'];
+    description = json['description'];
+    price = json['price'];
+    imageUrl = json['imageUrl'];
+    averageRating = json['averageRating'];
+    ratingCount = json['ratingCount'];
+    score = json['score'];
+    link = json['link'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['title'] = title;
-    data['description'] = description;
-    data['price'] = price;
-    data['imageUrl'] = imageUrl;
-    data['averageRating'] = averageRating;
-    data['ratingCount'] = ratingCount;
-    data['score'] = score;
-    data['link'] = link;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['price'] = this.price;
+    data['imageUrl'] = this.imageUrl;
+    data['averageRating'] = this.averageRating;
+    data['ratingCount'] = this.ratingCount;
+    data['score'] = this.score;
+    data['link'] = this.link;
     return data;
   }
 }

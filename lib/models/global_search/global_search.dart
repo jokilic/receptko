@@ -22,30 +22,51 @@ class GlobalSearch {
   });
 
   GlobalSearch.fromJson(Map<String, dynamic> json) {
-    sorting = json['sorting'] as String;
-    filterOptions = json['filterOptions'] as List<String>;
-    activeFilterOptions = json['activeFilterOptions'] as List<String>;
-    query = json['query'] as String;
-    totalResults = json['totalResults'] as int;
-    limit = json['limit'] as int;
-    offset = json['offset'] as int;
-    searchResults = json['searchResults'] as List<SearchResults>;
-    expires = json['expires'] as int;
+    sorting = json['sorting'];
+    if (json['filterOptions'] != null) {
+      filterOptions = new List<Null>();
+      json['filterOptions'].forEach((v) {
+        filterOptions.add(v);
+      });
+    }
+    if (json['activeFilterOptions'] != null) {
+      activeFilterOptions = new List<Null>();
+      json['activeFilterOptions'].forEach((v) {
+        activeFilterOptions.add(v);
+      });
+    }
+    query = json['query'];
+    totalResults = json['totalResults'];
+    limit = json['limit'];
+    offset = json['offset'];
+    if (json['searchResults'] != null) {
+      searchResults = new List<SearchResults>();
+      json['searchResults'].forEach((v) {
+        searchResults.add(new SearchResults.fromJson(v));
+      });
+    }
+    expires = json['expires'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['sorting'] = sorting;
-    data['filterOptions'] = filterOptions;
-    data['activeFilterOptions'] = activeFilterOptions;
-    data['query'] = query;
-    data['totalResults'] = totalResults;
-    data['limit'] = limit;
-    data['offset'] = offset;
-    data['searchResults'] = searchResults;
-    data['expires'] = expires;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['sorting'] = this.sorting;
+    if (this.filterOptions != null) {
+      data['filterOptions'] = this.filterOptions.map((v) => v).toList();
+    }
+    if (this.activeFilterOptions != null) {
+      data['activeFilterOptions'] =
+          this.activeFilterOptions.map((v) => v).toList();
+    }
+    data['query'] = this.query;
+    data['totalResults'] = this.totalResults;
+    data['limit'] = this.limit;
+    data['offset'] = this.offset;
+    if (this.searchResults != null) {
+      data['searchResults'] =
+          this.searchResults.map((v) => v.toJson()).toList();
+    }
+    data['expires'] = this.expires;
     return data;
   }
 }
@@ -56,23 +77,33 @@ class SearchResults {
   int totalResults;
   List<Results> results;
 
-  SearchResults({this.name, this.type, this.totalResults, this.results});
+  SearchResults({
+    this.name,
+    this.type,
+    this.totalResults,
+    this.results,
+  });
 
   SearchResults.fromJson(Map<String, dynamic> json) {
-    name = json['name'] as String;
-    type = json['type'] as String;
-    totalResults = json['totalResults'] as int;
-    results = json['results'] as List<Results>;
+    name = json['name'];
+    type = json['type'];
+    totalResults = json['totalResults'];
+    if (json['results'] != null) {
+      results = new List<Results>();
+      json['results'].forEach((v) {
+        results.add(new Results.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['name'] = name;
-    data['type'] = type;
-    data['totalResults'] = totalResults;
-    data['results'] = results;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['type'] = this.type;
+    data['totalResults'] = this.totalResults;
+    if (this.results != null) {
+      data['results'] = this.results.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
@@ -85,7 +116,7 @@ class Results {
   String type;
   double relevance;
   String content;
-  List<double> dataPoints;
+  List<Null> dataPoints;
 
   Results({
     this.id,
@@ -99,28 +130,33 @@ class Results {
   });
 
   Results.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    name = json['name'] as String;
-    image = json['image'] as String;
-    link = json['link'] as String;
-    type = json['type'] as String;
-    relevance = json['relevance'] as double;
-    content = json['content'] as String;
-    dataPoints = json['dataPoints'] as List<double>;
+    id = json['id'];
+    name = json['name'];
+    image = json['image'];
+    link = json['link'];
+    type = json['type'];
+    relevance = json['relevance'];
+    content = json['content'];
+    if (json['dataPoints'] != null) {
+      dataPoints = new List<Null>();
+      json['dataPoints'].forEach((v) {
+        dataPoints.add(v);
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['name'] = name;
-    data['image'] = image;
-    data['link'] = link;
-    data['type'] = type;
-    data['relevance'] = relevance;
-    data['content'] = content;
-    data['dataPoints'] = dataPoints;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['image'] = this.image;
+    data['link'] = this.link;
+    data['type'] = this.type;
+    data['relevance'] = this.relevance;
+    data['content'] = this.content;
+    if (this.dataPoints != null) {
+      data['dataPoints'] = this.dataPoints.map((v) => v).toList();
+    }
     return data;
   }
 }

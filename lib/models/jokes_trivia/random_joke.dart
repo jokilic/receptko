@@ -4,14 +4,12 @@ class RandomJoke {
   RandomJoke({this.text});
 
   RandomJoke.fromJson(Map<String, dynamic> json) {
-    text = json['text'] as String;
+    text = json['text'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['text'] = text;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['text'] = this.text;
     return data;
   }
 }

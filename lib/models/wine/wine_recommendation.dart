@@ -5,16 +5,22 @@ class WineRecommendation {
   WineRecommendation({this.recommendedWines, this.totalFound});
 
   WineRecommendation.fromJson(Map<String, dynamic> json) {
-    recommendedWines = json['recommendedWines'] as List<RecommendedWines>;
-    totalFound = json['totalFound'] as int;
+    if (json['recommendedWines'] != null) {
+      recommendedWines = new List<RecommendedWines>();
+      json['recommendedWines'].forEach((v) {
+        recommendedWines.add(new RecommendedWines.fromJson(v));
+      });
+    }
+    totalFound = json['totalFound'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['recommendedWines'] = recommendedWines;
-    data['totalFound'] = totalFound;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.recommendedWines != null) {
+      data['recommendedWines'] =
+          this.recommendedWines.map((v) => v.toJson()).toList();
+    }
+    data['totalFound'] = this.totalFound;
     return data;
   }
 }
@@ -43,30 +49,28 @@ class RecommendedWines {
   });
 
   RecommendedWines.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    title = json['title'] as String;
-    description = json['description'] as String;
-    price = json['price'] as String;
-    imageUrl = json['imageUrl'] as String;
-    averageRating = json['averageRating'] as double;
-    ratingCount = json['ratingCount'] as int;
-    score = json['score'] as double;
-    link = json['link'] as String;
+    id = json['id'];
+    title = json['title'];
+    description = json['description'];
+    price = json['price'];
+    imageUrl = json['imageUrl'];
+    averageRating = json['averageRating'];
+    ratingCount = json['ratingCount'];
+    score = json['score'];
+    link = json['link'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['title'] = title;
-    data['description'] = description;
-    data['price'] = price;
-    data['imageUrl'] = imageUrl;
-    data['averageRating'] = averageRating;
-    data['ratingCount'] = ratingCount;
-    data['score'] = score;
-    data['link'] = link;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['price'] = this.price;
+    data['imageUrl'] = this.imageUrl;
+    data['averageRating'] = this.averageRating;
+    data['ratingCount'] = this.ratingCount;
+    data['score'] = this.score;
+    data['link'] = this.link;
     return data;
   }
 }

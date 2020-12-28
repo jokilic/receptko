@@ -6,6 +6,7 @@ class ProductSearchResult {
   int totalProducts;
   int processingTimeMs;
   int expires;
+  bool isStale;
 
   ProductSearchResult({
     this.type,
@@ -15,29 +16,37 @@ class ProductSearchResult {
     this.totalProducts,
     this.processingTimeMs,
     this.expires,
+    this.isStale,
   });
 
   ProductSearchResult.fromJson(Map<String, dynamic> json) {
-    type = json['type'] as String;
-    products = json['products'] as List<Products>;
-    offset = json['offset'] as int;
-    number = json['number'] as int;
-    totalProducts = json['totalProducts'] as int;
-    processingTimeMs = json['processingTimeMs'] as int;
-    expires = json['expires'] as int;
+    type = json['type'];
+    if (json['products'] != null) {
+      products = new List<Products>();
+      json['products'].forEach((v) {
+        products.add(new Products.fromJson(v));
+      });
+    }
+    offset = json['offset'];
+    number = json['number'];
+    totalProducts = json['totalProducts'];
+    processingTimeMs = json['processingTimeMs'];
+    expires = json['expires'];
+    isStale = json['isStale'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['type'] = type;
-    data['products'] = products;
-    data['offset'] = offset;
-    data['number'] = number;
-    data['totalProducts'] = totalProducts;
-    data['processingTimeMs'] = processingTimeMs;
-    data['expires'] = expires;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['type'] = this.type;
+    if (this.products != null) {
+      data['products'] = this.products.map((v) => v.toJson()).toList();
+    }
+    data['offset'] = this.offset;
+    data['number'] = this.number;
+    data['totalProducts'] = this.totalProducts;
+    data['processingTimeMs'] = this.processingTimeMs;
+    data['expires'] = this.expires;
+    data['isStale'] = this.isStale;
     return data;
   }
 }
@@ -56,20 +65,18 @@ class Products {
   });
 
   Products.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    title = json['title'] as String;
-    image = json['image'] as String;
-    imageType = json['imageType'] as String;
+    id = json['id'];
+    title = json['title'];
+    image = json['image'];
+    imageType = json['imageType'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['title'] = title;
-    data['image'] = image;
-    data['imageType'] = imageType;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['image'] = this.image;
+    data['imageType'] = this.imageType;
     return data;
   }
 }
