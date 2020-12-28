@@ -16,24 +16,22 @@ class SimilarRecipe {
   });
 
   SimilarRecipe.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    imageType = json['imageType'] as String;
-    title = json['title'] as String;
-    readyInMinutes = json['readyInMinutes'] as int;
-    servings = json['servings'] as int;
-    sourceUrl = json['sourceUrl'] as String;
+    id = json['id'];
+    imageType = json['imageType'];
+    title = json['title'];
+    readyInMinutes = json['readyInMinutes'];
+    servings = json['servings'];
+    sourceUrl = json['sourceUrl'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['imageType'] = imageType;
-    data['title'] = title;
-    data['readyInMinutes'] = readyInMinutes;
-    data['servings'] = servings;
-    data['sourceUrl'] = sourceUrl;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['imageType'] = this.imageType;
+    data['title'] = this.title;
+    data['readyInMinutes'] = this.readyInMinutes;
+    data['servings'] = this.servings;
+    data['sourceUrl'] = this.sourceUrl;
     return data;
   }
 }

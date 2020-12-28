@@ -226,6 +226,30 @@ class Us {
   }
 }
 
+class Metric {
+  double amount;
+  String unitShort;
+  String unitLong;
+
+  Metric({this.amount, this.unitShort, this.unitLong});
+
+  Metric.fromJson(Map<String, dynamic> json) {
+    amount = json['amount'] as double;
+    unitShort = json['unitShort'] as String;
+    unitLong = json['unitLong'] as String;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    data['amount'] = amount;
+    data['unitShort'] = unitShort;
+    data['unitLong'] = unitLong;
+
+    return data;
+  }
+}
+
 class AnalyzedInstructions {
   String name;
   List<Steps> steps;

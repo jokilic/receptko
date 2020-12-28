@@ -6,18 +6,16 @@ class RecipeSummary {
   RecipeSummary({this.id, this.title, this.summary});
 
   RecipeSummary.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    title = json['title'] as String;
-    summary = json['summary'] as String;
+    id = json['id'];
+    title = json['title'];
+    summary = json['summary'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['title'] = title;
-    data['summary'] = summary;
-
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['summary'] = this.summary;
     return data;
   }
 }
