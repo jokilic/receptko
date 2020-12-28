@@ -57,30 +57,6 @@ class MenuItem {
     restaurantChain = json['restaurantChain'];
     images = json['images'].cast<String>();
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['price'] = this.price;
-    data['likes'] = this.likes;
-    if (this.badges != null) {
-      data['badges'] = this.badges.map((v) => v).toList();
-    }
-    if (this.nutrition != null) {
-      data['nutrition'] = this.nutrition.toJson();
-    }
-    data['servingSize'] = this.servingSize;
-    data['readableServingSize'] = this.readableServingSize;
-    data['numberOfServings'] = this.numberOfServings;
-    data['spoonacularScore'] = this.spoonacularScore;
-    data['breadcrumbs'] = this.breadcrumbs;
-    data['imageType'] = this.imageType;
-    data['generatedText'] = this.generatedText;
-    data['restaurantChain'] = this.restaurantChain;
-    data['images'] = this.images;
-    return data;
-  }
 }
 
 class Nutrition {
@@ -115,21 +91,6 @@ class Nutrition {
     protein = json['protein'];
     carbs = json['carbs'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.nutrients != null) {
-      data['nutrients'] = this.nutrients.map((v) => v.toJson()).toList();
-    }
-    if (this.caloricBreakdown != null) {
-      data['caloricBreakdown'] = this.caloricBreakdown.toJson();
-    }
-    data['calories'] = this.calories;
-    data['fat'] = this.fat;
-    data['protein'] = this.protein;
-    data['carbs'] = this.carbs;
-    return data;
-  }
 }
 
 class MenuItemNutrients {
@@ -151,15 +112,6 @@ class MenuItemNutrients {
     unit = json['unit'];
     percentOfDailyNeeds = json['percentOfDailyNeeds'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['amount'] = this.amount;
-    data['unit'] = this.unit;
-    data['percentOfDailyNeeds'] = this.percentOfDailyNeeds;
-    return data;
-  }
 }
 
 class CaloricBreakdown {
@@ -173,13 +125,5 @@ class CaloricBreakdown {
     percentProtein = json['percentProtein'];
     percentFat = json['percentFat'];
     percentCarbs = json['percentCarbs'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['percentProtein'] = this.percentProtein;
-    data['percentFat'] = this.percentFat;
-    data['percentCarbs'] = this.percentCarbs;
-    return data;
   }
 }

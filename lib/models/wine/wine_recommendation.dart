@@ -13,16 +13,6 @@ class WineRecommendation {
     }
     totalFound = json['totalFound'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.recommendedWines != null) {
-      data['recommendedWines'] =
-          this.recommendedWines.map((v) => v.toJson()).toList();
-    }
-    data['totalFound'] = this.totalFound;
-    return data;
-  }
 }
 
 class RecommendedWines {
@@ -58,19 +48,5 @@ class RecommendedWines {
     ratingCount = json['ratingCount'];
     score = json['score'];
     link = json['link'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    data['imageUrl'] = this.imageUrl;
-    data['averageRating'] = this.averageRating;
-    data['ratingCount'] = this.ratingCount;
-    data['score'] = this.score;
-    data['link'] = this.link;
-    return data;
   }
 }

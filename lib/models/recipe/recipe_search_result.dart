@@ -22,17 +22,6 @@ class RecipeSearchResult {
     number = json['number'];
     totalResults = json['totalResults'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.results != null) {
-      data['results'] = this.results.map((v) => v.toJson()).toList();
-    }
-    data['offset'] = this.offset;
-    data['number'] = this.number;
-    data['totalResults'] = this.totalResults;
-    return data;
-  }
 }
 
 class RecipeSearchResults {
@@ -53,14 +42,5 @@ class RecipeSearchResults {
     title = json['title'];
     image = json['image'];
     imageType = json['imageType'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['image'] = this.image;
-    data['imageType'] = this.imageType;
-    return data;
   }
 }

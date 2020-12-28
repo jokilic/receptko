@@ -34,21 +34,6 @@ class ProductSearchResult {
     expires = json['expires'];
     isStale = json['isStale'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    if (this.products != null) {
-      data['products'] = this.products.map((v) => v.toJson()).toList();
-    }
-    data['offset'] = this.offset;
-    data['number'] = this.number;
-    data['totalProducts'] = this.totalProducts;
-    data['processingTimeMs'] = this.processingTimeMs;
-    data['expires'] = this.expires;
-    data['isStale'] = this.isStale;
-    return data;
-  }
 }
 
 class Products {
@@ -69,14 +54,5 @@ class Products {
     title = json['title'];
     image = json['image'];
     imageType = json['imageType'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['image'] = this.image;
-    data['imageType'] = this.imageType;
-    return data;
   }
 }

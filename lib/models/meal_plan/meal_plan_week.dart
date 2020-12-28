@@ -6,14 +6,6 @@ class MealPlanWeek {
   MealPlanWeek.fromJson(Map<String, dynamic> json) {
     week = json['week'] != null ? new Week.fromJson(json['week']) : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.week != null) {
-      data['week'] = this.week.toJson();
-    }
-    return data;
-  }
 }
 
 class Week {

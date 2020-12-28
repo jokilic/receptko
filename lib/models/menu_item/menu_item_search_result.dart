@@ -31,20 +31,6 @@ class MenuItemSearchResult {
     processingTimeMs = json['processingTimeMs'];
     expires = json['expires'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    if (this.menuItems != null) {
-      data['menuItems'] = this.menuItems.map((v) => v.toJson()).toList();
-    }
-    data['offset'] = this.offset;
-    data['number'] = this.number;
-    data['totalMenuItems'] = this.totalMenuItems;
-    data['processingTimeMs'] = this.processingTimeMs;
-    data['expires'] = this.expires;
-    return data;
-  }
 }
 
 class MenuItems {
@@ -74,17 +60,5 @@ class MenuItems {
     readableServingSize = json['readableServingSize'];
     image = json['image'];
     imageType = json['imageType'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['restaurantChain'] = this.restaurantChain;
-    data['servingSize'] = this.servingSize;
-    data['readableServingSize'] = this.readableServingSize;
-    data['image'] = this.image;
-    data['imageType'] = this.imageType;
-    return data;
   }
 }

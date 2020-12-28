@@ -7,6 +7,15 @@ class Recipe {
   bool cheap;
   bool veryPopular;
   bool sustainable;
+  int weightWatcherSmartPoints;
+  String gaps;
+  bool lowFodmap;
+  int aggregateLikes;
+  int spoonacularScore;
+  int healthScore;
+  String creditsText;
+  String license;
+  String sourceName;
   double pricePerServing;
   List<ExtendedIngredients> extendedIngredients;
   int id;
@@ -21,8 +30,9 @@ class Recipe {
   List<String> dishTypes;
   List<String> diets;
   List<String> occasions;
+  WinePairing winePairing;
   String instructions;
-  List<AnalyzedInstructions> analyzedInstructions;
+  List<String> analyzedInstructions;
   int originalId;
   String spoonacularSourceUrl;
 
@@ -35,6 +45,15 @@ class Recipe {
     this.cheap,
     this.veryPopular,
     this.sustainable,
+    this.weightWatcherSmartPoints,
+    this.gaps,
+    this.lowFodmap,
+    this.aggregateLikes,
+    this.spoonacularScore,
+    this.healthScore,
+    this.creditsText,
+    this.license,
+    this.sourceName,
     this.pricePerServing,
     this.extendedIngredients,
     this.id,
@@ -49,6 +68,7 @@ class Recipe {
     this.dishTypes,
     this.diets,
     this.occasions,
+    this.winePairing,
     this.instructions,
     this.analyzedInstructions,
     this.originalId,
@@ -56,68 +76,69 @@ class Recipe {
   });
 
   Recipe.fromJson(Map<String, dynamic> json) {
-    vegetarian = json['vegetarian'] as bool;
-    vegan = json['vegan'] as bool;
-    glutenFree = json['glutenFree'] as bool;
-    dairyFree = json['dairyFree'] as bool;
-    veryHealthy = json['veryHealthy'] as bool;
-    cheap = json['cheap'] as bool;
-    veryPopular = json['veryPopular'] as bool;
-    sustainable = json['sustainable'] as bool;
-    pricePerServing = json['pricePerServing'] as double;
-    extendedIngredients =
-        json['extendedIngredients'] as List<ExtendedIngredients> ??
-            <ExtendedIngredients>[];
-    id = json['id'] as int;
-    title = json['title'] as String;
-    readyInMinutes = json['readyInMinutes'] as int;
-    servings = json['servings'] as int;
-    sourceUrl = json['sourceUrl'] as String;
-    image = json['image'] as String;
-    imageType = json['imageType'] as String;
-    summary = json['summary'] as String;
-    cuisines = json['cuisines'] as List<String> ?? <String>[];
-    dishTypes = json['dishTypes'] as List<String> ?? <String>[];
-    diets = json['diets'] as List<String> ?? <String>[];
-    occasions = json['occasions'] as List<String> ?? <String>[];
-    instructions = json['instructions'] as String;
-    analyzedInstructions =
-        json['analyzedInstructions'] as List<AnalyzedInstructions>;
-    originalId = json['originalId'] as int;
-    spoonacularSourceUrl = json['spoonacularSourceUrl'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['vegetarian'] = vegetarian;
-    data['vegan'] = vegan;
-    data['glutenFree'] = glutenFree;
-    data['dairyFree'] = dairyFree;
-    data['veryHealthy'] = veryHealthy;
-    data['cheap'] = cheap;
-    data['veryPopular'] = veryPopular;
-    data['sustainable'] = sustainable;
-    data['pricePerServing'] = pricePerServing;
-    data['extendedIngredients'] = extendedIngredients;
-    data['id'] = id;
-    data['title'] = title;
-    data['readyInMinutes'] = readyInMinutes;
-    data['servings'] = servings;
-    data['sourceUrl'] = sourceUrl;
-    data['image'] = image;
-    data['imageType'] = imageType;
-    data['summary'] = summary;
-    data['cuisines'] = cuisines;
-    data['dishTypes'] = dishTypes;
-    data['diets'] = diets;
-    data['occasions'] = occasions;
-    data['instructions'] = instructions;
-    data['analyzedInstructions'] = analyzedInstructions;
-    data['originalId'] = originalId;
-    data['spoonacularSourceUrl'] = spoonacularSourceUrl;
-
-    return data;
+    vegetarian = json['vegetarian'];
+    vegan = json['vegan'];
+    glutenFree = json['glutenFree'];
+    dairyFree = json['dairyFree'];
+    veryHealthy = json['veryHealthy'];
+    cheap = json['cheap'];
+    veryPopular = json['veryPopular'];
+    sustainable = json['sustainable'];
+    weightWatcherSmartPoints = json['weightWatcherSmartPoints'];
+    gaps = json['gaps'];
+    lowFodmap = json['lowFodmap'];
+    aggregateLikes = json['aggregateLikes'];
+    spoonacularScore = json['spoonacularScore'];
+    healthScore = json['healthScore'];
+    creditsText = json['creditsText'];
+    license = json['license'];
+    sourceName = json['sourceName'];
+    pricePerServing = json['pricePerServing'];
+    if (json['extendedIngredients'] != null) {
+      extendedIngredients = new List<ExtendedIngredients>();
+      json['extendedIngredients'].forEach((v) {
+        extendedIngredients.add(new ExtendedIngredients.fromJson(v));
+      });
+    }
+    id = json['id'];
+    title = json['title'];
+    readyInMinutes = json['readyInMinutes'];
+    servings = json['servings'];
+    sourceUrl = json['sourceUrl'];
+    image = json['image'];
+    imageType = json['imageType'];
+    summary = json['summary'];
+    if (json['cuisines'] != null) {
+      cuisines = new List<Null>();
+      json['cuisines'].forEach((v) {
+        cuisines.add(v);
+      });
+    }
+    dishTypes = json['dishTypes'].cast<String>();
+    if (json['diets'] != null) {
+      diets = new List<Null>();
+      json['diets'].forEach((v) {
+        diets.add(v);
+      });
+    }
+    if (json['occasions'] != null) {
+      occasions = new List<Null>();
+      json['occasions'].forEach((v) {
+        occasions.add(v);
+      });
+    }
+    winePairing = json['winePairing'] != null
+        ? new WinePairing.fromJson(json['winePairing'])
+        : null;
+    instructions = json['instructions'];
+    if (json['analyzedInstructions'] != null) {
+      analyzedInstructions = new List<Null>();
+      json['analyzedInstructions'].forEach((v) {
+        analyzedInstructions.add(v);
+      });
+    }
+    originalId = json['originalId'];
+    spoonacularSourceUrl = json['spoonacularSourceUrl'];
   }
 }
 
@@ -132,6 +153,8 @@ class ExtendedIngredients {
   String originalName;
   double amount;
   String unit;
+  List<String> meta;
+  List<String> metaInformation;
   Measures measures;
 
   ExtendedIngredients({
@@ -145,60 +168,39 @@ class ExtendedIngredients {
     this.originalName,
     this.amount,
     this.unit,
+    this.meta,
+    this.metaInformation,
     this.measures,
   });
 
   ExtendedIngredients.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    aisle = json['aisle'] as String;
-    image = json['image'] as String;
-    consistency = json['consistency'] as String;
-    name = json['name'] as String;
-    original = json['original'] as String;
-    originalString = json['originalString'] as String;
-    originalName = json['originalName'] as String;
-    amount = json['amount'] as double;
-    unit = json['unit'] as String;
-    measures = json['measures'] as Measures;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['aisle'] = aisle;
-    data['image'] = image;
-    data['consistency'] = consistency;
-    data['name'] = name;
-    data['original'] = original;
-    data['originalString'] = originalString;
-    data['originalName'] = originalName;
-    data['amount'] = amount;
-    data['unit'] = unit;
-    data['measures'] = measures;
-
-    return data;
+    id = json['id'];
+    aisle = json['aisle'];
+    image = json['image'];
+    consistency = json['consistency'];
+    name = json['name'];
+    original = json['original'];
+    originalString = json['originalString'];
+    originalName = json['originalName'];
+    amount = json['amount'];
+    unit = json['unit'];
+    meta = json['meta'].cast<String>();
+    metaInformation = json['metaInformation'].cast<String>();
+    measures = json['measures'] != null
+        ? new Measures.fromJson(json['measures'])
+        : null;
   }
 }
 
 class Measures {
-  String us;
-  String metric;
+  Us us;
+  Us metric;
 
   Measures({this.us, this.metric});
 
   Measures.fromJson(Map<String, dynamic> json) {
-    us = json['us'] as String;
-    metric = json['metric'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['us'] = us;
-    data['metric'] = metric;
-
-    return data;
+    us = json['us'] != null ? new Us.fromJson(json['us']) : null;
+    metric = json['metric'] != null ? new Us.fromJson(json['metric']) : null;
   }
 }
 
@@ -210,19 +212,9 @@ class Us {
   Us({this.amount, this.unitShort, this.unitLong});
 
   Us.fromJson(Map<String, dynamic> json) {
-    amount = json['amount'] as double;
-    unitShort = json['unitShort'] as String;
-    unitLong = json['unitLong'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['amount'] = amount;
-    data['unitShort'] = unitShort;
-    data['unitLong'] = unitLong;
-
-    return data;
+    amount = json['amount'];
+    unitShort = json['unitShort'];
+    unitLong = json['unitLong'];
   }
 }
 
@@ -234,164 +226,32 @@ class Metric {
   Metric({this.amount, this.unitShort, this.unitLong});
 
   Metric.fromJson(Map<String, dynamic> json) {
-    amount = json['amount'] as double;
-    unitShort = json['unitShort'] as String;
-    unitLong = json['unitLong'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['amount'] = amount;
-    data['unitShort'] = unitShort;
-    data['unitLong'] = unitLong;
-
-    return data;
+    amount = json['amount'];
+    unitShort = json['unitShort'];
+    unitLong = json['unitLong'];
   }
 }
 
-class AnalyzedInstructions {
-  String name;
-  List<Steps> steps;
+class WinePairing {
+  List<String> pairedWines;
+  String pairingText;
+  List<String> productMatches;
 
-  AnalyzedInstructions({this.name, this.steps});
+  WinePairing({this.pairedWines, this.pairingText, this.productMatches});
 
-  AnalyzedInstructions.fromJson(Map<String, dynamic> json) {
-    name = json['name'] as String;
-    steps = json['steps'] as List<Steps>;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['name'] = name;
-    data['steps'] = steps;
-
-    return data;
-  }
-}
-
-class Steps {
-  int number;
-  String step;
-  List<Ingredients> ingredients;
-  List<Equipment> equipment;
-  Temperature length;
-
-  Steps({
-    this.number,
-    this.step,
-    this.ingredients,
-    this.equipment,
-    this.length,
-  });
-
-  Steps.fromJson(Map<String, dynamic> json) {
-    number = json['number'] as int;
-    step = json['step'] as String;
-    ingredients = json['ingredients'] as List<Ingredients>;
-    equipment = json['equipment'] as List<Equipment>;
-    length = json['length'] as Temperature;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['number'] = number;
-    data['step'] = step;
-    data['ingredients'] = ingredients;
-    data['equipment'] = equipment;
-    data['length'] = length;
-
-    return data;
-  }
-}
-
-class Ingredients {
-  int id;
-  String name;
-  String localizedName;
-  String image;
-
-  Ingredients({
-    this.id,
-    this.name,
-    this.localizedName,
-    this.image,
-  });
-
-  Ingredients.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    name = json['name'] as String;
-    localizedName = json['localizedName'] as String;
-    image = json['image'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['name'] = name;
-    data['localizedName'] = localizedName;
-    data['image'] = image;
-
-    return data;
-  }
-}
-
-class Equipment {
-  int id;
-  String name;
-  String localizedName;
-  String image;
-  Temperature temperature;
-
-  Equipment({
-    this.id,
-    this.name,
-    this.localizedName,
-    this.image,
-    this.temperature,
-  });
-
-  Equipment.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    name = json['name'] as String;
-    localizedName = json['localizedName'] as String;
-    image = json['image'] as String;
-    temperature = json['temperature'] as Temperature;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['id'] = id;
-    data['name'] = name;
-    data['localizedName'] = localizedName;
-    data['image'] = image;
-    data['temperature'] = temperature;
-
-    return data;
-  }
-}
-
-class Temperature {
-  int number;
-  String unit;
-
-  Temperature({this.number, this.unit});
-
-  Temperature.fromJson(Map<String, dynamic> json) {
-    number = json['number'] as int;
-    unit = json['unit'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    data['number'] = number;
-    data['unit'] = unit;
-
-    return data;
+  WinePairing.fromJson(Map<String, dynamic> json) {
+    if (json['pairedWines'] != null) {
+      pairedWines = new List<Null>();
+      json['pairedWines'].forEach((v) {
+        pairedWines.add(v);
+      });
+    }
+    pairingText = json['pairingText'];
+    if (json['productMatches'] != null) {
+      productMatches = new List<Null>();
+      json['productMatches'].forEach((v) {
+        productMatches.add(v);
+      });
+    }
   }
 }

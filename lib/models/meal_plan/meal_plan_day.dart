@@ -15,17 +15,6 @@ class MealPlanDay {
         ? new Nutrients.fromJson(json['nutrients'])
         : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.meals != null) {
-      data['meals'] = this.meals.map((v) => v.toJson()).toList();
-    }
-    if (this.nutrients != null) {
-      data['nutrients'] = this.nutrients.toJson();
-    }
-    return data;
-  }
 }
 
 class Meals {

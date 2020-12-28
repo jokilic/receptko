@@ -9,6 +9,6 @@ class SpoonacularController extends GetxController {
   void onInit() {
     super.onInit();
 
-    _network.searchRecipes('pizza');
+    _network.getIngredientInformation(12155);
   }
 }

@@ -18,6 +18,7 @@ class Network {
           await _api.get('recipes/$id/information?');
       final Recipe _recipe = Recipe.fromJson(_response.data);
 
+      print(_recipe);
       return _recipe;
     } catch (e) {
       return null;
@@ -32,6 +33,7 @@ class Network {
       final List<Recipe> _recipes =
           _responseList.map((_recipe) => Recipe.fromJson(_recipe)).toList();
 
+      print(_recipes);
       return _recipes;
     } catch (e) {
       return null;
@@ -46,7 +48,7 @@ class Network {
 
       final List<dynamic> _responseList = _response.data;
       final List<SimilarRecipe> _recipes = _responseList
-          .map((dynamic _recipe) => SimilarRecipe.fromJson(_recipe))
+          .map((_recipe) => SimilarRecipe.fromJson(_recipe))
           .toList();
 
       return _recipes;
@@ -88,8 +90,10 @@ class Network {
     try {
       final Response<dynamic> _response =
           await _api.get('/food/ingredients/$id/information?');
+      print(_response.data);
       final Ingredient _ingredient = Ingredient.fromJson(_response.data);
 
+      print(_ingredient);
       return _ingredient;
     } catch (e) {
       return null;

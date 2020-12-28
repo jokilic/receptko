@@ -23,15 +23,4 @@ class SimilarRecipe {
     servings = json['servings'];
     sourceUrl = json['sourceUrl'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['imageType'] = this.imageType;
-    data['title'] = this.title;
-    data['readyInMinutes'] = this.readyInMinutes;
-    data['servings'] = this.servings;
-    data['sourceUrl'] = this.sourceUrl;
-    return data;
-  }
 }

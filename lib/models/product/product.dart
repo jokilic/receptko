@@ -80,39 +80,6 @@ class Product {
     images = json['images'].cast<String>();
     imageType = json['imageType'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['price'] = this.price;
-    data['likes'] = this.likes;
-    data['badges'] = this.badges;
-    data['importantBadges'] = this.importantBadges;
-    if (this.nutrition != null) {
-      data['nutrition'] = this.nutrition.toJson();
-    }
-    data['serving_size'] = this.servingSize;
-    data['number_of_servings'] = this.numberOfServings;
-    if (this.servings != null) {
-      data['servings'] = this.servings.toJson();
-    }
-    data['spoonacularScore'] = this.spoonacularScore;
-    data['breadcrumbs'] = this.breadcrumbs;
-    data['aisle'] = this.aisle;
-    data['description'] = this.description;
-    data['generatedText'] = this.generatedText;
-    data['upc'] = this.upc;
-    data['brand'] = this.brand;
-    if (this.ingredients != null) {
-      data['ingredients'] = this.ingredients.map((v) => v.toJson()).toList();
-    }
-    data['ingredientCount'] = this.ingredientCount;
-    data['ingredientList'] = this.ingredientList;
-    data['images'] = this.images;
-    data['imageType'] = this.imageType;
-    return data;
-  }
 }
 
 class ProductNutrition {
@@ -147,21 +114,6 @@ class ProductNutrition {
     protein = json['protein'];
     carbs = json['carbs'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.nutrients != null) {
-      data['nutrients'] = this.nutrients.map((v) => v.toJson()).toList();
-    }
-    if (this.caloricBreakdown != null) {
-      data['caloricBreakdown'] = this.caloricBreakdown.toJson();
-    }
-    data['calories'] = this.calories;
-    data['fat'] = this.fat;
-    data['protein'] = this.protein;
-    data['carbs'] = this.carbs;
-    return data;
-  }
 }
 
 class ProductNutrients {
@@ -183,15 +135,6 @@ class ProductNutrients {
     unit = json['unit'];
     percentOfDailyNeeds = json['percentOfDailyNeeds'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['amount'] = this.amount;
-    data['unit'] = this.unit;
-    data['percentOfDailyNeeds'] = this.percentOfDailyNeeds;
-    return data;
-  }
 }
 
 class ProductCaloricBreakdown {
@@ -207,14 +150,6 @@ class ProductCaloricBreakdown {
     percentFat = json['percentFat'];
     percentCarbs = json['percentCarbs'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['percentProtein'] = this.percentProtein;
-    data['percentFat'] = this.percentFat;
-    data['percentCarbs'] = this.percentCarbs;
-    return data;
-  }
 }
 
 class Servings {
@@ -229,14 +164,6 @@ class Servings {
     size = json['size'];
     unit = json['unit'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['number'] = this.number;
-    data['size'] = this.size;
-    data['unit'] = this.unit;
-    return data;
-  }
 }
 
 class ProductIngredients {
@@ -250,13 +177,5 @@ class ProductIngredients {
     name = json['name'];
     safetyLevel = json['safety_level'];
     description = json['description'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['safety_level'] = this.safetyLevel;
-    data['description'] = this.description;
-    return data;
   }
 }

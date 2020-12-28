@@ -15,17 +15,6 @@ class WineForDishPairing {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['pairedWines'] = this.pairedWines;
-    data['pairingText'] = this.pairingText;
-    if (this.productMatches != null) {
-      data['productMatches'] =
-          this.productMatches.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class ProductMatches {
@@ -61,19 +50,5 @@ class ProductMatches {
     ratingCount = json['ratingCount'];
     score = json['score'];
     link = json['link'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    data['imageUrl'] = this.imageUrl;
-    data['averageRating'] = this.averageRating;
-    data['ratingCount'] = this.ratingCount;
-    data['score'] = this.score;
-    data['link'] = this.link;
-    return data;
   }
 }

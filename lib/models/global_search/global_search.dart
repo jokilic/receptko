@@ -47,28 +47,6 @@ class GlobalSearch {
     }
     expires = json['expires'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['sorting'] = this.sorting;
-    if (this.filterOptions != null) {
-      data['filterOptions'] = this.filterOptions.map((v) => v).toList();
-    }
-    if (this.activeFilterOptions != null) {
-      data['activeFilterOptions'] =
-          this.activeFilterOptions.map((v) => v).toList();
-    }
-    data['query'] = this.query;
-    data['totalResults'] = this.totalResults;
-    data['limit'] = this.limit;
-    data['offset'] = this.offset;
-    if (this.searchResults != null) {
-      data['searchResults'] =
-          this.searchResults.map((v) => v.toJson()).toList();
-    }
-    data['expires'] = this.expires;
-    return data;
-  }
 }
 
 class SearchResults {
@@ -94,17 +72,6 @@ class SearchResults {
         results.add(new Results.fromJson(v));
       });
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['type'] = this.type;
-    data['totalResults'] = this.totalResults;
-    if (this.results != null) {
-      data['results'] = this.results.map((v) => v.toJson()).toList();
-    }
-    return data;
   }
 }
 
@@ -143,20 +110,5 @@ class Results {
         dataPoints.add(v);
       });
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['link'] = this.link;
-    data['type'] = this.type;
-    data['relevance'] = this.relevance;
-    data['content'] = this.content;
-    if (this.dataPoints != null) {
-      data['dataPoints'] = this.dataPoints.map((v) => v).toList();
-    }
-    return data;
   }
 }
