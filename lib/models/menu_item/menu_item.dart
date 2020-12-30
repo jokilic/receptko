@@ -2,18 +2,18 @@ class MenuItem {
   int id;
   String title;
   double price;
-  int likes;
-  List<Null> badges;
+  double likes;
+  List<dynamic> badges;
   Nutrition nutrition;
   String servingSize;
   String readableServingSize;
   double numberOfServings;
   double spoonacularScore;
-  List<String> breadcrumbs;
+  List<dynamic> breadcrumbs;
   String imageType;
   String generatedText;
   String restaurantChain;
-  List<String> images;
+  List<dynamic> images;
 
   MenuItem({
     this.id,
@@ -38,31 +38,24 @@ class MenuItem {
     title = json['title'];
     price = json['price'];
     likes = json['likes'];
-    if (json['badges'] != null) {
-      badges = new List<Null>();
-      json['badges'].forEach((v) {
-        badges.add(v);
-      });
-    }
-    nutrition = json['nutrition'] != null
-        ? new Nutrition.fromJson(json['nutrition'])
-        : null;
+    badges = json['badges'];
+    nutrition = Nutrition.fromJson(json['nutrition']);
     servingSize = json['servingSize'];
     readableServingSize = json['readableServingSize'];
     numberOfServings = json['numberOfServings'];
     spoonacularScore = json['spoonacularScore'];
-    breadcrumbs = json['breadcrumbs'].cast<String>();
+    breadcrumbs = json['breadcrumbs'];
     imageType = json['imageType'];
     generatedText = json['generatedText'];
     restaurantChain = json['restaurantChain'];
-    images = json['images'].cast<String>();
+    images = json['images'];
   }
 }
 
 class Nutrition {
   List<MenuItemNutrients> nutrients;
   CaloricBreakdown caloricBreakdown;
-  int calories;
+  double calories;
   String fat;
   String protein;
   String carbs;
@@ -77,15 +70,11 @@ class Nutrition {
   });
 
   Nutrition.fromJson(Map<String, dynamic> json) {
-    if (json['nutrients'] != null) {
-      nutrients = new List<MenuItemNutrients>();
-      json['nutrients'].forEach((v) {
-        nutrients.add(new MenuItemNutrients.fromJson(v));
-      });
-    }
-    caloricBreakdown = json['caloricBreakdown'] != null
-        ? new CaloricBreakdown.fromJson(json['caloricBreakdown'])
-        : null;
+    List<dynamic> nutrientsList = json['nutrients'];
+    nutrients = nutrientsList
+        .map((nutrient) => MenuItemNutrients.fromJson(nutrient))
+        .toList();
+    caloricBreakdown = CaloricBreakdown.fromJson(json['caloricBreakdown']);
     calories = json['calories'];
     fat = json['fat'];
     protein = json['protein'];
@@ -95,7 +84,7 @@ class Nutrition {
 
 class MenuItemNutrients {
   String title;
-  int amount;
+  double amount;
   String unit;
   double percentOfDailyNeeds;
 
@@ -115,9 +104,9 @@ class MenuItemNutrients {
 }
 
 class CaloricBreakdown {
-  int percentProtein;
-  int percentFat;
-  int percentCarbs;
+  double percentProtein;
+  double percentFat;
+  double percentCarbs;
 
   CaloricBreakdown({this.percentProtein, this.percentFat, this.percentCarbs});
 

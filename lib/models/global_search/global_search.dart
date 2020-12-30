@@ -1,7 +1,7 @@
 class GlobalSearch {
   String sorting;
-  List<String> filterOptions;
-  List<String> activeFilterOptions;
+  List<dynamic> filterOptions;
+  List<dynamic> activeFilterOptions;
   String query;
   int totalResults;
   int limit;
@@ -23,28 +23,16 @@ class GlobalSearch {
 
   GlobalSearch.fromJson(Map<String, dynamic> json) {
     sorting = json['sorting'];
-    if (json['filterOptions'] != null) {
-      filterOptions = new List<Null>();
-      json['filterOptions'].forEach((v) {
-        filterOptions.add(v);
-      });
-    }
-    if (json['activeFilterOptions'] != null) {
-      activeFilterOptions = new List<Null>();
-      json['activeFilterOptions'].forEach((v) {
-        activeFilterOptions.add(v);
-      });
-    }
+    filterOptions = json['filterOptions'];
+    activeFilterOptions = json['activeFilterOptions'];
     query = json['query'];
     totalResults = json['totalResults'];
     limit = json['limit'];
     offset = json['offset'];
-    if (json['searchResults'] != null) {
-      searchResults = new List<SearchResults>();
-      json['searchResults'].forEach((v) {
-        searchResults.add(new SearchResults.fromJson(v));
-      });
-    }
+    List<dynamic> searchResultsList = json['searchResults'];
+    searchResults = searchResultsList
+        .map((searchResult) => SearchResults.fromJson(searchResult))
+        .toList();
     expires = json['expires'];
   }
 }
@@ -66,12 +54,8 @@ class SearchResults {
     name = json['name'];
     type = json['type'];
     totalResults = json['totalResults'];
-    if (json['results'] != null) {
-      results = new List<Results>();
-      json['results'].forEach((v) {
-        results.add(new Results.fromJson(v));
-      });
-    }
+    List<dynamic> resultsList = json['results'];
+    results = resultsList.map((result) => Results.fromJson(result)).toList();
   }
 }
 
@@ -81,9 +65,9 @@ class Results {
   String image;
   String link;
   String type;
-  double relevance;
+  dynamic relevance;
   String content;
-  List<Null> dataPoints;
+  List<dynamic> dataPoints;
 
   Results({
     this.id,
@@ -104,11 +88,6 @@ class Results {
     type = json['type'];
     relevance = json['relevance'];
     content = json['content'];
-    if (json['dataPoints'] != null) {
-      dataPoints = new List<Null>();
-      json['dataPoints'].forEach((v) {
-        dataPoints.add(v);
-      });
-    }
+    dataPoints = json['dataPoints'];
   }
 }

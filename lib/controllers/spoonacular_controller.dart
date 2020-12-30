@@ -8,7 +8,5 @@ class SpoonacularController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
-    _network.getIngredientInformation(12155);
   }
 }

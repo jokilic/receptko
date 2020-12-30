@@ -21,12 +21,9 @@ class ProductSearchResult {
 
   ProductSearchResult.fromJson(Map<String, dynamic> json) {
     type = json['type'];
-    if (json['products'] != null) {
-      products = new List<Products>();
-      json['products'].forEach((v) {
-        products.add(new Products.fromJson(v));
-      });
-    }
+    List<dynamic> productsList = json['products'];
+    products =
+        productsList.map((product) => Products.fromJson(product)).toList();
     offset = json['offset'];
     number = json['number'];
     totalProducts = json['totalProducts'];

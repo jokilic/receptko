@@ -5,12 +5,10 @@ class WineRecommendation {
   WineRecommendation({this.recommendedWines, this.totalFound});
 
   WineRecommendation.fromJson(Map<String, dynamic> json) {
-    if (json['recommendedWines'] != null) {
-      recommendedWines = new List<RecommendedWines>();
-      json['recommendedWines'].forEach((v) {
-        recommendedWines.add(new RecommendedWines.fromJson(v));
-      });
-    }
+    List<dynamic> recommendedWinesList = json['recommendedWines'];
+    recommendedWines = recommendedWinesList
+        .map((recommendedWine) => RecommendedWines.fromJson(recommendedWine))
+        .toList();
     totalFound = json['totalFound'];
   }
 }

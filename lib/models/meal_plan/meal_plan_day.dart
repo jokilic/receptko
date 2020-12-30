@@ -5,15 +5,9 @@ class MealPlanDay {
   MealPlanDay({this.meals, this.nutrients});
 
   MealPlanDay.fromJson(Map<String, dynamic> json) {
-    if (json['meals'] != null) {
-      meals = new List<Meals>();
-      json['meals'].forEach((v) {
-        meals.add(new Meals.fromJson(v));
-      });
-    }
-    nutrients = json['nutrients'] != null
-        ? new Nutrients.fromJson(json['nutrients'])
-        : null;
+    List<dynamic> mealsList = json['meals'];
+    meals = mealsList.map((meal) => Meals.fromJson(meal)).toList();
+    nutrients = Nutrients.fromJson(json['nutrients']);
   }
 }
 
@@ -42,17 +36,6 @@ class Meals {
     servings = json['servings'];
     sourceUrl = json['sourceUrl'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['imageType'] = this.imageType;
-    data['title'] = this.title;
-    data['readyInMinutes'] = this.readyInMinutes;
-    data['servings'] = this.servings;
-    data['sourceUrl'] = this.sourceUrl;
-    return data;
-  }
 }
 
 class Nutrients {
@@ -73,14 +56,5 @@ class Nutrients {
     protein = json['protein'];
     fat = json['fat'];
     carbohydrates = json['carbohydrates'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['calories'] = this.calories;
-    data['protein'] = this.protein;
-    data['fat'] = this.fat;
-    data['carbohydrates'] = this.carbohydrates;
-    return data;
   }
 }

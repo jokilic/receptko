@@ -1,6 +1,6 @@
 class DishForWinePairing {
   String text;
-  List<String> pairings;
+  List<dynamic> pairings;
 
   DishForWinePairing({this.text, this.pairings});
 

@@ -1,16 +1,16 @@
 class Product {
   int id;
   String title;
-  int price;
+  double price;
   int likes;
-  List<String> badges;
-  List<String> importantBadges;
+  List<dynamic> badges;
+  List<dynamic> importantBadges;
   ProductNutrition nutrition;
   String servingSize;
-  int numberOfServings;
+  double numberOfServings;
   Servings servings;
-  int spoonacularScore;
-  List<String> breadcrumbs;
+  double spoonacularScore;
+  List<dynamic> breadcrumbs;
   String aisle;
   String description;
   String generatedText;
@@ -19,7 +19,7 @@ class Product {
   List<ProductIngredients> ingredients;
   int ingredientCount;
   String ingredientList;
-  List<String> images;
+  List<dynamic> images;
   String imageType;
 
   Product({
@@ -52,32 +52,26 @@ class Product {
     title = json['title'];
     price = json['price'];
     likes = json['likes'];
-    badges = json['badges'].cast<String>();
-    importantBadges = json['importantBadges'].cast<String>();
-    nutrition = json['nutrition'] != null
-        ? new ProductNutrition.fromJson(json['nutrition'])
-        : null;
+    badges = json['badges'];
+    importantBadges = json['importantBadges'];
+    nutrition = ProductNutrition.fromJson(json['nutrition']);
     servingSize = json['serving_size'];
     numberOfServings = json['number_of_servings'];
-    servings = json['servings'] != null
-        ? new Servings.fromJson(json['servings'])
-        : null;
+    servings = Servings.fromJson(json['servings']);
     spoonacularScore = json['spoonacularScore'];
-    breadcrumbs = json['breadcrumbs'].cast<String>();
+    breadcrumbs = json['breadcrumbs'];
     aisle = json['aisle'];
     description = json['description'];
     generatedText = json['generatedText'];
     upc = json['upc'];
     brand = json['brand'];
-    if (json['ingredients'] != null) {
-      ingredients = new List<ProductIngredients>();
-      json['ingredients'].forEach((v) {
-        ingredients.add(new ProductIngredients.fromJson(v));
-      });
-    }
+    List ingredientsList = json['ingredients'];
+    ingredients = ingredientsList
+        .map((ingredient) => ProductIngredients.fromJson(ingredient))
+        .toList();
     ingredientCount = json['ingredientCount'];
     ingredientList = json['ingredientList'];
-    images = json['images'].cast<String>();
+    images = json['images'];
     imageType = json['imageType'];
   }
 }
@@ -85,7 +79,7 @@ class Product {
 class ProductNutrition {
   List<ProductNutrients> nutrients;
   ProductCaloricBreakdown caloricBreakdown;
-  int calories;
+  double calories;
   String fat;
   String protein;
   String carbs;
@@ -100,15 +94,12 @@ class ProductNutrition {
   });
 
   ProductNutrition.fromJson(Map<String, dynamic> json) {
-    if (json['nutrients'] != null) {
-      nutrients = new List<ProductNutrients>();
-      json['nutrients'].forEach((v) {
-        nutrients.add(new ProductNutrients.fromJson(v));
-      });
-    }
-    caloricBreakdown = json['caloricBreakdown'] != null
-        ? new ProductCaloricBreakdown.fromJson(json['caloricBreakdown'])
-        : null;
+    List<dynamic> nutrientsList = json['nutrients'];
+    nutrients = nutrientsList
+        .map((nutrient) => ProductNutrients.fromJson(nutrient))
+        .toList();
+    caloricBreakdown =
+        ProductCaloricBreakdown.fromJson(json['caloricBreakdown']);
     calories = json['calories'];
     fat = json['fat'];
     protein = json['protein'];
@@ -140,7 +131,7 @@ class ProductNutrients {
 class ProductCaloricBreakdown {
   double percentProtein;
   double percentFat;
-  int percentCarbs;
+  double percentCarbs;
 
   ProductCaloricBreakdown(
       {this.percentProtein, this.percentFat, this.percentCarbs});
@@ -153,7 +144,7 @@ class ProductCaloricBreakdown {
 }
 
 class Servings {
-  int number;
+  double number;
   double size;
   String unit;
 

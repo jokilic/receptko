@@ -1,7 +1,7 @@
 class IngredientSubstitute {
   String status;
   String ingredient;
-  List<String> substitutes;
+  List<dynamic> substitutes;
   String message;
 
   IngredientSubstitute({
@@ -17,5 +17,4 @@ class IngredientSubstitute {
     substitutes = json['substitutes'].cast<String>();
     message = json['message'];
   }
-
 }

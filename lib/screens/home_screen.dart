@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
+import '../widgets/home_screen/recipe_search.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -13,11 +13,15 @@ class HomeScreen extends StatelessWidget {
         Get.put(SpoonacularController());
 
     return Scaffold(
-      backgroundColor: Colors.greenAccent,
-      body: Center(
-        child: Text(
-          'Dobrodošao, Josipe',
-          style: TextStyles.headlineText,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(24.0),
+          child: Column(
+            children: [
+              RecipeSearch(),
+            ],
+          ),
         ),
       ),
     );

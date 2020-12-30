@@ -1,19 +1,17 @@
 class WineForDishPairing {
-  List<String> pairedWines;
+  List<dynamic> pairedWines;
   String pairingText;
   List<ProductMatches> productMatches;
 
   WineForDishPairing({this.pairedWines, this.pairingText, this.productMatches});
 
   WineForDishPairing.fromJson(Map<String, dynamic> json) {
-    pairedWines = json['pairedWines'].cast<String>();
+    pairedWines = json['pairedWines'];
     pairingText = json['pairingText'];
-    if (json['productMatches'] != null) {
-      productMatches = new List<ProductMatches>();
-      json['productMatches'].forEach((v) {
-        productMatches.add(new ProductMatches.fromJson(v));
-      });
-    }
+    List<dynamic> productMatchesList = json['productMatches'];
+    productMatches = productMatchesList
+        .map((productMatch) => ProductMatches.fromJson(productMatch))
+        .toList();
   }
 }
 
@@ -24,7 +22,7 @@ class ProductMatches {
   String price;
   String imageUrl;
   double averageRating;
-  int ratingCount;
+  double ratingCount;
   double score;
   String link;
 

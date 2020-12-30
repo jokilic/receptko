@@ -3,13 +3,13 @@ class Ingredient {
   String original;
   String originalName;
   String name;
-  List<String> possibleUnits;
+  List<dynamic> possibleUnits;
   String consistency;
-  List<String> shoppingListUnits;
+  List<dynamic> shoppingListUnits;
   String aisle;
   String image;
-  List<String> meta;
-  List<String> categoryPath;
+  List<dynamic> meta;
+  List<dynamic> categoryPath;
 
   Ingredient({
     this.id,
@@ -26,16 +26,16 @@ class Ingredient {
   });
 
   Ingredient.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? 0;
-    original = json['original'] ?? '';
-    originalName = json['originalName'] ?? '';
-    // name = json['name'] ?? '';
-    // possibleUnits = json['possibleUnits'] ?? [];
-    // consistency = json['consistency'] ?? '';
-    // shoppingListUnits = json['shoppingListUnits'] ?? [];
-    // aisle = json['aisle'] ?? '';
-    // image = json['image'] ?? '';
-    //  meta = json['meta'] ?? [];
-    // categoryPath = json['categoryPath'] ?? [];
+    id = json['id'];
+    original = json['original'];
+    originalName = json['originalName'];
+    name = json['name'];
+    possibleUnits = json['possibleUnits'];
+    consistency = json['consistency'];
+    shoppingListUnits = json['shoppingListUnits'];
+    aisle = json['aisle'];
+    image = json['image'];
+    meta = json['meta'];
+    categoryPath = json['categoryPath'];
   }
 }

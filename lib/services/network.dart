@@ -18,14 +18,13 @@ class Network {
           await _api.get('recipes/$id/information?');
       final Recipe _recipe = Recipe.fromJson(_response.data);
 
-      print(_recipe);
       return _recipe;
     } catch (e) {
       return null;
     }
   }
 
-  Future<List<Recipe>> getRandomRecipes({int number = 10}) async {
+  Future<List<Recipe>> getRandomRecipes({int number = 3}) async {
     try {
       final Response<dynamic> _response =
           await _api.get('/recipes/random?number=$number&');
@@ -33,7 +32,6 @@ class Network {
       final List<Recipe> _recipes =
           _responseList.map((_recipe) => Recipe.fromJson(_recipe)).toList();
 
-      print(_recipes);
       return _recipes;
     } catch (e) {
       return null;
@@ -93,7 +91,6 @@ class Network {
       print(_response.data);
       final Ingredient _ingredient = Ingredient.fromJson(_response.data);
 
-      print(_ingredient);
       return _ingredient;
     } catch (e) {
       return null;
@@ -278,7 +275,7 @@ class Network {
 
   /// Meal Plans
 
-  Future<MealPlanDay> getMealPlanDay(String diet, String exclude) async {
+  Future<MealPlanDay> getMealPlanDay({String diet, String exclude}) async {
     try {
       final Response<dynamic> _response = await _api.get(
           '/mealplanner/generate?timeFrame=day&diet=$diet&exclude=$exclude&');
@@ -290,7 +287,7 @@ class Network {
     }
   }
 
-  Future<MealPlanWeek> getMealPlanWeek(String diet, String exclude) async {
+  Future<MealPlanWeek> getMealPlanWeek({String diet, String exclude}) async {
     try {
       final Response<dynamic> _response = await _api.get(
           '/mealplanner/generate?timeFrame=week&diet=$diet&exclude=$exclude&');

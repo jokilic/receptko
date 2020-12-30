@@ -12,12 +12,11 @@ class IngredientSearchResult {
   });
 
   IngredientSearchResult.fromJson(Map<String, dynamic> json) {
-    if (json['results'] != null) {
-      results = new List<IngredientSearchResults>();
-      json['results'].forEach((v) {
-        results.add(new IngredientSearchResults.fromJson(v));
-      });
-    }
+    List<dynamic> ingredientSearchResultsList = json['results'];
+    results = ingredientSearchResultsList
+        .map((ingredientSearchResult) =>
+            IngredientSearchResults.fromJson(ingredientSearchResult))
+        .toList();
     offset = json['offset'];
     number = json['number'];
     totalResults = json['totalResults'];

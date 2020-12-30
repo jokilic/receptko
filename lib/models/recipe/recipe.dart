@@ -11,8 +11,8 @@ class Recipe {
   String gaps;
   bool lowFodmap;
   int aggregateLikes;
-  int spoonacularScore;
-  int healthScore;
+  double spoonacularScore;
+  double healthScore;
   String creditsText;
   String license;
   String sourceName;
@@ -26,13 +26,13 @@ class Recipe {
   String image;
   String imageType;
   String summary;
-  List<String> cuisines;
-  List<String> dishTypes;
-  List<String> diets;
-  List<String> occasions;
+  List<dynamic> cuisines;
+  List<dynamic> dishTypes;
+  List<dynamic> diets;
+  List<dynamic> occasions;
   WinePairing winePairing;
   String instructions;
-  List<String> analyzedInstructions;
+  List<dynamic> analyzedInstructions;
   int originalId;
   String spoonacularSourceUrl;
 
@@ -94,12 +94,11 @@ class Recipe {
     license = json['license'];
     sourceName = json['sourceName'];
     pricePerServing = json['pricePerServing'];
-    if (json['extendedIngredients'] != null) {
-      extendedIngredients = new List<ExtendedIngredients>();
-      json['extendedIngredients'].forEach((v) {
-        extendedIngredients.add(new ExtendedIngredients.fromJson(v));
-      });
-    }
+    List<dynamic> extendedIngredientsList = json['extendedIngredients'];
+    extendedIngredients = extendedIngredientsList
+        .map((extendedIngredient) =>
+            ExtendedIngredients.fromJson(extendedIngredient))
+        .toList();
     id = json['id'];
     title = json['title'];
     readyInMinutes = json['readyInMinutes'];
@@ -108,35 +107,14 @@ class Recipe {
     image = json['image'];
     imageType = json['imageType'];
     summary = json['summary'];
-    if (json['cuisines'] != null) {
-      cuisines = new List<Null>();
-      json['cuisines'].forEach((v) {
-        cuisines.add(v);
-      });
-    }
-    dishTypes = json['dishTypes'].cast<String>();
-    if (json['diets'] != null) {
-      diets = new List<Null>();
-      json['diets'].forEach((v) {
-        diets.add(v);
-      });
-    }
-    if (json['occasions'] != null) {
-      occasions = new List<Null>();
-      json['occasions'].forEach((v) {
-        occasions.add(v);
-      });
-    }
-    winePairing = json['winePairing'] != null
-        ? new WinePairing.fromJson(json['winePairing'])
-        : null;
+    cuisines = json['cuisines'];
+    dishTypes = json['dishTypes'];
+    diets = json['diets'];
+    occasions = json['occasions'];
+    if (winePairing != null)
+      winePairing = WinePairing.fromJson(json['winePairing']);
     instructions = json['instructions'];
-    if (json['analyzedInstructions'] != null) {
-      analyzedInstructions = new List<Null>();
-      json['analyzedInstructions'].forEach((v) {
-        analyzedInstructions.add(v);
-      });
-    }
+    analyzedInstructions = json['analyzedInstructions'];
     originalId = json['originalId'];
     spoonacularSourceUrl = json['spoonacularSourceUrl'];
   }
@@ -153,8 +131,8 @@ class ExtendedIngredients {
   String originalName;
   double amount;
   String unit;
-  List<String> meta;
-  List<String> metaInformation;
+  List<dynamic> meta;
+  List<dynamic> metaInformation;
   Measures measures;
 
   ExtendedIngredients({
@@ -184,11 +162,9 @@ class ExtendedIngredients {
     originalName = json['originalName'];
     amount = json['amount'];
     unit = json['unit'];
-    meta = json['meta'].cast<String>();
-    metaInformation = json['metaInformation'].cast<String>();
-    measures = json['measures'] != null
-        ? new Measures.fromJson(json['measures'])
-        : null;
+    meta = json['meta'];
+    metaInformation = json['metaInformation'];
+    measures = Measures.fromJson(json['measures']);
   }
 }
 
@@ -199,8 +175,8 @@ class Measures {
   Measures({this.us, this.metric});
 
   Measures.fromJson(Map<String, dynamic> json) {
-    us = json['us'] != null ? new Us.fromJson(json['us']) : null;
-    metric = json['metric'] != null ? new Us.fromJson(json['metric']) : null;
+    us = Us.fromJson(json['us']);
+    metric = Us.fromJson(json['metric']);
   }
 }
 
@@ -233,25 +209,15 @@ class Metric {
 }
 
 class WinePairing {
-  List<String> pairedWines;
+  List<dynamic> pairedWines;
   String pairingText;
-  List<String> productMatches;
+  List<dynamic> productMatches;
 
   WinePairing({this.pairedWines, this.pairingText, this.productMatches});
 
   WinePairing.fromJson(Map<String, dynamic> json) {
-    if (json['pairedWines'] != null) {
-      pairedWines = new List<Null>();
-      json['pairedWines'].forEach((v) {
-        pairedWines.add(v);
-      });
-    }
+    pairedWines = json['pairedWines'];
     pairingText = json['pairingText'];
-    if (json['productMatches'] != null) {
-      productMatches = new List<Null>();
-      json['productMatches'].forEach((v) {
-        productMatches.add(v);
-      });
-    }
+    productMatches = json['productMatches'];
   }
 }
