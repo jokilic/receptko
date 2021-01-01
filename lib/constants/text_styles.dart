@@ -32,4 +32,9 @@ class MyTextStyles {
     fontWeight: FontWeight.w800,
     color: MyColors.textColor,
   );
+
+  static const TextStyle categoryTitle = TextStyle(
+    fontSize: 23.0,
+    fontWeight: FontWeight.w800,
+  );
 }

@@ -78,7 +78,7 @@ class OverviewRecipe extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: MyColors.backgroundColor.withOpacity(0.4),
+                    color: MyColors.textColor.withOpacity(0.1),
                     spreadRadius: 2,
                     blurRadius: 10,
                     offset: Offset(3, 3),

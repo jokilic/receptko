@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisSpacing: 20.0,
                       childAspectRatio: 0.8,
                     ),
-                    itemBuilder: (context, index) {
+                    itemBuilder: (BuildContext context, int index) {
                       final Recipe recipe =
                           _spoonacularController.randomRecipes[index];
 
