@@ -1,10 +1,35 @@
 import 'package:flutter/material.dart';
 
-class TextStyles {
-  static const TextStyle headlineText = TextStyle(
+import './colors.dart';
+
+class MyTextStyles {
+  static const TextStyle headline1Text = TextStyle(
     fontSize: 36.0,
-    color: Colors.black,
+    color: MyColors.headlinesColor,
     fontWeight: FontWeight.w800,
     height: 1.3,
+  );
+
+  static const TextStyle headline2Text = TextStyle(
+    fontSize: 26.0,
+    color: MyColors.headlinesColor,
+    fontWeight: FontWeight.w700,
+    height: 1.2,
+  );
+
+  static const TextStyle overviewRecipeTitle = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const TextStyle overviewRecipeScore = TextStyle(
+    fontSize: 14.0,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const TextStyle overviewRecipePrice = TextStyle(
+    fontSize: 22.0,
+    fontWeight: FontWeight.w800,
+    color: MyColors.headlinesColor,
   );
 }

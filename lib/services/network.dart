@@ -24,7 +24,7 @@ class Network {
     }
   }
 
-  Future<List<Recipe>> getRandomRecipes({int number = 3}) async {
+  Future<List<Recipe>> getRandomRecipes({int number = 6}) async {
     try {
       final Response<dynamic> _response =
           await _api.get('/recipes/random?number=$number&');

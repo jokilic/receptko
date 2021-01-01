@@ -11,7 +11,7 @@ class Api {
     try {
       final Response<dynamic> response =
           await _dio.get('$baseUrl/${path}apiKey=$apiKey');
-      // print('[DIO] $response');
+      print('[DIO] $response');
       return response;
     } catch (e) {
       print('[DIO] $e');
