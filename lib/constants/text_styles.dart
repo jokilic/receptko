@@ -5,14 +5,14 @@ import './colors.dart';
 class MyTextStyles {
   static const TextStyle headline1Text = TextStyle(
     fontSize: 36.0,
-    color: MyColors.headlinesColor,
+    color: MyColors.textColor,
     fontWeight: FontWeight.w800,
     height: 1.3,
   );
 
   static const TextStyle headline2Text = TextStyle(
     fontSize: 26.0,
-    color: MyColors.headlinesColor,
+    color: MyColors.textColor,
     fontWeight: FontWeight.w700,
     height: 1.2,
   );
@@ -30,6 +30,6 @@ class MyTextStyles {
   static const TextStyle overviewRecipePrice = TextStyle(
     fontSize: 22.0,
     fontWeight: FontWeight.w800,
-    color: MyColors.headlinesColor,
+    color: MyColors.textColor,
   );
 }

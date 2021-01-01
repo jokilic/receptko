@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:receptko/screens/favorites_screen.dart';
 
+import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../screens/screens.dart';
 
@@ -9,11 +9,13 @@ class NavigationItem {
   final Widget page;
   final String title;
   final Widget icon;
+  final Widget iconActive;
 
   NavigationItem({
     @required this.page,
     @required this.title,
     @required this.icon,
+    @required this.iconActive,
   });
 
   static List<NavigationItem> get items => [
@@ -23,6 +25,13 @@ class NavigationItem {
             MyIcons.home,
             width: 44.0,
             height: 44.0,
+            color: MyColors.backgroundColor.withOpacity(0.2),
+          ),
+          iconActive: Image.asset(
+            MyIcons.home,
+            width: 44.0,
+            height: 44.0,
+            color: MyColors.backgroundColor,
           ),
           title: 'Home',
         ),
@@ -32,6 +41,13 @@ class NavigationItem {
             MyIcons.search,
             width: 44.0,
             height: 44.0,
+            color: MyColors.backgroundColor.withOpacity(0.2),
+          ),
+          iconActive: Image.asset(
+            MyIcons.search,
+            width: 44.0,
+            height: 44.0,
+            color: MyColors.backgroundColor,
           ),
           title: 'Search',
         ),
@@ -41,6 +57,13 @@ class NavigationItem {
             MyIcons.categories,
             width: 44.0,
             height: 44.0,
+            color: MyColors.backgroundColor.withOpacity(0.2),
+          ),
+          iconActive: Image.asset(
+            MyIcons.categories,
+            width: 44.0,
+            height: 44.0,
+            color: MyColors.backgroundColor,
           ),
           title: 'Categories',
         ),
@@ -50,6 +73,13 @@ class NavigationItem {
             MyIcons.heart,
             width: 44.0,
             height: 44.0,
+            color: MyColors.backgroundColor.withOpacity(0.2),
+          ),
+          iconActive: Image.asset(
+            MyIcons.heart,
+            width: 44.0,
+            height: 44.0,
+            color: MyColors.backgroundColor,
           ),
           title: 'Favorites',
         ),

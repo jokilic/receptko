@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
+import '../../constants/images.dart';
 import '../../constants/text_styles.dart';
 
 class OverviewRecipe extends StatelessWidget {
@@ -16,7 +17,7 @@ class OverviewRecipe extends StatelessWidget {
     @required this.score,
     @required this.title,
     @required this.onTap,
-    this.color = MyColors.primaryColor,
+    @required this.color,
   });
 
   @override
@@ -43,8 +44,8 @@ class OverviewRecipe extends StatelessWidget {
                     children: [
                       Image.asset(
                         MyIcons.star,
-                        width: 18.0,
-                        height: 18.0,
+                        width: 24.0,
+                        height: 24.0,
                         color: color,
                       ),
                       SizedBox(width: 6.0),
@@ -77,7 +78,7 @@ class OverviewRecipe extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: MyColors.bodyColor.withOpacity(0.4),
+                    color: MyColors.backgroundColor.withOpacity(0.4),
                     spreadRadius: 2,
                     blurRadius: 10,
                     offset: Offset(3, 3),
@@ -86,10 +87,15 @@ class OverviewRecipe extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100.0),
-                child: Image.network(
-                  image,
-                  fit: BoxFit.cover,
-                ),
+                child: image == null
+                    ? Image.asset(
+                        MyImages.foodPlaceholder,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.network(
+                        image,
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
           ),

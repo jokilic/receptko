@@ -21,25 +21,32 @@ class _BottomNavigationState extends State<BottomNavigation> {
             navigationItem.page,
         ],
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(16.0),
-          topLeft: Radius.circular(16.0),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: MyColors.headlinesColor,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          currentIndex: _currentIndex,
-          onTap: (int index) => setState(() => _currentIndex = index),
-          items: [
-            for (final NavigationItem navigationItem in NavigationItem.items)
-              BottomNavigationBarItem(
-                icon: navigationItem.icon,
-                label: navigationItem.title,
-              ),
-          ],
+      bottomNavigationBar: Container(
+        height: 80.0,
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(16.0),
+            topLeft: Radius.circular(16.0),
+          ),
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: MyColors.textColor,
+            selectedItemColor: MyColors.orangeColor,
+            unselectedItemColor: MyColors.purpleColor,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            currentIndex: _currentIndex,
+            onTap: (int index) => setState(() => _currentIndex = index),
+            items: [
+              for (int index = 0; index < NavigationItem.items.length; index++)
+                BottomNavigationBarItem(
+                  icon: _currentIndex == index
+                      ? NavigationItem.items[index].iconActive
+                      : NavigationItem.items[index].icon,
+                  label: NavigationItem.items[index].title,
+                ),
+            ],
+          ),
         ),
       ),
     );
