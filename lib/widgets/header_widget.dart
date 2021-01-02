@@ -29,6 +29,16 @@ class _HeaderWidgetState extends State<HeaderWidget>
       curve: Curves.easeInOutBack,
     );
 
+    _chefAnimationController.addStatusListener((status) async {
+      if (status == AnimationStatus.completed) {
+        await Future.delayed(Duration(seconds: 3));
+        _chefAnimationController.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        await Future.delayed(Duration(seconds: 3));
+        _chefAnimationController.forward();
+      }
+    });
+
     _chefAnimationController.forward();
   }
 

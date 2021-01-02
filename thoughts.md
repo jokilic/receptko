@@ -17,6 +17,9 @@
 ### SearchRecipesByIngredients
 - [ ] ingredients - comma separated
 
+### QuickAnswer
+- [ ] Add this API call
+
 # Read the Guides section in the API Docs
 
 - [ ] Authentication

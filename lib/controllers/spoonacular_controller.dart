@@ -12,6 +12,12 @@ class SpoonacularController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    _randomRecipes.assignAll(await _network.getRandomRecipes());
+    await getRandomRecipes(10);
+  }
+
+  Future<void> getRandomRecipes(int number) async {
+    List<Recipe> _fetchedRandomRecipes =
+        await _network.getRandomRecipes(number: number);
+    _randomRecipes.assignAll(_fetchedRandomRecipes);
   }
 }

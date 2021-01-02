@@ -4,6 +4,8 @@ import '../constants/colors.dart';
 import '../models/navigation_item.dart';
 
 class BottomNavigation extends StatefulWidget {
+  static const routeName = '/bottom-navigation';
+
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
 }

@@ -17,7 +17,15 @@ class Receptko extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'VisbyRound',
       ),
-      home: BottomNavigation(),
+      initialRoute: BottomNavigation.routeName,
+      routes: {
+        BottomNavigation.routeName: (context) => BottomNavigation(),
+        CategoriesScreen.routeName: (context) => CategoriesScreen(),
+        FavoritesScreen.routeName: (context) => FavoritesScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
+        RecipeScreen.routeName: (context) => RecipeScreen(),
+        SearchScreen.routeName: (context) => SearchScreen(),
+      },
     );
   }
 }

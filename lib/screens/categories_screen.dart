@@ -8,6 +8,8 @@ import '../widgets/header_widget.dart';
 import '../widgets/categories_screen/category_widget.dart';
 
 class CategoriesScreen extends StatelessWidget {
+  static const routeName = '/categories-screen';
+
   @override
   Widget build(BuildContext context) {
     final CategoryController _categoryController =

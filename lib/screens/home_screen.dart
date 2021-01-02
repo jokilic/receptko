@@ -9,6 +9,8 @@ import '../widgets/home_screen/overview_recipe.dart';
 import '../widgets/home_screen/recipe_search.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const routeName = '/home-screen';
+
   @override
   Widget build(BuildContext context) {
     final SpoonacularController _spoonacularController =
