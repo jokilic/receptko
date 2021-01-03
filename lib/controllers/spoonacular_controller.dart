@@ -5,9 +5,35 @@ import '../models/models.dart';
 
 class SpoonacularController extends GetxController {
   final Network _network = Network();
-  RxList<Recipe> _randomRecipes = <Recipe>[].obs;
 
+  /// ------------------------
+  /// VARIABLES
+  /// ------------------------
+
+  RxString _searchQuery = ''.obs;
+  RxList<Recipe> _randomRecipes = <Recipe>[].obs;
+  Rx<RecipeSearchResult> _recipeSearchResult = RecipeSearchResult().obs;
+
+  /// ------------------------
+  /// GETTERS
+  /// ------------------------
+
+  String get searchQuery => _searchQuery.value;
   List<Recipe> get randomRecipes => _randomRecipes;
+  RecipeSearchResult get recipeSearchResult => _recipeSearchResult.value;
+
+  /// ------------------------
+  /// SETTERS
+  /// ------------------------
+
+  set searchQuery(String value) => _searchQuery.value = value;
+  set randomRecipes(List<Recipe> value) => _randomRecipes.assignAll(value);
+  set recipeSearchResult(RecipeSearchResult value) =>
+      _recipeSearchResult.value = value;
+
+  /// ------------------------
+  /// INIT
+  /// ------------------------
 
   @override
   void onInit() async {
@@ -15,9 +41,19 @@ class SpoonacularController extends GetxController {
     await getRandomRecipes(10);
   }
 
+  /// ------------------------
+  /// METHODS
+  /// ------------------------
+
   Future<void> getRandomRecipes(int number) async {
     List<Recipe> _fetchedRandomRecipes =
         await _network.getRandomRecipes(number: number);
-    _randomRecipes.assignAll(_fetchedRandomRecipes);
+    randomRecipes = _fetchedRandomRecipes;
+  }
+
+  Future<void> searchRecipes(String query) async {
+    RecipeSearchResult _fetchedRecipeSearchResult =
+        await _network.searchRecipes(query);
+    recipeSearchResult = _fetchedRecipeSearchResult;
   }
 }

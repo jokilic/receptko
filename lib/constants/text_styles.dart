@@ -37,4 +37,10 @@ class MyTextStyles {
     fontSize: 23.0,
     fontWeight: FontWeight.w800,
   );
+
+  static const TextStyle resultTitle = TextStyle(
+    fontSize: 24.0,
+    fontWeight: FontWeight.w700,
+    color: MyColors.textColor,
+  );
 }

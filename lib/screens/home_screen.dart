@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SpoonacularController _spoonacularController =
-        Get.put(SpoonacularController());
+        Get.put<SpoonacularController>(SpoonacularController());
 
     return Scaffold(
       backgroundColor: MyColors.bodyColor,

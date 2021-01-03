@@ -24,6 +24,7 @@ class Receptko extends StatelessWidget {
         FavoritesScreen.routeName: (context) => FavoritesScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
         RecipeScreen.routeName: (context) => RecipeScreen(),
+        ResultsScreen.routeName: (context) => ResultsScreen(),
         SearchScreen.routeName: (context) => SearchScreen(),
       },
     );
