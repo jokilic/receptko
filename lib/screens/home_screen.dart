@@ -5,8 +5,9 @@ import '../constants/colors.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../models/models.dart';
+import '../widgets/header_widget.dart';
+import '../widgets/search_widget.dart';
 import '../widgets/home_screen/overview_recipe.dart';
-import '../widgets/home_screen/recipe_search.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
@@ -26,7 +27,9 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 36.0),
-                RecipeSearch(),
+                HeaderWidget(title: 'What would you like to Cook?'),
+                SizedBox(height: 16.0),
+                SearchWidget(),
                 SizedBox(height: 20.0),
                 Text(
                   'Random Recipes',

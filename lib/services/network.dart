@@ -71,8 +71,8 @@ class Network {
   Future<RecipeSearchResult> searchRecipes(String query,
       {int number = 10}) async {
     try {
-      final Response<dynamic> _response =
-          await _api.get('/recipes/complexSearch?query=$query&number=$number&');
+      final Response<dynamic> _response = await _api.get(
+          '/recipes/complexSearch?query=$query&number=$number&addRecipeInformation=true&');
       final RecipeSearchResult _recipeSearchResult =
           RecipeSearchResult.fromJson(_response.data);
 
