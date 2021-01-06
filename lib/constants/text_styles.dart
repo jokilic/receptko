@@ -11,7 +11,7 @@ class MyTextStyles {
   );
 
   static const TextStyle headline2Text = TextStyle(
-    fontSize: 26.0,
+    fontSize: 28.0,
     color: MyColors.textColor,
     fontWeight: FontWeight.w700,
     height: 1.2,
@@ -52,5 +52,16 @@ class MyTextStyles {
     fontSize: 14.0,
     fontWeight: FontWeight.w800,
     color: MyColors.textColor,
+  );
+
+  static const TextStyle recipeGrid = TextStyle(
+    fontSize: 22.0,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const TextStyle recipeSummary = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w500,
+    height: 1.4,
   );
 }

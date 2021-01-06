@@ -25,7 +25,10 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/icons/bottom/
     - assets/icons/categories/
+    - assets/icons/home_recipe/
+    - assets/icons/recipe/
     - assets/icons/results/
     - assets/images/
 

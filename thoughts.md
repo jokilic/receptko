@@ -162,15 +162,22 @@
 * healthScore - Possibly. Not sure what's the top score
 * spoonacularScore - Divide with 20 to get score within 5
 * pricePerServing
-* cheap - boolean. Maybe.
-* vegan - boolean. Maybe.
-* veryHealthy - boolean. Maybe.
-* veryPopular - boolean. Maybe.
+* cheap - boolean
+* vegan - boolean
+* veryHealthy - boolean
+* veryPopular - boolean
 * extendedIngredients - List
     * image - get proper image link from documentation
     * original - text for ingredient
+    * name - e.g. Cheese
+    * amount - possibly convert to int
+    * unit - String
+* analyzedInstructions - List - somethimes returns nothing
+    * steps - List
+        * number - int
+        * step - String
 * summary - Full text explaining the recipe
-
+* dishTypes - Possibly take the first value from the list, put below title
 
 
 # To-do
@@ -185,3 +192,4 @@
 * On HomePage create 'Couple of lunch ideas' and randomize for lunch
 * Less letters in HomeScreenRecipe & add one more thing, maybe boolean icons
 * If search results are 0, put some cool graphic
+* Some fancy call to action if it's popular, cheap, whatever

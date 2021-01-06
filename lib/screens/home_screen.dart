@@ -6,6 +6,7 @@ import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../models/models.dart';
 import '../widgets/header_widget.dart';
+import './recipe_screen.dart';
 import '../widgets/search_widget.dart';
 import '../widgets/home_screen/homescreen_recipe.dart';
 
@@ -59,7 +60,11 @@ class HomeScreen extends StatelessWidget {
                         title: recipe.title.length > 30
                             ? '${recipe.title.substring(0, 30)}...'
                             : recipe.title,
-                        onTap: () => print('Pressed: ${recipe.title}'),
+                        onTap: () {
+                          // TODO: Fetch chosen recipe, set it in a variable & show RecipeScreen
+                          Navigator.of(context)
+                              .pushNamed(RecipeScreen.routeName);
+                        },
                       );
                     },
                   ),
