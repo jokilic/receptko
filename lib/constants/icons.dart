@@ -16,4 +16,11 @@ class MyIcons {
   static const String chocolate = 'assets/icons/categories/chocolate.png';
   static const String cheese = 'assets/icons/categories/cheese.png';
   static const String fruit = 'assets/icons/categories/fruit.png';
+
+  static const String clock = 'assets/icons/clock.png';
+
+  static const String veganType = 'assets/icons/results/vegan.png';
+  static const String healthy = 'assets/icons/results/healthy.png';
+  static const String cheap = 'assets/icons/results/cheap.png';
+  static const String popular = 'assets/icons/results/popular.png';
 }

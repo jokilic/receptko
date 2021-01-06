@@ -14,7 +14,6 @@ dependencies:
   cupertino_icons: ^1.0.0
   dio: ^3.0.10
   flutter_spinkit: ^4.1.2+1
-  flutter_svg: ^0.19.1
   get: ^3.24.0
 
 dev_dependencies:
@@ -27,6 +26,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/icons/categories/
+    - assets/icons/results/
     - assets/images/
 
   fonts:

@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
+import '../../constants/icons.dart';
 import '../../constants/text_styles.dart';
 
 class RecipeResult extends StatelessWidget {
-  final Function onTap;
-  final String image;
   final String title;
+  final String description;
+  final String image;
+  final Function onTap;
+  final Color color;
+  final Color clockColor;
+  final int minutes;
+  final bool isVegan;
+  final bool isHealthy;
+  final bool isCheap;
+  final bool isPopular;
 
   const RecipeResult({
-    @required this.onTap,
-    @required this.image,
     @required this.title,
+    @required this.description,
+    @required this.image,
+    @required this.onTap,
+    @required this.color,
+    @required this.clockColor,
+    @required this.minutes,
+    @required this.isVegan,
+    @required this.isHealthy,
+    @required this.isCheap,
+    @required this.isPopular,
   });
 
   @override
@@ -35,7 +52,6 @@ class RecipeResult extends StatelessWidget {
           ],
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               height: double.infinity,
@@ -53,10 +69,93 @@ class RecipeResult extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text(
-                  title,
-                  style: MyTextStyles.resultTitle,
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style:
+                              MyTextStyles.resultTitle.copyWith(color: color),
+                        ),
+                        SizedBox(height: 4.0),
+                        Text(
+                          description,
+                          style: MyTextStyles.resultDescription.copyWith(
+                            color: MyColors.textColor.withOpacity(0.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              MyIcons.clock,
+                              color: clockColor,
+                              height: 20.0,
+                              width: 20.0,
+                            ),
+                            SizedBox(width: 8.0),
+                            Text(
+                              '$minutes Min',
+                              style: MyTextStyles.resultMinutes,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            if (isVegan)
+                              Padding(
+                                padding: EdgeInsets.only(right: 4.0),
+                                child: Image.asset(
+                                  MyIcons.vegan,
+                                  height: 22.0,
+                                  width: 22.0,
+                                ),
+                              ),
+                            if (isHealthy)
+                              Padding(
+                                padding: EdgeInsets.only(right: 4.0),
+                                child: Image.asset(
+                                  MyIcons.healthy,
+                                  height: 22.0,
+                                  width: 22.0,
+                                ),
+                              ),
+                            if (isCheap)
+                              Padding(
+                                padding: EdgeInsets.only(right: 4.0),
+                                child: Image.asset(
+                                  MyIcons.cheap,
+                                  height: 22.0,
+                                  width: 22.0,
+                                ),
+                              ),
+                            if (isPopular)
+                              Padding(
+                                padding: EdgeInsets.only(right: 4.0),
+                                child: Image.asset(
+                                  MyIcons.popular,
+                                  height: 22.0,
+                                  width: 22.0,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -41,6 +41,16 @@ class MyTextStyles {
   static const TextStyle resultTitle = TextStyle(
     fontSize: 24.0,
     fontWeight: FontWeight.w700,
+  );
+
+  static const TextStyle resultDescription = TextStyle(
+    fontSize: 14.0,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle resultMinutes = TextStyle(
+    fontSize: 14.0,
+    fontWeight: FontWeight.w800,
     color: MyColors.textColor,
   );
 }

@@ -61,9 +61,22 @@ class ResultsScreen extends StatelessWidget {
                                 .recipeSearchResult.results[index];
 
                         return RecipeResult(
+                          title: recipe.title.length > 24
+                              ? '${recipe.title.substring(0, 24)}...'
+                              : recipe.title,
+                          description: _spoonacularController
+                                  .cleanDescription(index)
+                                  .substring(0, 54) +
+                              '...',
                           image: recipe.image,
+                          color: MyColors.randomColor,
+                          clockColor: _spoonacularController.clockColor(index),
                           onTap: () => print('Pressed ${recipe.title}'),
-                          title: recipe.title,
+                          minutes: recipe.readyInMinutes,
+                          isVegan: recipe.vegan,
+                          isHealthy: true,
+                          isCheap: recipe.cheap,
+                          isPopular: recipe.veryPopular,
                         );
                       },
                     );

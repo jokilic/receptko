@@ -5,14 +5,14 @@ import '../../constants/icons.dart';
 import '../../constants/images.dart';
 import '../../constants/text_styles.dart';
 
-class OverviewRecipe extends StatelessWidget {
+class HomeScreenRecipe extends StatelessWidget {
   final String image;
   final double score;
   final String title;
   final Color color;
   final Function onTap;
 
-  const OverviewRecipe({
+  const HomeScreenRecipe({
     @required this.image,
     @required this.score,
     @required this.title,

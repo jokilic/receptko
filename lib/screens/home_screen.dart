@@ -7,7 +7,7 @@ import '../controllers/spoonacular_controller.dart';
 import '../models/models.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/search_widget.dart';
-import '../widgets/home_screen/overview_recipe.dart';
+import '../widgets/home_screen/homescreen_recipe.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
@@ -52,13 +52,13 @@ class HomeScreen extends StatelessWidget {
                       final Recipe recipe =
                           _spoonacularController.randomRecipes[index];
 
-                      return OverviewRecipe(
+                      return HomeScreenRecipe(
                         color: MyColors.randomColor,
                         image: recipe.image,
                         score: recipe.spoonacularScore / 20 ?? 0.0,
                         title: recipe.title.length > 30
                             ? '${recipe.title.substring(0, 30)}...'
-                            : recipe.title ?? 'No title',
+                            : recipe.title,
                         onTap: () => print('Pressed: ${recipe.title}'),
                       );
                     },

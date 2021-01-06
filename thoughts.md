@@ -148,7 +148,7 @@
     * readyInMinutes
     * spoonacularScore - Divide with 20 to get score within 5
     * pricePerServing
-    * summary - Maybe a couple of words and an ellipsis.Has HTML in it, probably needs to be stripped away.
+    * summary - Maybe a couple of words and an ellipsis
 
 
 # Things to potentially put in the RecipeScreen
@@ -169,7 +169,7 @@
 * extendedIngredients - List
     * image - get proper image link from documentation
     * original - text for ingredient
-* summary - Full text explaining the recipe. Has HTML in it, probably needs to be stripped away.
+* summary - Full text explaining the recipe
 
 
 
@@ -179,4 +179,9 @@
 
 * Hero animation when moving from ResultsScreen to RecipeScreen
 * index % 2 == 0 ? MyColors.backgroundColor : MyColors.bodyColor - maybe
-* Title has more than 34 words? Add ellipsis
+* Title has more than 30 words? Add ellipsis
+* SingleChildScrollViews to ListViews
+* Clock icon should have a color depending on the length of time required to make a meal
+* On HomePage create 'Couple of lunch ideas' and randomize for lunch
+* Less letters in HomeScreenRecipe & add one more thing, maybe boolean icons
+* If search results are 0, put some cool graphic

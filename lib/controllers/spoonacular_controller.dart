@@ -1,7 +1,9 @@
+import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 
-import '../services/network.dart';
+import '../constants/colors.dart';
 import '../models/models.dart';
+import '../services/network.dart';
 
 class SpoonacularController extends GetxController {
   final Network _network = Network();
@@ -46,14 +48,32 @@ class SpoonacularController extends GetxController {
   /// ------------------------
 
   Future<void> getRandomRecipes(int number) async {
-    List<Recipe> _fetchedRandomRecipes =
+    final List<Recipe> _fetchedRandomRecipes =
         await _network.getRandomRecipes(number: number);
     randomRecipes = _fetchedRandomRecipes;
   }
 
   Future<void> searchRecipes(String query) async {
-    RecipeSearchResult _fetchedRecipeSearchResult =
+    final RecipeSearchResult _fetchedRecipeSearchResult =
         await _network.searchRecipes(query);
     recipeSearchResult = _fetchedRecipeSearchResult;
+  }
+
+  String cleanDescription(int index) {
+    final String htmlDescription = recipeSearchResult.results[index].summary;
+    final RegExp regExp =
+        RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    final String cleanDescription = htmlDescription.replaceAll(regExp, '');
+
+    return cleanDescription;
+  }
+
+  Color clockColor(int index) {
+    final int minutes = recipeSearchResult.results[index].readyInMinutes;
+    if (minutes > 0 && minutes <= 40) return MyColors.greenColor;
+    if (minutes > 40 && minutes <= 70) return MyColors.orangeColor;
+    if (minutes > 70) return MyColors.redColor;
+
+    return MyColors.blueColor;
   }
 }
