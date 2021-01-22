@@ -35,7 +35,6 @@
 
 
 ## Show Images
-
 ### Ingredients
 
 * Build the full URL by adding 'https://spoonacular.com/cdn/ingredients_100x100/' to the fetched image String
@@ -167,6 +166,7 @@
 * veryHealthy - boolean
 * veryPopular - boolean
 * extendedIngredients - List
+    * id
     * image - get proper image link from documentation
     * original - text for ingredient
     * name - e.g. Cheese
@@ -176,6 +176,7 @@
     * steps - List
         * number - int
         * step - String
+    * If it returns nothing, show 'instructions'
 * summary - Full text explaining the recipe
 * dishTypes - Possibly take the first value from the list, put below title
 
@@ -193,3 +194,6 @@
 * Less letters in HomeScreenRecipe & add one more thing, maybe boolean icons
 * If search results are 0, put some cool graphic
 * Some fancy call to action if it's popular, cheap, whatever
+* RecipeScreen - If there are 'analyzedInstructions', return them.
+If not, return regular 'instructions'
+* Ingredients - when user clicks on the ingredient, show details

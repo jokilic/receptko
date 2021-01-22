@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/icons.dart';
-import '../../constants/images.dart';
-import '../../constants/text_styles.dart';
+import '../constants/icons.dart';
+import '../constants/images.dart';
+import '../constants/shadows.dart';
+import '../constants/text_styles.dart';
 
-class HomeScreenRecipe extends StatelessWidget {
+class RecipeWidget extends StatelessWidget {
   final String image;
   final double score;
   final String title;
   final Color color;
   final Function onTap;
 
-  const HomeScreenRecipe({
+  const RecipeWidget({
     @required this.image,
     @required this.score,
     @required this.title,
@@ -76,14 +76,7 @@ class HomeScreenRecipe extends StatelessWidget {
               height: 110.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: MyColors.textColor.withOpacity(0.1),
-                    spreadRadius: 2,
-                    blurRadius: 10,
-                    offset: Offset(3, 3),
-                  ),
-                ],
+                boxShadow: Shadows.myShadow,
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100.0),

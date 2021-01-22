@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
+import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
 
 class CategoryWidget extends StatelessWidget {
@@ -26,14 +27,7 @@ class CategoryWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: MyColors.bodyColor,
           borderRadius: BorderRadius.circular(16.0),
-          boxShadow: [
-            BoxShadow(
-              color: MyColors.textColor.withOpacity(0.1),
-              spreadRadius: 2,
-              blurRadius: 10,
-              offset: Offset(3, 3),
-            ),
-          ],
+          boxShadow: Shadows.myShadow,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

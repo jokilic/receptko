@@ -74,6 +74,7 @@ class ResultsScreen extends StatelessWidget {
                           onTap: () => print('Pressed ${recipe.title}'),
                           minutes: recipe.readyInMinutes,
                           isVegan: recipe.vegan,
+                          // TODO: Fix isHealthy
                           isHealthy: true,
                           isCheap: recipe.cheap,
                           isPopular: recipe.veryPopular,

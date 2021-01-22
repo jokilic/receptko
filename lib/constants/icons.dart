@@ -20,6 +20,7 @@ class MyIcons {
 
   static const String clock = 'assets/icons/recipe/clock.png';
   static const String money = 'assets/icons/recipe/money.png';
+  static const String recipeBook = 'assets/icons/recipe/recipe_book.png';
 
   static const String veganType = 'assets/icons/results/vegan.png';
   static const String healthy = 'assets/icons/results/healthy.png';
