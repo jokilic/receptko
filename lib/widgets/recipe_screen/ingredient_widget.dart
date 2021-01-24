@@ -5,10 +5,24 @@ import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
 
 class IngredientWidget extends StatelessWidget {
+  final String image;
+  final String title;
+  final double amount;
+  final String unit;
+  final Function onTap;
+
+  const IngredientWidget({
+    @required this.image,
+    @required this.title,
+    @required this.amount,
+    @required this.unit,
+    @required this.onTap,
+  });
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print('Open info about the ingredient'),
+      onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -22,22 +36,30 @@ class IngredientWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
               child: Image.network(
-                'https://spoonacular.com/cdn/ingredients_100x100/olive-oil.jpg',
+                image,
                 fit: BoxFit.cover,
               ),
             ),
           ),
           SizedBox(height: 10.0),
-          Text(
-            'olive oil',
-            style: MyTextStyles.recipeIngredientName.copyWith(
-              color: MyColors.textColor.withOpacity(0.8),
-            ),
-          ),
-          Text(
-            '3Tbs',
-            style: MyTextStyles.recipeIngredientAmount.copyWith(
-              color: MyColors.textColor.withOpacity(0.4),
+          Container(
+            width: 140.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: MyTextStyles.recipeIngredientName.copyWith(
+                    color: MyColors.textColor.withOpacity(0.8),
+                  ),
+                ),
+                Text(
+                  '$amount $unit',
+                  style: MyTextStyles.recipeIngredientAmount.copyWith(
+                    color: MyColors.textColor.withOpacity(0.4),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

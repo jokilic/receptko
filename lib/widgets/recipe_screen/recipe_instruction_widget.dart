@@ -4,6 +4,14 @@ import '../../constants/colors.dart';
 import '../../constants/text_styles.dart';
 
 class RecipeInstructionWidget extends StatelessWidget {
+  final int number;
+  final String step;
+
+  RecipeInstructionWidget({
+    @required this.number,
+    @required this.step,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,7 +20,7 @@ class RecipeInstructionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '1',
+            '$number',
             style: MyTextStyles.recipeDirectionNumber,
           ),
           SizedBox(width: 16.0),
@@ -24,7 +32,7 @@ class RecipeInstructionWidget extends StatelessWidget {
           SizedBox(width: 16.0),
           Expanded(
             child: Text(
-              'Cat ipsum dolor sit amet, attack dog, run away and pretend to be victim. Walk on a keyboard. Human is behind a closed door, emergency! abandoned! meeooowwww!!!',
+              step,
               style: MyTextStyles.recipeDirectionText,
             ),
           ),

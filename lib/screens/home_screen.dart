@@ -60,8 +60,9 @@ class HomeScreen extends StatelessWidget {
                         title: recipe.title.length > 30
                             ? '${recipe.title.substring(0, 30)}...'
                             : recipe.title,
-                        onTap: () {
-                          // TODO: Fetch chosen recipe, set it in a variable & show RecipeScreen
+                        onTap: () async {
+                          await _spoonacularController
+                              .getRecipeInformation(recipe.id);
                           Navigator.of(context)
                               .pushNamed(RecipeScreen.routeName);
                         },

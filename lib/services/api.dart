@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 
 class Api {
@@ -11,10 +12,10 @@ class Api {
     try {
       final Response<dynamic> response =
           await _dio.get('$baseUrl/${path}apiKey=$apiKey');
-      print('[DIO] $response');
+      log('[DIO] $response');
       return response;
     } catch (e) {
-      print('[DIO] $e');
+      log('[DIO] $e');
       return null;
     }
   }
@@ -24,10 +25,10 @@ class Api {
     try {
       final Response<dynamic> response =
           await _dio.post(path, data: jsonEncode(params));
-      print('[DIO] $response');
+      log('[DIO] $response');
       return response;
     } catch (e) {
-      print('[DIO] $e');
+      log('[DIO] $e');
       return null;
     }
   }
