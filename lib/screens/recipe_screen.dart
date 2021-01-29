@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:receptko/constants/images.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
@@ -28,6 +29,27 @@ class RecipeScreen extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         child: Obx(
           () {
+            if (_spoonacularController.recipeInformation == null)
+              return Column(
+                children: [
+                  SizedBox(height: 164.0),
+                  HeaderWidget(
+                    chefOnly: true,
+                  ),
+                  SizedBox(height: 36.0),
+                  Text(
+                    'Just a sec...',
+                    style: MyTextStyles.headline2Text,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 36.0),
+                  SpinKitFoldingCube(
+                    color: MyColors.randomColor,
+                    size: 36.0,
+                  ),
+                ],
+              );
+
             final Recipe recipe = _spoonacularController.recipeInformation;
 
             if (recipe == null)
@@ -54,15 +76,39 @@ class RecipeScreen extends StatelessWidget {
 
             return Column(
               children: [
-                // TODO: Add a Stack & place back button and image there
-                Transform.scale(
-                  scale: 1.2,
-                  child: Image.network(
-                    recipe.image,
-                    width: double.infinity,
-                    height: size.height * 0.5,
-                    fit: BoxFit.cover,
-                  ),
+                Stack(
+                  children: [
+                    Transform.scale(
+                      scale: 1.2,
+                      child: recipe.image == null
+                          ? Image.asset(
+                              MyImages.foodPlaceholder,
+                              width: double.infinity,
+                              height: size.height * 0.5,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.network(
+                              recipe.image,
+                              width: double.infinity,
+                              height: size.height * 0.5,
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                    Positioned(
+                      right: 12.0,
+                      top: 32.0,
+                      child: GestureDetector(
+                        onTap: () {
+                          _spoonacularController.setFavoriteRecipe(recipe);
+                        },
+                        child: Image.asset(
+                          MyIcons.favoriteOutline,
+                          width: 58.0,
+                          height: 58.0,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                   width: size.width,
@@ -170,7 +216,7 @@ class RecipeScreen extends StatelessWidget {
                                 image: _spoonacularController
                                     .getIngredientImage(ingredient.image),
                                 title: ingredient.name,
-                                amount: ingredient.amount.toStringAsFixed(1),
+                                amount: ingredient.amount,
                                 unit: ingredient.unit,
                               );
                             },

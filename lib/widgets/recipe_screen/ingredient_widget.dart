@@ -7,7 +7,7 @@ import '../../constants/text_styles.dart';
 class IngredientWidget extends StatelessWidget {
   final String image;
   final String title;
-  final String amount;
+  final double amount;
   final String unit;
 
   const IngredientWidget({
@@ -50,7 +50,7 @@ class IngredientWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                '$amount $unit',
+                '${amount.toStringAsFixed(1)} $unit',
                 style: MyTextStyles.recipeIngredientAmount.copyWith(
                   color: MyColors.textColor.withOpacity(0.4),
                 ),

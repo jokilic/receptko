@@ -15,6 +15,7 @@ dependencies:
   dio: ^3.0.10
   flutter_spinkit: ^4.1.2+1
   get: ^3.24.0
+  shared_preferences: ^0.5.12+4
   url_launcher: ^5.7.10
 
 dev_dependencies:

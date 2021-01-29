@@ -58,10 +58,11 @@ class HomeScreen extends StatelessWidget {
                         color: MyColors.randomColor,
                         image: recipe.image,
                         score: recipe.spoonacularScore / 20 ?? 0.0,
-                        title: recipe.title.length > 30
-                            ? '${recipe.title.substring(0, 30)}...'
+                        title: recipe.title.length > 24
+                            ? '${recipe.title.substring(0, 24)}...'
                             : recipe.title,
                         onTap: () {
+                          _spoonacularController.recipeInformation = null;
                           _spoonacularController
                               .getRecipeInformation(recipe.id);
                           Navigator.of(context)

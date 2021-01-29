@@ -14,7 +14,7 @@ class RecipeWidget extends StatelessWidget {
 
   const RecipeWidget({
     @required this.image,
-    @required this.score,
+    this.score,
     @required this.title,
     @required this.onTap,
     @required this.color,
@@ -39,26 +39,27 @@ class RecipeWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        MyIcons.star,
-                        width: 24.0,
-                        height: 24.0,
-                        color: color,
-                      ),
-                      SizedBox(width: 6.0),
-                      Padding(
-                        padding: EdgeInsets.only(top: 1.0),
-                        child: Text(
-                          '${score.toStringAsFixed(2)} / 5',
-                          style: MyTextStyles.overviewRecipeScore
-                              .copyWith(color: color),
+                  if (score != null)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          MyIcons.star,
+                          width: 24.0,
+                          height: 24.0,
+                          color: color,
                         ),
-                      ),
-                    ],
-                  ),
+                        SizedBox(width: 6.0),
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.0),
+                          child: Text(
+                            '${score.toStringAsFixed(2)} / 5',
+                            style: MyTextStyles.overviewRecipeScore
+                                .copyWith(color: color),
+                          ),
+                        ),
+                      ],
+                    ),
                   SizedBox(height: 4.0),
                   Text(
                     title,
