@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import './recipe_screen.dart';
 import '../constants/colors.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
@@ -23,6 +24,7 @@ class ResultsScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -51,8 +53,8 @@ class ResultsScreen extends StatelessWidget {
                       );
 
                     return ListView.builder(
-                      shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                       itemCount: _spoonacularController
                           .recipeSearchResult.results.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -71,7 +73,12 @@ class ResultsScreen extends StatelessWidget {
                           image: recipe.image,
                           color: MyColors.randomColor,
                           clockColor: _spoonacularController.clockColor(index),
-                          onTap: () => print('Pressed ${recipe.title}'),
+                          onTap: () {
+                            _spoonacularController
+                                .getRecipeInformation(recipe.id);
+                            Navigator.of(context)
+                                .pushNamed(RecipeScreen.routeName);
+                          },
                           minutes: recipe.readyInMinutes,
                           isVegan: recipe.vegan,
                           isHealthy: recipe.veryHealthy,

@@ -63,6 +63,7 @@ class SpoonacularController extends GetxController {
   }
 
   Future<void> getRecipeInformation(int id) async {
+    recipeInformation = null;
     final Recipe _fetchedRecipeInformation =
         await _network.getRecipeInformation(id);
     recipeInformation = _fetchedRecipeInformation;

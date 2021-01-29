@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisCount: 2,
                       mainAxisSpacing: 80.0,
                       crossAxisSpacing: 20.0,
-                      childAspectRatio: 0.8,
+                      childAspectRatio: 0.9,
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       final Recipe recipe =
@@ -60,8 +61,8 @@ class HomeScreen extends StatelessWidget {
                         title: recipe.title.length > 30
                             ? '${recipe.title.substring(0, 30)}...'
                             : recipe.title,
-                        onTap: () async {
-                          await _spoonacularController
+                        onTap: () {
+                          _spoonacularController
                               .getRecipeInformation(recipe.id);
                           Navigator.of(context)
                               .pushNamed(RecipeScreen.routeName);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import '../constants/colors.dart';
@@ -6,6 +7,7 @@ import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../models/recipe/recipe.dart';
+import '../widgets/header_widget.dart';
 import '../widgets/recipe_screen/ingredient_widget.dart';
 import '../widgets/recipe_screen/original_recipe_button.dart';
 import '../widgets/recipe_screen/recipe_boolean_values_widget.dart';
@@ -23,9 +25,32 @@ class RecipeScreen extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Obx(
           () {
             final Recipe recipe = _spoonacularController.recipeInformation;
+
+            if (recipe == null)
+              return Container(
+                height: size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    HeaderWidget(chefOnly: true),
+                    SizedBox(height: 50.0),
+                    Text(
+                      'Just a sec...',
+                      style: MyTextStyles.headline2Text,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 50.0),
+                    SpinKitFoldingCube(
+                      color: MyColors.randomColor,
+                      size: 36.0,
+                    ),
+                  ],
+                ),
+              );
 
             return Column(
               children: [
@@ -57,6 +82,7 @@ class RecipeScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 24.0),
                         SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
@@ -88,6 +114,7 @@ class RecipeScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 16.0),
                         SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
@@ -133,54 +160,57 @@ class RecipeScreen extends StatelessWidget {
                           height: 250.0,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
+                            physics: BouncingScrollPhysics(),
                             itemCount: recipe.extendedIngredients.length,
                             itemBuilder: (BuildContext context, int index) {
                               final ExtendedIngredients ingredient =
                                   recipe.extendedIngredients[index];
 
                               return IngredientWidget(
-                                  image: _spoonacularController
-                                      .getIngredientImage(ingredient.image),
-                                  title: ingredient.name,
-                                  amount: ingredient.amount,
-                                  unit: ingredient.unit,
-                                  onTap: () =>
-                                      null // TODO: Create IngredientScreen & show it,
-                                  );
+                                image: _spoonacularController
+                                    .getIngredientImage(ingredient.image),
+                                title: ingredient.name,
+                                amount: ingredient.amount.toStringAsFixed(1),
+                                unit: ingredient.unit,
+                              );
                             },
                           ),
                         ),
                         SizedBox(height: 4.0),
-                        Text(
-                          'Directions',
-                          style: MyTextStyles.headline2Text,
-                        ),
-                        SizedBox(height: 16.0),
-                        // TODO: analyzedInstructions
-                        ListView.builder(
-                          itemCount:
-                              recipe.analyzedInstructions[0]['steps'].length,
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemBuilder: (BuildContext context, int index) {
-                            final dynamic instruction =
-                                recipe.analyzedInstructions[0]['steps'][index];
-
-                            return RecipeInstructionWidget(
-                              number: instruction['number'],
-                              step: instruction['step'],
-                            );
-                          },
-                        ),
-                        // TODO: Check if recipes sometimes return null for analyzedInstructions
-                        if (recipe.analyzedInstructions == null)
+                        if (recipe.analyzedInstructions != null &&
+                            recipe.instructions != null &&
+                            (recipe.analyzedInstructions.isNotEmpty ||
+                                recipe.instructions.isNotEmpty))
                           Text(
-                            recipe.instructions,
+                            'Directions',
+                            style: MyTextStyles.headline2Text,
+                          ),
+                        SizedBox(height: 16.0),
+                        if (recipe.analyzedInstructions.isNotEmpty)
+                          ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: recipe
+                                    .analyzedInstructions[0]['steps'].length ??
+                                0,
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              final dynamic instruction = recipe
+                                  .analyzedInstructions[0]['steps'][index];
+
+                              return RecipeInstructionWidget(
+                                number: instruction['number'] ?? 0,
+                                step: instruction['step'] ?? '',
+                              );
+                            },
+                          ),
+                        if (recipe.analyzedInstructions.isEmpty)
+                          Text(
+                            recipe.instructions ?? '',
                             style: MyTextStyles.recipeDirectionText,
                           ),
                         SizedBox(height: 24.0),
                         // TODO: Url launcher to original recipe link
-                        OriginalRecipeButton()
+                        OriginalRecipeButton(),
                       ],
                     ),
                   ),
