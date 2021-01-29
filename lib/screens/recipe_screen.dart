@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:receptko/constants/images.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../models/recipe/recipe.dart';
+import '../widgets/header_widget.dart';
 import '../widgets/recipe_screen/ingredient_widget.dart';
 import '../widgets/recipe_screen/original_recipe_button.dart';
 import '../widgets/recipe_screen/recipe_boolean_values_widget.dart';
@@ -25,19 +28,64 @@ class RecipeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Obx(
           () {
+            if (_spoonacularController.recipeInformation == null)
+              return Column(
+                children: [
+                  SizedBox(height: 164.0),
+                  HeaderWidget(
+                    onlyChef: true,
+                  ),
+                  SizedBox(height: 36.0),
+                  Text(
+                    'Just a sec...',
+                    style: MyTextStyles.headline2Text,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 36.0),
+                  SpinKitFoldingCube(
+                    color: MyColors.randomColor,
+                    size: 36.0,
+                  ),
+                ],
+              );
+
             final Recipe recipe = _spoonacularController.recipeInformation;
 
             return Column(
               children: [
-                // TODO: Add a Stack & place back button and image there
-                Transform.scale(
-                  scale: 1.2,
-                  child: Image.network(
-                    recipe.image,
-                    width: double.infinity,
-                    height: size.height * 0.5,
-                    fit: BoxFit.cover,
-                  ),
+                Stack(
+                  children: [
+                    Transform.scale(
+                      scale: 1.2,
+                      child: recipe.image == null
+                          ? Image.asset(
+                              MyImages.foodPlaceholder,
+                              width: double.infinity,
+                              height: size.height * 0.5,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.network(
+                              recipe.image,
+                              width: double.infinity,
+                              height: size.height * 0.5,
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                    Positioned(
+                      right: 12.0,
+                      top: 32.0,
+                      child: GestureDetector(
+                        onTap: () {
+                          _spoonacularController.setFavoriteRecipe(recipe);
+                        },
+                        child: Image.asset(
+                          MyIcons.favoriteOutline,
+                          width: 58.0,
+                          height: 58.0,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                   width: size.width,
@@ -139,14 +187,12 @@ class RecipeScreen extends StatelessWidget {
                                   recipe.extendedIngredients[index];
 
                               return IngredientWidget(
-                                  image: _spoonacularController
-                                      .getIngredientImage(ingredient.image),
-                                  title: ingredient.name,
-                                  amount: ingredient.amount,
-                                  unit: ingredient.unit,
-                                  onTap: () =>
-                                      null // TODO: Create IngredientScreen & show it,
-                                  );
+                                image: _spoonacularController
+                                    .getIngredientImage(ingredient.image),
+                                title: ingredient.name,
+                                amount: ingredient.amount,
+                                unit: ingredient.unit,
+                              );
                             },
                           ),
                         ),

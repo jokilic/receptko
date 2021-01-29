@@ -5,8 +5,12 @@ import '../constants/text_styles.dart';
 
 class HeaderWidget extends StatefulWidget {
   final String title;
+  final bool onlyChef;
 
-  HeaderWidget({@required this.title});
+  HeaderWidget({
+    this.title,
+    this.onlyChef = false,
+  });
 
   @override
   _HeaderWidgetState createState() => _HeaderWidgetState();
@@ -51,6 +55,15 @@ class _HeaderWidgetState extends State<HeaderWidget>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    if (widget.onlyChef)
+      return RotationTransition(
+        turns: Tween(begin: 0.0, end: 0.03).animate(_curve),
+        child: Image.asset(
+          MyImages.chefBig,
+          width: size.width * 0.45,
+        ),
+      );
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

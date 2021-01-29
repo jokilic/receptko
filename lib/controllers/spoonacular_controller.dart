@@ -1,5 +1,6 @@
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/colors.dart';
 import '../models/models.dart';
@@ -12,6 +13,7 @@ class SpoonacularController extends GetxController {
   /// VARIABLES
   /// ------------------------
 
+  SharedPreferences _sharedPreferences;
   RxString _searchQuery = ''.obs;
   RxList<Recipe> _randomRecipes = <Recipe>[].obs;
   Rx<RecipeSearchResult> _recipeSearchResult = RecipeSearchResult().obs;
@@ -21,6 +23,7 @@ class SpoonacularController extends GetxController {
   /// GETTERS
   /// ------------------------
 
+  SharedPreferences get sharedPreferences => _sharedPreferences;
   String get searchQuery => _searchQuery.value;
   List<Recipe> get randomRecipes => _randomRecipes;
   RecipeSearchResult get recipeSearchResult => _recipeSearchResult.value;
@@ -43,6 +46,7 @@ class SpoonacularController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    _sharedPreferences = await SharedPreferences.getInstance();
     await getRandomRecipes(10);
   }
 
@@ -99,5 +103,29 @@ class SpoonacularController extends GetxController {
     if (minutes > 70) return MyColors.redColor;
 
     return MyColors.blueColor;
+  }
+
+  Future<void> setFavoriteRecipe(Recipe favoritedRecipe) async {
+    final List<String> favoritedRecipeList = [
+      '${favoritedRecipe.id}',
+      favoritedRecipe.title,
+      favoritedRecipe.image,
+      favoritedRecipe.summary,
+      '${favoritedRecipe.readyInMinutes}',
+    ];
+
+    return await _sharedPreferences.setStringList(
+        '${favoritedRecipe.id}', favoritedRecipeList);
+  }
+
+  List<String> getFavoriteRecipe(String key) =>
+      _sharedPreferences.getStringList(key);
+
+  void getFavoriteRecipes() {
+    List<List<String>> favoriteRecipes = [];
+
+    final Set<String> keys = _sharedPreferences.getKeys();
+    keys.forEach((key) => favoriteRecipes.add(getFavoriteRecipe(key)));
+    print(favoriteRecipes);
   }
 }

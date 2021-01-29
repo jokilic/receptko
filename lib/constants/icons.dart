@@ -1,4 +1,7 @@
 class MyIcons {
+  static const String backOutline = 'assets/icons/back_outline.png';
+  static const String backFull = 'assets/icons/back_full.png';
+
   static const String categories = 'assets/icons/bottom/categories.png';
   static const String heart = 'assets/icons/bottom/heart.png';
   static const String home = 'assets/icons/bottom/home.png';
@@ -21,6 +24,9 @@ class MyIcons {
   static const String clock = 'assets/icons/recipe/clock.png';
   static const String money = 'assets/icons/recipe/money.png';
   static const String recipeBook = 'assets/icons/recipe/recipe_book.png';
+  static const String favoriteOutline =
+      'assets/icons/recipe/favorite_outline.png';
+  static const String favoriteFull = 'assets/icons/recipe/favorite_full.png';
 
   static const String veganType = 'assets/icons/results/vegan.png';
   static const String healthy = 'assets/icons/results/healthy.png';
