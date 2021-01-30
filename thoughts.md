@@ -197,3 +197,7 @@
 * RecipeScreen - If there are 'analyzedInstructions', return them.
 If not, return regular 'instructions'
 * Ingredients - when user clicks on the ingredient, show details
+
+# SharedPreferences
+* getFavoriteRecipe('112233') returns NULL if there is no value
+* If there is value, it will return a List<String> with values

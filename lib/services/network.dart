@@ -88,7 +88,6 @@ class Network {
     try {
       final Response<dynamic> _response =
           await _api.get('/food/ingredients/$id/information?');
-      print(_response.data);
       final Ingredient _ingredient = Ingredient.fromJson(_response.data);
 
       return _ingredient;

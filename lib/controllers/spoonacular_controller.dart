@@ -18,6 +18,8 @@ class SpoonacularController extends GetxController {
   RxList<Recipe> _randomRecipes = <Recipe>[].obs;
   Rx<RecipeSearchResult> _recipeSearchResult = RecipeSearchResult().obs;
   Rx<Recipe> _recipeInformation = Recipe().obs;
+  RxBool _recipeIsFavorited = false.obs;
+  RxList _favoriteRecipes = [].obs;
 
   /// ------------------------
   /// GETTERS
@@ -28,6 +30,8 @@ class SpoonacularController extends GetxController {
   List<Recipe> get randomRecipes => _randomRecipes;
   RecipeSearchResult get recipeSearchResult => _recipeSearchResult.value;
   Recipe get recipeInformation => _recipeInformation.value;
+  bool get recipeIsFavorited => _recipeIsFavorited.value;
+  List get favoriteRecipes => _favoriteRecipes;
 
   /// ------------------------
   /// SETTERS
@@ -38,6 +42,9 @@ class SpoonacularController extends GetxController {
   set recipeSearchResult(RecipeSearchResult value) =>
       _recipeSearchResult.value = value;
   set recipeInformation(Recipe value) => _recipeInformation.value = value;
+  set recipeIsFavorited(bool value) => _recipeIsFavorited.value = value;
+  set favoriteRecipes(List<List<String>> value) =>
+      _favoriteRecipes.assignAll(value);
 
   /// ------------------------
   /// INIT
@@ -71,6 +78,7 @@ class SpoonacularController extends GetxController {
     final Recipe _fetchedRecipeInformation =
         await _network.getRecipeInformation(id);
     recipeInformation = _fetchedRecipeInformation;
+    getRecipeIsFavorited(id);
   }
 
   String cleanDescription(int index) {
@@ -97,6 +105,13 @@ class SpoonacularController extends GetxController {
     return fullUrl;
   }
 
+  String getIngredientPrice(double price) {
+    final double properPrice = price / 100;
+    final String priceString = properPrice.toStringAsFixed(2);
+
+    return '\$$priceString';
+  }
+
   Color clockColor(int index) {
     final int minutes = recipeSearchResult.results[index].readyInMinutes;
     if (minutes > 0 && minutes <= 40) return MyColors.greenColor;
@@ -105,6 +120,20 @@ class SpoonacularController extends GetxController {
 
     return MyColors.blueColor;
   }
+
+  /// ------------------------
+  /// SHARED PREFERENCES
+  /// ------------------------
+
+  Future<void> toggleFavoriteRecipe(Recipe chosenRecipe) async {
+    recipeIsFavorited
+        ? await removeFavoriteRecipe('${chosenRecipe.id}')
+        : await setFavoriteRecipe(chosenRecipe);
+    recipeIsFavorited = !recipeIsFavorited;
+  }
+
+  void getRecipeIsFavorited(int recipeId) =>
+      recipeIsFavorited = getFavoriteRecipe('$recipeId') != null;
 
   Future<void> setFavoriteRecipe(Recipe favoritedRecipe) async {
     final List<String> favoritedRecipeList = [
@@ -122,11 +151,12 @@ class SpoonacularController extends GetxController {
   List<String> getFavoriteRecipe(String key) =>
       _sharedPreferences.getStringList(key);
 
-  void getFavoriteRecipes() {
-    List<List<String>> favoriteRecipes = [];
+  Future<bool> removeFavoriteRecipe(String key) async =>
+      await _sharedPreferences.remove(key);
 
+  /// Get all favorited recipes
+  void getFavoriteRecipes() {
     final Set<String> keys = _sharedPreferences.getKeys();
     keys.forEach((key) => favoriteRecipes.add(getFavoriteRecipe(key)));
-    print(favoriteRecipes);
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:receptko/constants/images.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
+import '../constants/images.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../models/recipe/recipe.dart';
@@ -29,27 +29,6 @@ class RecipeScreen extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         child: Obx(
           () {
-            if (_spoonacularController.recipeInformation == null)
-              return Column(
-                children: [
-                  SizedBox(height: 164.0),
-                  HeaderWidget(
-                    chefOnly: true,
-                  ),
-                  SizedBox(height: 36.0),
-                  Text(
-                    'Just a sec...',
-                    style: MyTextStyles.headline2Text,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 36.0),
-                  SpinKitFoldingCube(
-                    color: MyColors.randomColor,
-                    size: 36.0,
-                  ),
-                ],
-              );
-
             final Recipe recipe = _spoonacularController.recipeInformation;
 
             if (recipe == null)
@@ -95,16 +74,17 @@ class RecipeScreen extends StatelessWidget {
                             ),
                     ),
                     Positioned(
-                      right: 12.0,
-                      top: 32.0,
+                      right: 24.0,
+                      top: 64.0,
                       child: GestureDetector(
-                        onTap: () {
-                          _spoonacularController.setFavoriteRecipe(recipe);
-                        },
+                        onTap: () =>
+                            _spoonacularController.toggleFavoriteRecipe(recipe),
                         child: Image.asset(
-                          MyIcons.favoriteOutline,
-                          width: 58.0,
-                          height: 58.0,
+                          _spoonacularController.recipeIsFavorited
+                              ? MyIcons.favoriteFull
+                              : MyIcons.favoriteOutline,
+                          width: 44.0,
+                          height: 44.0,
                         ),
                       ),
                     ),
@@ -147,8 +127,8 @@ class RecipeScreen extends StatelessWidget {
                               RecipeGridWidget(
                                 color: MyColors.blueRecipeColor,
                                 icon: MyIcons.money,
-                                text:
-                                    '\$${recipe.pricePerServing.round() / 100}',
+                                text: _spoonacularController
+                                    .getIngredientPrice(recipe.pricePerServing),
                               ),
                             ],
                           ),
