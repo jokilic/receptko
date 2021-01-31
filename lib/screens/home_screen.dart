@@ -4,11 +4,9 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
-import '../models/models.dart';
 import '../widgets/header_widget.dart';
-import './recipe_screen.dart';
 import '../widgets/search_widget.dart';
-import '../widgets/recipe_widget.dart';
+import '../widgets/home_screen/recipes_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
@@ -33,44 +31,33 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 16.0),
                 SearchWidget(),
                 SizedBox(height: 20.0),
+                SizedBox(height: 24.0),
+                Obx(
+                  () => Text(
+                    'Something from ${_spoonacularController.randomCuisineName} cuisine',
+                    style: MyTextStyles.headline2Text,
+                  ),
+                ),
+                SizedBox(height: 74.0),
+                RecipesWidget(recipes: _spoonacularController.cuisineRecipes),
+                SizedBox(height: 24.0),
+                Obx(
+                  () => Text(
+                    'Some ${_spoonacularController.randomMealTypeName} recipes',
+                    style: MyTextStyles.headline2Text,
+                  ),
+                ),
+                SizedBox(height: 74.0),
+                RecipesWidget(recipes: _spoonacularController.mealTypeRecipes),
+                SizedBox(height: 24.0),
                 Text(
-                  'Random Recipes',
+                  'Completely random recipes',
                   style: MyTextStyles.headline2Text,
                 ),
                 SizedBox(height: 74.0),
-                Obx(
-                  () => GridView.builder(
-                    clipBehavior: Clip.none,
-                    itemCount: _spoonacularController.randomRecipes.length,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 80.0,
-                      crossAxisSpacing: 20.0,
-                      childAspectRatio: 0.9,
-                    ),
-                    itemBuilder: (BuildContext context, int index) {
-                      final Recipe recipe =
-                          _spoonacularController.randomRecipes[index];
-
-                      return RecipeWidget(
-                        color: MyColors.randomColor,
-                        image: recipe.image,
-                        score: recipe.spoonacularScore / 20 ?? 0.0,
-                        title: recipe.title.length > 24
-                            ? '${recipe.title.substring(0, 24)}...'
-                            : recipe.title,
-                        onTap: () {
-                          _spoonacularController.recipeInformation = null;
-                          _spoonacularController
-                              .getRecipeInformation(recipe.id);
-                          Navigator.of(context)
-                              .pushNamed(RecipeScreen.routeName);
-                        },
-                      );
-                    },
-                  ),
+                RecipesWidget(
+                  recipes: _spoonacularController.randomRecipes,
+                  isGrid: true,
                 ),
                 SizedBox(height: 24.0),
               ],

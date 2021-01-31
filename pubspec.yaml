@@ -1,4 +1,4 @@
-name: receptko
+name: kuharko
 description: Flutter application for checking out cool recipes
 
 publish_to: 'none'
@@ -21,6 +21,22 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.8.1
+  flutter_native_splash: ^0.2.9
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: 'assets/icon.png'
+  adaptive_icon_background: '#212430'
+  adaptive_icon_foreground: 'assets/icon.png'
+
+flutter_native_splash:
+  android: true
+  ios: true
+  color: '#ffffff'
+  image: 'assets/splash.png'
+  color_dark: '#1d1d1b'
 
 flutter:
   uses-material-design: true
@@ -29,6 +45,7 @@ flutter:
     - assets/icons/
     - assets/icons/bottom/
     - assets/icons/categories/
+    - assets/icons/favorites/
     - assets/icons/home_recipe/
     - assets/icons/recipe/
     - assets/icons/results/

@@ -21,12 +21,6 @@
 
 # Guides
 
-
-## Authentication
-
-* You have to put the `apiKey` in the Request URL for every Request.
-
-
 ## Quotas
 
 * You have 150 points each day
@@ -35,6 +29,7 @@
 
 
 ## Show Images
+
 ### Ingredients
 
 * Build the full URL by adding 'https://spoonacular.com/cdn/ingredients_100x100/' to the fetched image String
@@ -62,142 +57,17 @@
 * https://spoonacular.com/food-api/docs#Diets
 
 
-## Intolerances
-
-* Dairy
-* Egg
-* Gluten
-* Grain
-* Peanut
-* Seafood
-* Sesame
-* Shellfish
-* Soy
-* Sulfite
-* Tree Nut
-* Wheat
-
-
-## Cuisines
-
-* African
-* American
-* British
-* Cajun
-* Caribbean
-* Chinese
-* Eastern European
-* European
-* French
-* German
-* Greek
-* Indian
-* Irish
-* Italian
-* Japanese
-* Jewish
-* Korean
-* Latin American
-* Mediterranean
-* Mexican
-* Middle Eastern
-* Nordic
-* Southern
-* Spanish
-* Thai
-* Vietnamese
-
-
-## Meal Types
-
-* main course
-* ide dish
-* dessert
-* appetizer
-* salad
-* bread
-* breakfast
-* soup
-* beverage
-* sauce
-* marinade
-* fingerfood
-* snack
-* drink
-
-
 ## Recipe Sorting Options
 
 * Lots of sorting options
 * Check them and decide how to proceed further
 * https://spoonacular.com/food-api/docs#Recipe-Sorting-Options
 
-
-
-# Things to potentially put in the ResultsScreen
-
-* results
-    * id
-    * image
-    * title
-    * vegan
-    * veryHealthy
-    * cheap
-    * veryPopular
-    * readyInMinutes
-    * spoonacularScore - Divide with 20 to get score within 5
-    * pricePerServing
-    * summary - Maybe a couple of words and an ellipsis
-
-
-# Things to potentially put in the RecipeScreen
-
-* id
-* title
-* image
-* readyInMinutes - Minutes needed to prepare
-* spoonacularSourceUrl - Spoonacular link where the recipe is from (use URL Launcher for it)
-* sourceUrl - Original link where the recipe is from (use URL Launcher for it)
-* healthScore - Possibly. Not sure what's the top score
-* spoonacularScore - Divide with 20 to get score within 5
-* pricePerServing
-* cheap - boolean
-* vegan - boolean
-* veryHealthy - boolean
-* veryPopular - boolean
-* extendedIngredients - List
-    * id
-    * image - get proper image link from documentation
-    * original - text for ingredient
-    * name - e.g. Cheese
-    * amount - possibly convert to int
-    * unit - String
-* analyzedInstructions - List - somethimes returns nothing
-    * steps - List
-        * number - int
-        * step - String
-    * If it returns nothing, show 'instructions'
-* summary - Full text explaining the recipe
-* dishTypes - Possibly take the first value from the list, put below title
-
-
 # To-do
 
 ## ResultsScreen
 
-* Hero animation when moving from ResultsScreen to RecipeScreen
-* index % 2 == 0 ? MyColors.backgroundColor : MyColors.bodyColor - maybe
-* Title has more than 30 words? Add ellipsis
 * SingleChildScrollViews to ListViews
-* Clock icon should have a color depending on the length of time required to make a meal
 * On HomePage create 'Couple of lunch ideas' and randomize for lunch
-* Less letters in HomeScreenRecipe & add one more thing, maybe boolean icons
-* If search results are 0, put some cool graphic
-* Some fancy call to action if it's popular, cheap, whatever
-* RecipeScreen - If there are 'analyzedInstructions', return them.
-If not, return regular 'instructions'
-* Ingredients - when user clicks on the ingredient, show details
-
-# SharedPreferences
-* getFavoriteRecipe('112233') returns NULL if there is no value
-* If there is value, it will return a List<String> with values
+* 'Some meals from $cuisine' and 6 meals
+* Cuisine meals - Some return spaces (e.g. 'latin american')

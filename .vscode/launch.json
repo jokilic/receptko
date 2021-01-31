@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "receptko",
+            "name": "kuharko",
             "request": "launch",
             "type": "dart"
         }

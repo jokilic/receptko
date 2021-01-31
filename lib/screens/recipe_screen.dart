@@ -74,8 +74,8 @@ class RecipeScreen extends StatelessWidget {
                             ),
                     ),
                     Positioned(
-                      right: 24.0,
-                      top: 64.0,
+                      right: 16.0,
+                      top: 40.0,
                       child: GestureDetector(
                         onTap: () =>
                             _spoonacularController.toggleFavoriteRecipe(recipe),
@@ -83,8 +83,8 @@ class RecipeScreen extends StatelessWidget {
                           _spoonacularController.recipeIsFavorited
                               ? MyIcons.favoriteFull
                               : MyIcons.favoriteOutline,
-                          width: 44.0,
-                          height: 44.0,
+                          width: 40.0,
+                          height: 40.0,
                         ),
                       ),
                     ),
@@ -235,8 +235,10 @@ class RecipeScreen extends StatelessWidget {
                             style: MyTextStyles.recipeDirectionText,
                           ),
                         SizedBox(height: 24.0),
-                        // TODO: Url launcher to original recipe link
-                        OriginalRecipeButton(),
+                        OriginalRecipeButton(
+                          () => _spoonacularController
+                              .launchURL(recipe.sourceUrl),
+                        ),
                       ],
                     ),
                   ),

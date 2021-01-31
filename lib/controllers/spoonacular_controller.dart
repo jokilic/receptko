@@ -1,8 +1,11 @@
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constants/colors.dart';
+import '../enums/cuisine.dart';
+import '../enums/meal_type.dart';
 import '../models/models.dart';
 import '../services/network.dart';
 
@@ -16,10 +19,14 @@ class SpoonacularController extends GetxController {
   SharedPreferences _sharedPreferences;
   RxString _searchQuery = ''.obs;
   RxList<Recipe> _randomRecipes = <Recipe>[].obs;
+  RxList<Recipe> _cuisineRecipes = <Recipe>[].obs;
+  RxList<Recipe> _mealTypeRecipes = <Recipe>[].obs;
   Rx<RecipeSearchResult> _recipeSearchResult = RecipeSearchResult().obs;
   Rx<Recipe> _recipeInformation = Recipe().obs;
   RxBool _recipeIsFavorited = false.obs;
   RxList _favoriteRecipes = [].obs;
+  RxString _randomCuisineName = ''.obs;
+  RxString _randomMealTypeName = ''.obs;
 
   /// ------------------------
   /// GETTERS
@@ -28,10 +35,14 @@ class SpoonacularController extends GetxController {
   SharedPreferences get sharedPreferences => _sharedPreferences;
   String get searchQuery => _searchQuery.value;
   List<Recipe> get randomRecipes => _randomRecipes;
+  List<Recipe> get cuisineRecipes => _cuisineRecipes;
+  List<Recipe> get mealTypeRecipes => _mealTypeRecipes;
   RecipeSearchResult get recipeSearchResult => _recipeSearchResult.value;
   Recipe get recipeInformation => _recipeInformation.value;
   bool get recipeIsFavorited => _recipeIsFavorited.value;
   List get favoriteRecipes => _favoriteRecipes;
+  String get randomCuisineName => _randomCuisineName.value;
+  String get randomMealTypeName => _randomMealTypeName.value;
 
   /// ------------------------
   /// SETTERS
@@ -39,12 +50,16 @@ class SpoonacularController extends GetxController {
 
   set searchQuery(String value) => _searchQuery.value = value;
   set randomRecipes(List<Recipe> value) => _randomRecipes.assignAll(value);
+  set cuisineRecipes(List<Recipe> value) => _cuisineRecipes.assignAll(value);
+  set mealTypeRecipes(List<Recipe> value) => _mealTypeRecipes.assignAll(value);
   set recipeSearchResult(RecipeSearchResult value) =>
       _recipeSearchResult.value = value;
   set recipeInformation(Recipe value) => _recipeInformation.value = value;
   set recipeIsFavorited(bool value) => _recipeIsFavorited.value = value;
   set favoriteRecipes(List<List<String>> value) =>
       _favoriteRecipes.assignAll(value);
+  set randomCuisineName(String value) => _randomCuisineName.value = value;
+  set randomMealTypeName(String value) => _randomMealTypeName.value = value;
 
   /// ------------------------
   /// INIT
@@ -54,7 +69,12 @@ class SpoonacularController extends GetxController {
   void onInit() async {
     super.onInit();
     _sharedPreferences = await SharedPreferences.getInstance();
-    await getRandomRecipes(10);
+    getFavoriteRecipes();
+    randomCuisineName = randomCuisine.value();
+    randomMealTypeName = randomMealType.value();
+    await getRandomRecipes(4);
+    await getCuisineRecipes(3, randomCuisineName);
+    await getMealTypeRecipes(3, randomMealTypeName);
   }
 
   /// ------------------------
@@ -65,6 +85,18 @@ class SpoonacularController extends GetxController {
     final List<Recipe> _fetchedRandomRecipes =
         await _network.getRandomRecipes(number: number);
     randomRecipes = _fetchedRandomRecipes;
+  }
+
+  Future<void> getCuisineRecipes(int number, String tag) async {
+    final List<Recipe> _fetchedCuisineRecipes =
+        await _network.getRandomRecipes(number: number, tag: tag);
+    cuisineRecipes = _fetchedCuisineRecipes;
+  }
+
+  Future<void> getMealTypeRecipes(int number, String tag) async {
+    final List<Recipe> _fetchedMealTypeRecipes =
+        await _network.getRandomRecipes(number: number, tag: tag);
+    mealTypeRecipes = _fetchedMealTypeRecipes;
   }
 
   Future<void> searchRecipes(String query) async {
@@ -130,6 +162,7 @@ class SpoonacularController extends GetxController {
         ? await removeFavoriteRecipe('${chosenRecipe.id}')
         : await setFavoriteRecipe(chosenRecipe);
     recipeIsFavorited = !recipeIsFavorited;
+    getFavoriteRecipes();
   }
 
   void getRecipeIsFavorited(int recipeId) =>
@@ -140,8 +173,7 @@ class SpoonacularController extends GetxController {
       '${favoritedRecipe.id}',
       favoritedRecipe.title,
       favoritedRecipe.image,
-      favoritedRecipe.summary,
-      '${favoritedRecipe.readyInMinutes}',
+      '${favoritedRecipe.spoonacularScore}',
     ];
 
     return await _sharedPreferences.setStringList(
@@ -156,7 +188,18 @@ class SpoonacularController extends GetxController {
 
   /// Get all favorited recipes
   void getFavoriteRecipes() {
+    favoriteRecipes.clear();
     final Set<String> keys = _sharedPreferences.getKeys();
     keys.forEach((key) => favoriteRecipes.add(getFavoriteRecipe(key)));
   }
+
+  /// ------------------------
+  /// URL LAUNCHER
+  /// ------------------------
+  void launchURL(String url) async => await launch(url);
+
+  /// ------------------------
+  /// TIME OF DAY
+  /// ------------------------
+
 }

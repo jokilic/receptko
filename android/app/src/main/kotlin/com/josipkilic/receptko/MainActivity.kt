@@ -1,4 +1,4 @@
-package com.josipkilic.receptko
+package com.josipkilic.kuharko
 
 import io.flutter.embedding.android.FlutterActivity
 

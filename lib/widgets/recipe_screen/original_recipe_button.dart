@@ -5,10 +5,14 @@ import '../../constants/icons.dart';
 import '../../constants/text_styles.dart';
 
 class OriginalRecipeButton extends StatelessWidget {
+  final Function onTap;
+
+  OriginalRecipeButton(this.onTap);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print('Original recipe pressed'),
+      onTap: onTap,
       child: Center(
         child: Container(
           height: 60.0,

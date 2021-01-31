@@ -24,10 +24,11 @@ class Network {
     }
   }
 
-  Future<List<Recipe>> getRandomRecipes({int number = 6}) async {
+  Future<List<Recipe>> getRandomRecipes(
+      {int number = 6, String tag = ''}) async {
     try {
       final Response<dynamic> _response =
-          await _api.get('/recipes/random?number=$number&');
+          await _api.get('/recipes/random?number=$number&tags=$tag&');
       final List<dynamic> _responseList = _response.data['recipes'];
       final List<Recipe> _recipes =
           _responseList.map((_recipe) => Recipe.fromJson(_recipe)).toList();

@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import './recipe_screen.dart';
 import '../constants/colors.dart';
+import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../models/recipe/recipe_search_result.dart';
@@ -51,6 +52,31 @@ class ResultsScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ],
+                      );
+
+                    if (_spoonacularController
+                            .recipeSearchResult.totalResults ==
+                        0)
+                      return Center(
+                        child: Container(
+                          margin: EdgeInsets.only(top: 16.0),
+                          padding: EdgeInsets.symmetric(horizontal: 36.0),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                MyIcons.resultsPan,
+                                height: 156.0,
+                                width: 156.0,
+                              ),
+                              SizedBox(height: 16.0),
+                              Text(
+                                'Sorry, but there are no recipes here',
+                                textAlign: TextAlign.center,
+                                style: MyTextStyles.headline2Text,
+                              ),
+                            ],
+                          ),
+                        ),
                       );
 
                     return ListView.builder(

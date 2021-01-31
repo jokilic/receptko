@@ -1,7 +1,4 @@
 class MyIcons {
-  static const String backOutline = 'assets/icons/back_outline.png';
-  static const String backFull = 'assets/icons/back_full.png';
-
   static const String categories = 'assets/icons/bottom/categories.png';
   static const String heart = 'assets/icons/bottom/heart.png';
   static const String home = 'assets/icons/bottom/home.png';
@@ -33,4 +30,7 @@ class MyIcons {
   static const String cheap = 'assets/icons/results/cheap.png';
   static const String popular = 'assets/icons/results/popular.png';
   static const String clockResults = 'assets/icons/results/clock.png';
+  static const String resultsPan = 'assets/icons/results/pan.png';
+
+  static const String favoritesPan = 'assets/icons/favorites/pan.png';
 }
