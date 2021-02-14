@@ -24,7 +24,7 @@ class SpoonacularController extends GetxController {
   Rx<RecipeSearchResult> _recipeSearchResult = RecipeSearchResult().obs;
   Rx<Recipe> _recipeInformation = Recipe().obs;
   RxBool _recipeIsFavorited = false.obs;
-  RxList _favoriteRecipes = [].obs;
+  RxList<dynamic> _favoriteRecipes = [].obs;
   RxString _randomCuisineName = ''.obs;
   RxString _randomMealTypeName = ''.obs;
 
@@ -40,7 +40,7 @@ class SpoonacularController extends GetxController {
   RecipeSearchResult get recipeSearchResult => _recipeSearchResult.value;
   Recipe get recipeInformation => _recipeInformation.value;
   bool get recipeIsFavorited => _recipeIsFavorited.value;
-  List get favoriteRecipes => _favoriteRecipes;
+  List<dynamic> get favoriteRecipes => _favoriteRecipes;
   String get randomCuisineName => _randomCuisineName.value;
   String get randomMealTypeName => _randomMealTypeName.value;
 
@@ -70,8 +70,8 @@ class SpoonacularController extends GetxController {
     super.onInit();
     _sharedPreferences = await SharedPreferences.getInstance();
     getFavoriteRecipes();
-    randomCuisineName = randomCuisine.value();
-    randomMealTypeName = randomMealType.value();
+    randomCuisineName = randomCuisine;
+    randomMealTypeName = randomMealType;
     await getRandomRecipes(4);
     await getCuisineRecipes(3, randomCuisineName);
     await getMealTypeRecipes(3, randomMealTypeName);
@@ -131,7 +131,7 @@ class SpoonacularController extends GetxController {
   }
 
   String getIngredientImage(String ingredientImage) {
-    final String baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/';
+    const String baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/';
     final String fullUrl = '$baseUrl$ingredientImage';
 
     return fullUrl;
@@ -169,14 +169,14 @@ class SpoonacularController extends GetxController {
       recipeIsFavorited = getFavoriteRecipe('$recipeId') != null;
 
   Future<void> setFavoriteRecipe(Recipe favoritedRecipe) async {
-    final List<String> favoritedRecipeList = [
+    final List<String> favoritedRecipeList = <String>[
       '${favoritedRecipe.id}',
       favoritedRecipe.title,
       favoritedRecipe.image,
       '${favoritedRecipe.spoonacularScore}',
     ];
 
-    return await _sharedPreferences.setStringList(
+    return _sharedPreferences.setStringList(
         '${favoritedRecipe.id}', favoritedRecipeList);
   }
 
@@ -184,7 +184,7 @@ class SpoonacularController extends GetxController {
       _sharedPreferences.getStringList(key);
 
   Future<bool> removeFavoriteRecipe(String key) async =>
-      await _sharedPreferences.remove(key);
+      _sharedPreferences.remove(key);
 
   /// Get all favorited recipes
   void getFavoriteRecipes() {

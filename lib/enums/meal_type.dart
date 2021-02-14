@@ -19,7 +19,14 @@ extension ParseToString on MealType {
   String value() => toString().split('.').last;
 }
 
-MealType get randomMealType {
+String get randomMealType {
   List<MealType> mealTypes = List.from(MealType.values);
-  return (mealTypes..shuffle()).first;
+  MealType randomMealType = (mealTypes..shuffle()).first;
+  String randomMealTypeString = randomMealType.value();
+
+  if (randomMealTypeString == 'mainCourse')
+    randomMealTypeString = 'main_course';
+  if (randomMealTypeString == 'sideDish') randomMealTypeString = 'side_dish';
+
+  return randomMealTypeString;
 }

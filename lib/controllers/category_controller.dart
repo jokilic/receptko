@@ -5,12 +5,12 @@ import '../constants/icons.dart';
 import '../models/category.dart';
 
 class CategoryController extends GetxController {
-  RxList<Category> _categories = [
+  final RxList<Category> _categories = <Category>[
     Category(
       icon: MyIcons.grill,
       title: 'Grill',
       color: MyColors.redColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -19,7 +19,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.vegan,
       title: 'Vegan',
       color: MyColors.greenColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -28,7 +28,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.exotic,
       title: 'Exotic',
       color: MyColors.greenColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -37,7 +37,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.spicy,
       title: 'Spicy',
       color: MyColors.orangeColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -46,7 +46,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.japan,
       title: 'Japan',
       color: MyColors.redColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -55,7 +55,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.seafood,
       title: 'Seafood',
       color: MyColors.greenColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -64,7 +64,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.italian,
       title: 'Italian',
       color: MyColors.orangeColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -73,7 +73,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.chocolate,
       title: 'Chocolate',
       color: MyColors.redColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -82,7 +82,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.cheese,
       title: 'Cheese',
       color: MyColors.orangeColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],
@@ -91,7 +91,7 @@ class CategoryController extends GetxController {
       icon: MyIcons.fruit,
       title: 'Fruit',
       color: MyColors.greenColor,
-      searchTerms: [
+      searchTerms: <String>[
         'grill',
         'hamburger',
       ],

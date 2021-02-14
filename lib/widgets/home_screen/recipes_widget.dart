@@ -55,12 +55,13 @@ class RecipesWidget extends StatelessWidget {
           );
 
         return Container(
-          height: 180.0,
+          height: 200.0,
           child: ListView.builder(
-            scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,
-            shrinkWrap: true,
             itemCount: recipes.length,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            physics: BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final Recipe recipe = recipes[index];
 

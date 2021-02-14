@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 24.0),
                 Obx(
                   () => Text(
-                    'Something from ${_spoonacularController.randomCuisineName} cuisine',
+                    'Something from the ${_spoonacularController.randomCuisineName} cuisine',
                     style: MyTextStyles.headline2Text,
                   ),
                 ),

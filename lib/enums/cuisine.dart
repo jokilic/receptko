@@ -31,7 +31,17 @@ extension ParseToString on Cuisine {
   String value() => toString().split('.').last.toLowerCase();
 }
 
-Cuisine get randomCuisine {
+String get randomCuisine {
   List<Cuisine> cuisines = List.from(Cuisine.values);
-  return (cuisines..shuffle()).first;
+  Cuisine randomCuisine = (cuisines..shuffle()).first;
+  String randomCuisineString = randomCuisine.value();
+
+  if (randomCuisineString == 'easternEuropean')
+    randomCuisineString = 'eastern_european';
+  if (randomCuisineString == 'latinAmerican')
+    randomCuisineString = 'latin_american';
+  if (randomCuisineString == 'middleEastern')
+    randomCuisineString = 'middle_eastern';
+
+  return randomCuisineString;
 }

@@ -15,7 +15,7 @@ class MyColors {
   static const Color yellowRecipeColor = Color(0xFFFFAA38);
   static const Color blueRecipeColor = Color(0xFF7BAEE3);
 
-  static List<Color> overviewRecipeColors = [
+  static List<Color> overviewRecipeColors = <Color>[
     orangeColor,
     greenColor,
     redColor,
