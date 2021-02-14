@@ -89,21 +89,31 @@ class RecipeResult extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              MyIcons.clock,
-                              color: clockColor,
-                              height: 20.0,
-                              width: 20.0,
-                            ),
-                            SizedBox(width: 8.0),
-                            Text(
-                              '$minutes Min',
-                              style: MyTextStyles.resultMinutes,
-                            ),
-                          ],
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.0),
+                            color: clockColor,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.0,
+                            vertical: 6.0,
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                MyIcons.clock,
+                                color: MyColors.backgroundColor,
+                                height: 16.0,
+                                width: 16.0,
+                              ),
+                              SizedBox(width: 8.0),
+                              Text(
+                                '$minutes min',
+                                style: MyTextStyles.resultMinutes,
+                              ),
+                            ],
+                          ),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,

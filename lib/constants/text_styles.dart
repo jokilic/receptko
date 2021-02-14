@@ -51,7 +51,7 @@ class MyTextStyles {
   static const TextStyle resultMinutes = TextStyle(
     fontSize: 14.0,
     fontWeight: FontWeight.w800,
-    color: MyColors.textColor,
+    color: MyColors.backgroundColor,
   );
 
   static const TextStyle recipeGrid = TextStyle(
