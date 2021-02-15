@@ -25,8 +25,8 @@ String get randomMealType {
   String randomMealTypeString = randomMealType.value();
 
   if (randomMealTypeString == 'mainCourse')
-    randomMealTypeString = 'main_course';
-  if (randomMealTypeString == 'sideDish') randomMealTypeString = 'side_dish';
+    randomMealTypeString = 'main course';
+  if (randomMealTypeString == 'sideDish') randomMealTypeString = 'side dish';
 
   return randomMealTypeString;
 }

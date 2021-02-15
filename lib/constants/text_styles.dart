@@ -100,4 +100,21 @@ class MyTextStyles {
     fontWeight: FontWeight.w800,
     color: MyColors.backgroundColor,
   );
+
+  static const TextStyle bigRecipeWidgetTitle = TextStyle(
+    fontSize: 24.0,
+    fontWeight: FontWeight.w800,
+    color: MyColors.textColor,
+    height: 1.0,
+  );
+
+  static const TextStyle bigRecipeWidgetSubtitle = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle bigRecipeWidgetRating = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w700,
+  );
 }

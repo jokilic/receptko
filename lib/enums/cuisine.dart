@@ -37,11 +37,11 @@ String get randomCuisine {
   String randomCuisineString = randomCuisine.value();
 
   if (randomCuisineString == 'easternEuropean')
-    randomCuisineString = 'eastern_european';
+    randomCuisineString = 'eastern european';
   if (randomCuisineString == 'latinAmerican')
-    randomCuisineString = 'latin_american';
+    randomCuisineString = 'latin american';
   if (randomCuisineString == 'middleEastern')
-    randomCuisineString = 'middle_eastern';
+    randomCuisineString = 'middle eastern';
 
   return randomCuisineString;
 }

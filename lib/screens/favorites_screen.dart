@@ -73,7 +73,6 @@ class FavoritesScreen extends StatelessWidget {
                             : favoriteRecipe[1],
                         image: favoriteRecipe[2],
                         onTap: () {
-                          _spoonacularController.recipeInformation = null;
                           _spoonacularController.getRecipeInformation(
                               int.parse(favoriteRecipe[0]));
                           Navigator.of(context)

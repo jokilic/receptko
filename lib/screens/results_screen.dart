@@ -101,7 +101,6 @@ class ResultsScreen extends StatelessWidget {
                           color: MyColors.randomColor,
                           clockColor: _spoonacularController.clockColor(index),
                           onTap: () {
-                            _spoonacularController.recipeInformation = null;
                             _spoonacularController
                                 .getRecipeInformation(recipe.id);
                             Navigator.of(context)

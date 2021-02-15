@@ -30,16 +30,18 @@ class HomeScreen extends StatelessWidget {
                 HeaderWidget(title: 'What would you like to Cook?'),
                 SizedBox(height: 16.0),
                 SearchWidget(),
-                SizedBox(height: 20.0),
-                SizedBox(height: 24.0),
+                SizedBox(height: 36.0),
                 Obx(
                   () => Text(
                     'Something from the ${_spoonacularController.randomCuisineName} cuisine',
                     style: MyTextStyles.headline2Text,
                   ),
                 ),
-                SizedBox(height: 74.0),
-                RecipesWidget(recipes: _spoonacularController.cuisineRecipes),
+                SizedBox(height: 24.0),
+                RecipesWidget(
+                  recipes: _spoonacularController.cuisineRecipes,
+                  isBig: true,
+                ),
                 SizedBox(height: 24.0),
                 Obx(
                   () => Text(
