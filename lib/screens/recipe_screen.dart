@@ -11,7 +11,7 @@ import '../controllers/spoonacular_controller.dart';
 import '../models/recipe/recipe.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/recipe_screen/ingredient_widget.dart';
-import '../widgets/recipe_screen/original_recipe_button.dart';
+import '../widgets/kuharko_button.dart';
 import '../widgets/recipe_screen/recipe_boolean_values_widget.dart';
 import '../widgets/recipe_screen/recipe_grid_widget.dart';
 import '../widgets/recipe_screen/recipe_instruction_widget.dart';
@@ -223,8 +223,9 @@ class RecipeScreen extends StatelessWidget {
                                 style: MyTextStyles.recipeDirectionText,
                               ),
                             SizedBox(height: 24.0),
-                            OriginalRecipeButton(
-                              () => _spoonacularController
+                            KuharkoButton(
+                              text: 'See original recipe',
+                              onTap: () => _spoonacularController
                                   .launchURL(recipe.sourceUrl),
                             ),
                           ],

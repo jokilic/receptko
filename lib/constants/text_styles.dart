@@ -17,6 +17,22 @@ class MyTextStyles {
     height: 1.2,
   );
 
+  static const TextStyle searchText = TextStyle(
+    fontSize: 24.0,
+    color: MyColors.textColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'VisbyRound',
+    height: 1.6,
+  );
+
+  static TextStyle searchDynamicText = TextStyle(
+    fontSize: 24.0,
+    color: MyColors.randomColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'VisbyRound',
+    height: 1.6,
+  );
+
   static const TextStyle overviewRecipeTitle = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w700,

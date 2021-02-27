@@ -20,16 +20,22 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: MyColors.bodyColor,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          padding: EdgeInsets.only(left: 20.0),
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 36.0),
-                HeaderWidget(title: 'What would you like to Cook?'),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: HeaderWidget(title: 'What would you like to Cook?'),
+                ),
                 SizedBox(height: 16.0),
-                SearchWidget(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: SearchWidget(),
+                ),
                 SizedBox(height: 36.0),
                 Obx(
                   () => Text(
@@ -49,17 +55,23 @@ class HomeScreen extends StatelessWidget {
                     style: MyTextStyles.headline2Text,
                   ),
                 ),
-                SizedBox(height: 74.0),
-                RecipesWidget(recipes: _spoonacularController.mealTypeRecipes),
+                SizedBox(height: 24.0),
+                RecipesWidget(
+                  recipes: _spoonacularController.mealTypeRecipes,
+                  isBig: true,
+                ),
                 SizedBox(height: 24.0),
                 Text(
                   'Completely random recipes',
                   style: MyTextStyles.headline2Text,
                 ),
                 SizedBox(height: 74.0),
-                RecipesWidget(
-                  recipes: _spoonacularController.randomRecipes,
-                  isGrid: true,
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: RecipesWidget(
+                    recipes: _spoonacularController.randomRecipes,
+                    isGrid: true,
+                  ),
                 ),
                 SizedBox(height: 24.0),
               ],

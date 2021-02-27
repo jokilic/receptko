@@ -50,6 +50,7 @@ flutter:
     - assets/icons/home_recipe/
     - assets/icons/recipe/
     - assets/icons/results/
+    - assets/icons/search/
     - assets/images/
 
   fonts:

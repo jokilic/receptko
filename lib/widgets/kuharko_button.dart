@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/icons.dart';
-import '../../constants/text_styles.dart';
+import '../constants/colors.dart';
+import '../constants/icons.dart';
+import '../constants/text_styles.dart';
 
-class OriginalRecipeButton extends StatelessWidget {
+class KuharkoButton extends StatelessWidget {
+  final String text;
   final Function onTap;
 
-  OriginalRecipeButton(this.onTap);
+  KuharkoButton({
+    @required this.text,
+    @required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class OriginalRecipeButton extends StatelessWidget {
               ),
               SizedBox(width: 16.0),
               Text(
-                'See original recipe',
+                text,
                 style: MyTextStyles.recipeOriginal,
               ),
             ],

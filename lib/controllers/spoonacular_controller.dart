@@ -27,6 +27,13 @@ class SpoonacularController extends GetxController {
   RxList<dynamic> _favoriteRecipes = [].obs;
   RxString _randomCuisineName = ''.obs;
   RxString _randomMealTypeName = ''.obs;
+  RxString _wantedCuisines = ''.obs;
+  RxString _wantedDiets = ''.obs;
+  RxString _wantedIntolerances = ''.obs;
+  RxString _wantedIngredients = ''.obs;
+  RxString _nonWantedIngredients = ''.obs;
+  RxString _wantedMealTypes = ''.obs;
+  RxString _wantedReadyTime = ''.obs;
 
   /// ------------------------
   /// GETTERS
@@ -43,6 +50,13 @@ class SpoonacularController extends GetxController {
   List<dynamic> get favoriteRecipes => _favoriteRecipes;
   String get randomCuisineName => _randomCuisineName.value;
   String get randomMealTypeName => _randomMealTypeName.value;
+  String get wantedCuisines => _wantedCuisines.value;
+  String get wantedDiets => _wantedDiets.value;
+  String get wantedIntolerances => _wantedIntolerances.value;
+  String get wantedIngredients => _wantedIngredients.value;
+  String get nonWantedIngredients => _nonWantedIngredients.value;
+  String get wantedMealTypes => _wantedMealTypes.value;
+  String get wantedReadyTime => _wantedReadyTime.value;
 
   /// ------------------------
   /// SETTERS
@@ -60,6 +74,13 @@ class SpoonacularController extends GetxController {
       _favoriteRecipes.assignAll(value);
   set randomCuisineName(String value) => _randomCuisineName.value = value;
   set randomMealTypeName(String value) => _randomMealTypeName.value = value;
+  set wantedCuisines(String value) => _wantedCuisines.value = value;
+  set wantedDiets(String value) => _wantedDiets.value = value;
+  set wantedIntolerances(String value) => _wantedIntolerances.value = value;
+  set wantedIngredients(String value) => _wantedIngredients.value = value;
+  set nonWantedIngredients(String value) => _nonWantedIngredients.value = value;
+  set wantedMealTypes(String value) => _wantedMealTypes.value = value;
+  set wantedReadyTime(String value) => _wantedReadyTime.value = value;
 
   /// ------------------------
   /// INIT
@@ -199,7 +220,19 @@ class SpoonacularController extends GetxController {
   void launchURL(String url) async => await launch(url);
 
   /// ------------------------
-  /// TIME OF DAY
+  /// SEARCH RECIPES
   /// ------------------------
+  void createWantedCuisines() {}
 
+  void createWantedDiets() {}
+
+  void createWantedIntolerances() {}
+
+  void createWantedIngredients() {}
+
+  void createNonWantedIngredients() {}
+
+  void createWantedMealTypes() {}
+
+  void createWantedReadyTime() {}
 }

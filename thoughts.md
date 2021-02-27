@@ -12,6 +12,20 @@
 - [ ] maxReadyTime - time in minutes (int)
 - [ ] sort - sorting strategy (String)
 
+I want recipes from ALL cuisines and I want the food to be VEGAN.
+By the way, I don't want the CHINESE cuisine.
+
+I'm GLUTEN intolerant, so I don't need those recipes.
+
+The ingredients I have in my kitchen are TOMATO, CHEESE and RICE.
+I don't want PEPPER.
+
+I'm trying to find BREAKFAST meals.
+
+I want my food to be ready in 25 MINUTES.
+
+FIND RECIPES
+
 ### SearchRecipesByIngredients
 - [ ] ingredients - comma separated
 
@@ -71,3 +85,5 @@
 * On HomePage create 'Couple of lunch ideas' and randomize for lunch
 * 'Some meals from $cuisine' and 6 meals
 * Cuisine meals - Some return spaces (e.g. 'latin american')
+* Enable analysis_options.yaml and fix all possible things
+* Put all strings in some constants.dart file

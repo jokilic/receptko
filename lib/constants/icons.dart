@@ -33,4 +33,7 @@ class MyIcons {
   static const String resultsPan = 'assets/icons/results/pan.png';
 
   static const String favoritesPan = 'assets/icons/favorites/pan.png';
+
+  static const String mixer = 'assets/icons/search/mixer.png';
+  static const String vegetables = 'assets/icons/search/vegetables.png';
 }

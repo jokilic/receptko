@@ -58,7 +58,7 @@ class RecipesWidget extends StatelessWidget {
 
         if (isBig)
           return Container(
-            height: 420.0,
+            height: 380.0,
             child: ListView.builder(
               clipBehavior: Clip.none,
               itemCount: recipes.length,
