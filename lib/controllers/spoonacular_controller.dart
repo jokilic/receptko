@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,13 +28,23 @@ class SpoonacularController extends GetxController {
   RxList<dynamic> _favoriteRecipes = [].obs;
   RxString _randomCuisineName = ''.obs;
   RxString _randomMealTypeName = ''.obs;
+  RxList<String> _wantedCuisinesList = <String>[].obs;
+  RxList<String> _wantedDietsList = <String>[].obs;
+  RxList<String> _intolerancesList = <String>[].obs;
+  RxList<String> _wantedMealTypesList = <String>[].obs;
+  RxList<String> _ingredientsInKitchen = <String>[].obs;
+  RxList<String> _unwantedIngredientsInKitchen = <String>[].obs;
+  TextEditingController _ingredientsInKitchenController =
+      TextEditingController();
+  TextEditingController _unwantedIngredientsInKitchenController =
+      TextEditingController();
   RxString _wantedCuisines = ''.obs;
   RxString _wantedDiets = ''.obs;
-  RxString _wantedIntolerances = ''.obs;
+  RxString _nonWantedIntolerances = ''.obs;
   RxString _wantedIngredients = ''.obs;
   RxString _nonWantedIngredients = ''.obs;
   RxString _wantedMealTypes = ''.obs;
-  RxString _wantedReadyTime = ''.obs;
+  RxInt _wantedMinutes = 25.obs;
 
   /// ------------------------
   /// GETTERS
@@ -50,13 +61,24 @@ class SpoonacularController extends GetxController {
   List<dynamic> get favoriteRecipes => _favoriteRecipes;
   String get randomCuisineName => _randomCuisineName.value;
   String get randomMealTypeName => _randomMealTypeName.value;
+  List<String> get wantedCuisinesList => _wantedCuisinesList;
+  List<String> get wantedDietsList => _wantedDietsList;
+  List<String> get intolerancesList => _intolerancesList;
+  List<String> get wantedMealTypesList => _wantedMealTypesList;
+  List<String> get ingredientsInKitchen => _ingredientsInKitchen;
+  List<String> get unwantedIngredientsInKitchen =>
+      _unwantedIngredientsInKitchen;
+  TextEditingController get ingredientsInKitchenController =>
+      _ingredientsInKitchenController;
+  TextEditingController get unwantedIngredientsInKitchenController =>
+      _unwantedIngredientsInKitchenController;
   String get wantedCuisines => _wantedCuisines.value;
   String get wantedDiets => _wantedDiets.value;
-  String get wantedIntolerances => _wantedIntolerances.value;
+  String get nonWantedIntolerances => _nonWantedIntolerances.value;
   String get wantedIngredients => _wantedIngredients.value;
   String get nonWantedIngredients => _nonWantedIngredients.value;
   String get wantedMealTypes => _wantedMealTypes.value;
-  String get wantedReadyTime => _wantedReadyTime.value;
+  int get wantedMinutes => _wantedMinutes.value;
 
   /// ------------------------
   /// SETTERS
@@ -74,13 +96,21 @@ class SpoonacularController extends GetxController {
       _favoriteRecipes.assignAll(value);
   set randomCuisineName(String value) => _randomCuisineName.value = value;
   set randomMealTypeName(String value) => _randomMealTypeName.value = value;
+  set wantedCuisinesList(List<String> value) => _wantedCuisinesList = value;
+  set wantedDietsList(List<String> value) => _wantedDietsList = value;
+  set intolerancesList(List<String> value) => _intolerancesList = value;
+  set wantedMealTypesList(List<String> value) => _wantedMealTypesList = value;
+  set ingredientsInKitchen(List<String> value) => _ingredientsInKitchen = value;
+  set unwantedIngredientsInKitchen(List<String> value) =>
+      _unwantedIngredientsInKitchen = value;
   set wantedCuisines(String value) => _wantedCuisines.value = value;
   set wantedDiets(String value) => _wantedDiets.value = value;
-  set wantedIntolerances(String value) => _wantedIntolerances.value = value;
+  set nonWantedIntolerances(String value) =>
+      _nonWantedIntolerances.value = value;
   set wantedIngredients(String value) => _wantedIngredients.value = value;
   set nonWantedIngredients(String value) => _nonWantedIngredients.value = value;
   set wantedMealTypes(String value) => _wantedMealTypes.value = value;
-  set wantedReadyTime(String value) => _wantedReadyTime.value = value;
+  set wantedMinutes(int value) => _wantedMinutes.value = value;
 
   /// ------------------------
   /// INIT
@@ -121,8 +151,24 @@ class SpoonacularController extends GetxController {
   }
 
   Future<void> searchRecipes(String query) async {
+    recipeSearchResult = null;
     final RecipeSearchResult _fetchedRecipeSearchResult =
         await _network.searchRecipes(query);
+    recipeSearchResult = _fetchedRecipeSearchResult;
+  }
+
+  Future<void> complexRecipeSearch() async {
+    recipeSearchResult = null;
+    final RecipeSearchResult _fetchedRecipeSearchResult =
+        await _network.complexRecipeSearch(
+      cuisine: wantedCuisines,
+      diet: wantedDiets,
+      intolerances: nonWantedIntolerances,
+      includeIngredients: wantedIngredients,
+      excludeIngredients: nonWantedIngredients,
+      type: wantedMealTypes,
+      minutes: wantedMinutes,
+    );
     recipeSearchResult = _fetchedRecipeSearchResult;
   }
 
@@ -222,17 +268,5 @@ class SpoonacularController extends GetxController {
   /// ------------------------
   /// SEARCH RECIPES
   /// ------------------------
-  void createWantedCuisines() {}
 
-  void createWantedDiets() {}
-
-  void createWantedIntolerances() {}
-
-  void createWantedIngredients() {}
-
-  void createNonWantedIngredients() {}
-
-  void createWantedMealTypes() {}
-
-  void createWantedReadyTime() {}
 }

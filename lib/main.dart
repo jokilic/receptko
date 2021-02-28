@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import './screens/screens.dart';
 
@@ -7,7 +8,7 @@ void main() => runApp(Kuharko());
 class Kuharko extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Kuharko',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -15,15 +16,17 @@ class Kuharko extends StatelessWidget {
         fontFamily: 'VisbyRound',
       ),
       initialRoute: BottomNavigation.routeName,
-      routes: {
-        BottomNavigation.routeName: (context) => BottomNavigation(),
-        CategoriesScreen.routeName: (context) => CategoriesScreen(),
-        FavoritesScreen.routeName: (context) => FavoritesScreen(),
-        HomeScreen.routeName: (context) => HomeScreen(),
-        RecipeScreen.routeName: (context) => RecipeScreen(),
-        ResultsScreen.routeName: (context) => ResultsScreen(),
-        SearchScreen.routeName: (context) => SearchScreen(),
-      },
+      getPages: <GetPage>[
+        GetPage(
+            name: BottomNavigation.routeName, page: () => BottomNavigation()),
+        GetPage(name: HomeScreen.routeName, page: () => HomeScreen()),
+        GetPage(name: SearchScreen.routeName, page: () => SearchScreen()),
+        GetPage(
+            name: CategoriesScreen.routeName, page: () => CategoriesScreen()),
+        GetPage(name: FavoritesScreen.routeName, page: () => FavoritesScreen()),
+        GetPage(name: RecipeScreen.routeName, page: () => RecipeScreen()),
+        GetPage(name: ResultsScreen.routeName, page: () => ResultsScreen()),
+      ],
     );
   }
 }

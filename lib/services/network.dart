@@ -83,6 +83,28 @@ class Network {
     }
   }
 
+  Future<RecipeSearchResult> complexRecipeSearch({
+    String cuisine,
+    String diet,
+    String intolerances,
+    String includeIngredients,
+    String excludeIngredients,
+    String type,
+    int minutes,
+    int number = 10,
+  }) async {
+    try {
+      final Response<dynamic> _response = await _api.get(
+          '/recipes/complexSearch?&cuisine=$cuisine&diet=$diet&intolerances=$intolerances&includeIngredients=$includeIngredients&excludeIngredients=$excludeIngredients&type=$type&maxReadyTime=$minutes&number=10&addRecipeInformation=true&');
+      final RecipeSearchResult _recipeSearchResult =
+          RecipeSearchResult.fromJson(_response.data);
+
+      return _recipeSearchResult;
+    } catch (e) {
+      return null;
+    }
+  }
+
   /// Ingredients
 
   Future<Ingredient> getIngredientInformation(int id) async {

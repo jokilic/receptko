@@ -17,12 +17,39 @@ class MyTextStyles {
     height: 1.2,
   );
 
+  static const TextStyle headline3Text = TextStyle(
+    fontSize: 18.0,
+    color: MyColors.textColor,
+    fontWeight: FontWeight.w700,
+    height: 1.2,
+  );
+
   static const TextStyle searchText = TextStyle(
     fontSize: 24.0,
     color: MyColors.textColor,
     fontWeight: FontWeight.w500,
     fontFamily: 'VisbyRound',
-    height: 1.6,
+  );
+
+  static const TextStyle searchDialogHeadingText = TextStyle(
+    fontSize: 26.0,
+    color: MyColors.textColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'VisbyRound',
+  );
+
+  static const TextStyle searchDialogMinuteText = TextStyle(
+    fontSize: 56.0,
+    color: MyColors.textColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'VisbyRound',
+  );
+
+  static const TextStyle searchDialogText = TextStyle(
+    fontSize: 22.0,
+    color: MyColors.textColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'VisbyRound',
   );
 
   static TextStyle searchDynamicText = TextStyle(

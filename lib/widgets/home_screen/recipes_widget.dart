@@ -50,7 +50,7 @@ class RecipesWidget extends StatelessWidget {
                     : recipe.title,
                 onTap: () {
                   _spoonacularController.getRecipeInformation(recipe.id);
-                  Navigator.of(context).pushNamed(RecipeScreen.routeName);
+                  Get.toNamed(RecipeScreen.routeName);
                 },
               );
             },
@@ -71,7 +71,8 @@ class RecipesWidget extends StatelessWidget {
                 return Padding(
                   padding: EdgeInsets.only(right: 20.0),
                   child: BigRecipeWidget(
-                    mealType: recipe.dishTypes[0],
+                    mealType:
+                        recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
                     image: recipe.image,
                     score: recipe.spoonacularScore / 20 ?? 0.0,
                     title: recipe.title.length > 20
@@ -79,7 +80,7 @@ class RecipesWidget extends StatelessWidget {
                         : recipe.title,
                     onTap: () {
                       _spoonacularController.getRecipeInformation(recipe.id);
-                      Navigator.of(context).pushNamed(RecipeScreen.routeName);
+                      Get.toNamed(RecipeScreen.routeName);
                     },
                   ),
                 );
@@ -109,7 +110,7 @@ class RecipesWidget extends StatelessWidget {
                       : recipe.title,
                   onTap: () {
                     _spoonacularController.getRecipeInformation(recipe.id);
-                    Navigator.of(context).pushNamed(RecipeScreen.routeName);
+                    Get.toNamed(RecipeScreen.routeName);
                   },
                 ),
               );

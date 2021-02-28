@@ -39,7 +39,7 @@ class RecipeResult extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
-        height: 130.0,
+        height: 150.0,
         decoration: BoxDecoration(
           color: MyColors.bodyColor,
           borderRadius: BorderRadius.circular(16.0),

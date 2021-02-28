@@ -36,7 +36,7 @@ class FavoritesScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Image.asset(
-                            MyIcons.favoritesPan,
+                            MyIcons.randomIllustration,
                             height: 142.0,
                             width: 142.0,
                           ),
@@ -75,8 +75,7 @@ class FavoritesScreen extends StatelessWidget {
                         onTap: () {
                           _spoonacularController.getRecipeInformation(
                               int.parse(favoriteRecipe[0]));
-                          Navigator.of(context)
-                              .pushNamed(RecipeScreen.routeName);
+                          Get.toNamed(RecipeScreen.routeName);
                         },
                         score: double.parse(favoriteRecipe[3]) / 20 ?? 0.0,
                       );

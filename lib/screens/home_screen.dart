@@ -70,7 +70,6 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20.0),
                   child: RecipesWidget(
                     recipes: _spoonacularController.randomRecipes,
-                    isGrid: true,
                   ),
                 ),
                 SizedBox(height: 24.0),

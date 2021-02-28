@@ -6,10 +6,14 @@ import '../constants/text_styles.dart';
 class HeaderWidget extends StatefulWidget {
   final String title;
   final bool chefOnly;
+  final String subtitle;
+  final bool hasSubtitle;
 
   HeaderWidget({
     this.title,
     this.chefOnly = false,
+    this.subtitle,
+    this.hasSubtitle = false,
   });
 
   @override
@@ -70,12 +74,28 @@ class _HeaderWidgetState extends State<HeaderWidget>
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          width: size.width * 0.5,
-          child: Text(
-            widget.title,
-            style: MyTextStyles.headline1Text,
-          ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: size.width * 0.5,
+              child: Text(
+                widget.title,
+                style: MyTextStyles.headline1Text,
+              ),
+            ),
+            if (widget.hasSubtitle) ...[
+              SizedBox(height: 8.0),
+              Container(
+                width: size.width * 0.5,
+                child: Text(
+                  widget.subtitle,
+                  style: MyTextStyles.headline3Text,
+                ),
+              ),
+            ]
+          ],
         ),
         RotationTransition(
           turns: Tween(begin: 0.0, end: 0.03).animate(_curve),

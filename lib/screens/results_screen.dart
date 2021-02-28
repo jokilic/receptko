@@ -64,7 +64,7 @@ class ResultsScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Image.asset(
-                                MyIcons.resultsPan,
+                                MyIcons.randomIllustration,
                                 height: 156.0,
                                 width: 156.0,
                               ),
@@ -103,8 +103,7 @@ class ResultsScreen extends StatelessWidget {
                           onTap: () {
                             _spoonacularController
                                 .getRecipeInformation(recipe.id);
-                            Navigator.of(context)
-                                .pushNamed(RecipeScreen.routeName);
+                            Get.toNamed(RecipeScreen.routeName);
                           },
                           minutes: recipe.readyInMinutes,
                           isVegan: recipe.vegan,

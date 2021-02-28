@@ -30,10 +30,52 @@ class MyIcons {
   static const String cheap = 'assets/icons/results/cheap.png';
   static const String popular = 'assets/icons/results/popular.png';
   static const String clockResults = 'assets/icons/results/clock.png';
-  static const String resultsPan = 'assets/icons/results/pan.png';
 
-  static const String favoritesPan = 'assets/icons/favorites/pan.png';
+  static const String delete = 'assets/icons/search/delete.png';
+  static const String ingredients = 'assets/icons/search/ingredients.png';
+  static const String minus = 'assets/icons/search/minus.png';
+  static const String plus = 'assets/icons/search/plus.png';
+  static const String timer = 'assets/icons/search/timer.png';
 
-  static const String mixer = 'assets/icons/search/mixer.png';
-  static const String vegetables = 'assets/icons/search/vegetables.png';
+  // Illustration icons
+  static const String resultsPan = 'assets/icons/illustrations/pan.png';
+  static const String favoritesPan = 'assets/icons/illustrations/pan2.png';
+  static const String spatula = 'assets/icons/illustrations/spatula.png';
+  static const String spatula2 = 'assets/icons/illustrations/spatula2.png';
+  static const String spatula3 = 'assets/icons/illustrations/spatula3.png';
+  static const String cheese2 = 'assets/icons/illustrations/cheese2.png';
+  static const String cupcake = 'assets/icons/illustrations/cupcake.png';
+  static const String egg = 'assets/icons/illustrations/egg.png';
+  static const String friedEgg = 'assets/icons/illustrations/fried_egg.png';
+  static const String honeyDipper =
+      'assets/icons/illustrations/honey_dipper.png';
+  static const String milkBottle = 'assets/icons/illustrations/milk_bottle.png';
+  static const String recipeBook2 =
+      'assets/icons/illustrations/recipe_book2.png';
+  static const String cuttingBoard =
+      'assets/icons/illustrations/cutting_board.png';
+  static const String mixer = 'assets/icons/illustrations/mixer.png';
+  static const String biscuit = 'assets/icons/illustrations/biscuit.png';
+  static const String whisk = 'assets/icons/illustrations/whisk.png';
+
+  static List<String> illustrationIcons = <String>[
+    resultsPan,
+    favoritesPan,
+    spatula,
+    spatula2,
+    spatula3,
+    cheese2,
+    cupcake,
+    egg,
+    friedEgg,
+    honeyDipper,
+    milkBottle,
+    recipeBook2,
+    cuttingBoard,
+    mixer,
+    biscuit,
+    whisk,
+  ];
+
+  static String get randomIllustration => (illustrationIcons..shuffle()).first;
 }

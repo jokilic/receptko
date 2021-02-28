@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kuharko/constants/images.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
@@ -31,12 +32,19 @@ class BigRecipeWidget extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(24.0),
-              child: Image.network(
-                image,
-                fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
-              ),
+              child: image == null
+                  ? Image.asset(
+                      MyImages.foodPlaceholder,
+                      fit: BoxFit.cover,
+                      height: double.infinity,
+                      width: double.infinity,
+                    )
+                  : Image.network(
+                      image,
+                      fit: BoxFit.cover,
+                      height: double.infinity,
+                      width: double.infinity,
+                    ),
             ),
             Container(
               height: 120.0,
