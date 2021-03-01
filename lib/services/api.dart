@@ -12,10 +12,10 @@ class Api {
     try {
       final Response<dynamic> response =
           await _dio.get('$baseUrl/${path}apiKey=$apiKey');
-      log('[DIO] $response');
+      // log('[DIO] $response');
       return response;
     } catch (e) {
-      log('[DIO] $e');
+      // log('[DIO] $e');
       return null;
     }
   }
@@ -25,10 +25,10 @@ class Api {
     try {
       final Response<dynamic> response =
           await _dio.post(path, data: jsonEncode(params));
-      log('[DIO] $response');
+      // log('[DIO] $response');
       return response;
     } catch (e) {
-      log('[DIO] $e');
+      // log('[DIO] $e');
       return null;
     }
   }

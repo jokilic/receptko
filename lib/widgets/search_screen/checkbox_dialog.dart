@@ -65,6 +65,7 @@ class CheckboxDialog extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (BuildContext context, int index) {
+                        chosenEnums.sort();
                         final String value = chosenEnums[index];
 
                         return GestureDetector(
