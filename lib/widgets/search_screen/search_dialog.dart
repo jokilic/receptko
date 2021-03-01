@@ -12,10 +12,9 @@ class SearchDialog extends StatelessWidget {
   final String hintIcon;
   final List<String> chosenControllerList;
   final TextEditingController chosenTextController;
+  final Function(String) setJoinedValues;
 
-  final Function setJoinedValues;
-
-  SearchDialog({
+  const SearchDialog({
     @required this.title,
     @required this.image,
     @required this.setJoinedValues,
@@ -32,7 +31,7 @@ class SearchDialog extends StatelessWidget {
       child: Center(
         child: Stack(
           overflow: Overflow.visible,
-          children: [
+          children: <Widget>[
             Container(
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
@@ -42,19 +41,18 @@ class SearchDialog extends StatelessWidget {
               height: Get.height * 0.5,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Image.asset(
                           image,
                           height: 56.0,
                           width: 56.0,
                         ),
-                        SizedBox(width: 16.0),
+                        const SizedBox(width: 16.0),
                         Expanded(
                           child: Text(
                             title,
@@ -63,9 +61,9 @@ class SearchDialog extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 36.0),
+                    const SizedBox(height: 36.0),
                     TextField(
-                      onSubmitted: (value) {
+                      onSubmitted: (String value) {
                         if (value.isNotEmpty) {
                           chosenControllerList.add(value.trim());
                           chosenTextController.clear();
@@ -76,7 +74,7 @@ class SearchDialog extends StatelessWidget {
                       },
                       controller: chosenTextController,
                       textCapitalization: TextCapitalization.sentences,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: MyColors.textColor,
                         fontWeight: FontWeight.w600,
                       ),
@@ -95,26 +93,32 @@ class SearchDialog extends StatelessWidget {
                           color: MyColors.textColor.withOpacity(0.4),
                         ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: MyColors.textColor),
+                          borderSide: const BorderSide(
+                            color: MyColors.textColor,
+                          ),
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                         filled: false,
                         fillColor: MyColors.backgroundColor,
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: MyColors.textColor),
+                          borderSide: const BorderSide(
+                            color: MyColors.textColor,
+                          ),
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: MyColors.textColor),
+                          borderSide: const BorderSide(
+                            color: MyColors.textColor,
+                          ),
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                       ),
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     Obx(
                       () => ListView.builder(
                         itemCount: chosenControllerList.length,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
@@ -122,15 +126,14 @@ class SearchDialog extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 4.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
+                              children: <Widget>[
                                 Expanded(
                                   child: Text(
                                     chosenControllerList[index],
                                     style: MyTextStyles.searchDialogText,
                                   ),
                                 ),
-                                SizedBox(width: 12.0),
+                                const SizedBox(width: 12.0),
                                 GestureDetector(
                                   onTap: () {
                                     chosenControllerList.removeAt(index);

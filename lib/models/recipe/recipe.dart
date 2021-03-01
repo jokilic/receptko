@@ -94,9 +94,9 @@ class Recipe {
     license = json['license'];
     sourceName = json['sourceName'];
     pricePerServing = json['pricePerServing'];
-    List<dynamic> extendedIngredientsList = json['extendedIngredients'];
+    final List<dynamic> extendedIngredientsList = json['extendedIngredients'];
     extendedIngredients = extendedIngredientsList
-        .map((extendedIngredient) =>
+        .map((dynamic extendedIngredient) =>
             ExtendedIngredients.fromJson(extendedIngredient))
         .toList();
     id = json['id'];
@@ -111,8 +111,9 @@ class Recipe {
     dishTypes = json['dishTypes'];
     diets = json['diets'];
     occasions = json['occasions'];
-    if (winePairing != null)
+    if (winePairing != null) {
       winePairing = WinePairing.fromJson(json['winePairing']);
+    }
     instructions = json['instructions'];
     analyzedInstructions = json['analyzedInstructions'];
     originalId = json['originalId'];

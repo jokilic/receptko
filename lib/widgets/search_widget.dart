@@ -13,13 +13,13 @@ class SearchWidget extends StatelessWidget {
         Get.find<SpoonacularController>();
 
     return TextField(
-      onSubmitted: (value) {
+      onSubmitted: (String value) {
         _spoonacularController.searchRecipes(value);
         Get.toNamed(ResultsScreen.routeName);
       },
-      onChanged: (value) => _spoonacularController.searchQuery = value,
+      onChanged: (String value) => _spoonacularController.searchQuery = value,
       textCapitalization: TextCapitalization.sentences,
-      style: TextStyle(
+      style: const TextStyle(
         color: MyColors.textColor,
         fontWeight: FontWeight.w600,
       ),
@@ -33,17 +33,23 @@ class SearchWidget extends StatelessWidget {
         hintText: 'Search for a meal...',
         hintStyle: TextStyle(color: MyColors.textColor.withOpacity(0.4)),
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: MyColors.backgroundColor),
+          borderSide: const BorderSide(
+            color: MyColors.backgroundColor,
+          ),
           borderRadius: BorderRadius.circular(16.0),
         ),
         filled: true,
         fillColor: MyColors.backgroundColor,
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: MyColors.backgroundColor),
+          borderSide: const BorderSide(
+            color: MyColors.backgroundColor,
+          ),
           borderRadius: BorderRadius.circular(16.0),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: MyColors.backgroundColor),
+          borderSide: const BorderSide(
+            color: MyColors.backgroundColor,
+          ),
           borderRadius: BorderRadius.circular(16.0),
         ),
       ),

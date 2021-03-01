@@ -13,7 +13,7 @@ class RecipesWidget extends StatelessWidget {
   final bool isGrid;
   final bool isBig;
 
-  RecipesWidget({
+  const RecipesWidget({
     this.recipes,
     this.isGrid = false,
     this.isBig = false,
@@ -26,13 +26,13 @@ class RecipesWidget extends StatelessWidget {
 
     return Obx(
       () {
-        if (isGrid)
+        if (isGrid) {
           return GridView.builder(
             clipBehavior: Clip.none,
             itemCount: recipes.length,
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 80.0,
               crossAxisSpacing: 20.0,
@@ -55,21 +55,22 @@ class RecipesWidget extends StatelessWidget {
               );
             },
           );
+        }
 
-        if (isBig)
-          return Container(
+        if (isBig) {
+          return SizedBox(
             height: 380.0,
             child: ListView.builder(
               clipBehavior: Clip.none,
               itemCount: recipes.length,
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
                 final Recipe recipe = recipes[index];
 
                 return Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: BigRecipeWidget(
                     mealType:
                         recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
@@ -87,20 +88,21 @@ class RecipesWidget extends StatelessWidget {
               },
             ),
           );
+        }
 
-        return Container(
+        return SizedBox(
           height: 200.0,
           child: ListView.builder(
             clipBehavior: Clip.none,
             itemCount: recipes.length,
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final Recipe recipe = recipes[index];
 
               return Padding(
-                padding: EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(right: 20.0),
                 child: RecipeWidget(
                   color: MyColors.randomColor,
                   image: recipe.image,

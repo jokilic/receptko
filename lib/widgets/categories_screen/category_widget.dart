@@ -10,7 +10,7 @@ class CategoryWidget extends StatelessWidget {
   final Color color;
   final Function onTap;
 
-  CategoryWidget({
+  const CategoryWidget({
     @required this.icon,
     @required this.title,
     @required this.color,
@@ -31,13 +31,13 @@ class CategoryWidget extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Image.asset(
               icon,
               width: 64.0,
               height: 64.0,
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Text(
               title,
               style: MyTextStyles.categoryTitle.copyWith(color: color),

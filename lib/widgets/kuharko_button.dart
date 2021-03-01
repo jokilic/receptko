@@ -8,7 +8,7 @@ class KuharkoButton extends StatelessWidget {
   final String text;
   final Function onTap;
 
-  KuharkoButton({
+  const KuharkoButton({
     @required this.text,
     @required this.onTap,
   });
@@ -25,8 +25,8 @@ class KuharkoButton extends StatelessWidget {
             gradient: RadialGradient(
               center: Alignment.topRight,
               radius: 4.8,
-              stops: [0.0, 1.0],
-              colors: [
+              stops: const <double>[0.0, 1.0],
+              colors: <Color>[
                 MyColors.randomColor,
                 MyColors.randomColor,
               ],
@@ -35,15 +35,14 @@ class KuharkoButton extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            children: <Widget>[
               Image.asset(
                 MyIcons.recipeBook,
                 height: 32.0,
                 width: 32.0,
                 color: MyColors.backgroundColor,
               ),
-              SizedBox(width: 16.0),
+              const SizedBox(width: 16.0),
               Text(
                 text,
                 style: MyTextStyles.recipeOriginal,

@@ -1,4 +1,4 @@
-List<String> cuisines = [
+List<String> cuisines = <String>[
   'african',
   'american',
   'british',

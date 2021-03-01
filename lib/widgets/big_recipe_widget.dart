@@ -12,7 +12,7 @@ class BigRecipeWidget extends StatelessWidget {
   final String mealType;
   final double score;
 
-  BigRecipeWidget({
+  const BigRecipeWidget({
     @required this.onTap,
     @required this.image,
     @required this.title,
@@ -24,12 +24,12 @@ class BigRecipeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
+      child: SizedBox(
         height: 420.0,
         width: 280.0,
         child: Stack(
           alignment: Alignment.bottomCenter,
-          children: [
+          children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(24.0),
               child: image == null
@@ -49,27 +49,27 @@ class BigRecipeWidget extends StatelessWidget {
             Container(
               height: 120.0,
               width: double.infinity,
-              margin: EdgeInsets.all(8.0),
+              margin: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24.0),
                 color: MyColors.bodyColor,
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 8.0, right: 16.0),
+                padding: const EdgeInsets.only(left: 8.0, right: 16.0),
                 child: Row(
-                  children: [
+                  children: <Widget>[
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: <Widget>[
                             Text(
                               title,
                               style: MyTextStyles.bigRecipeWidgetTitle,
                             ),
-                            SizedBox(height: 4.0),
+                            const SizedBox(height: 4.0),
                             Text(
                               mealType,
                               style:
@@ -83,15 +83,14 @@ class BigRecipeWidget extends StatelessWidget {
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Image.asset(
                           MyIcons.favoriteOutline,
                           width: 44.0,
                           height: 44.0,
                           color: MyColors.textColor,
                         ),
-                        SizedBox(height: 4.0),
+                        const SizedBox(height: 4.0),
                         Text(
                           '$score',
                           style: MyTextStyles.bigRecipeWidgetRating,

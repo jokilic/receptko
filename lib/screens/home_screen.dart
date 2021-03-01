@@ -5,11 +5,11 @@ import '../constants/colors.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../widgets/header_widget.dart';
-import '../widgets/search_widget.dart';
 import '../widgets/home_screen/recipes_widget.dart';
+import '../widgets/search_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const routeName = '/home-screen';
+  static const String routeName = '/home-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -20,59 +20,59 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: MyColors.bodyColor,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 20.0),
+          padding: const EdgeInsets.only(left: 20.0),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 36.0),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
+              children: <Widget>[
+                const SizedBox(height: 36.0),
+                const Padding(
+                  padding: EdgeInsets.only(right: 20.0),
                   child: HeaderWidget(title: 'What would you like to Cook?'),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
                   child: SearchWidget(),
                 ),
-                SizedBox(height: 36.0),
+                const SizedBox(height: 36.0),
                 Obx(
                   () => Text(
                     'Something from the ${_spoonacularController.randomCuisineName} cuisine',
                     style: MyTextStyles.headline2Text,
                   ),
                 ),
-                SizedBox(height: 24.0),
+                const SizedBox(height: 24.0),
                 RecipesWidget(
                   recipes: _spoonacularController.cuisineRecipes,
                   isBig: true,
                 ),
-                SizedBox(height: 24.0),
+                const SizedBox(height: 24.0),
                 Obx(
                   () => Text(
                     'Some ${_spoonacularController.randomMealTypeName} recipes',
                     style: MyTextStyles.headline2Text,
                   ),
                 ),
-                SizedBox(height: 24.0),
+                const SizedBox(height: 24.0),
                 RecipesWidget(
                   recipes: _spoonacularController.mealTypeRecipes,
                   isBig: true,
                 ),
-                SizedBox(height: 24.0),
-                Text(
+                const SizedBox(height: 24.0),
+                const Text(
                   'Completely random recipes',
                   style: MyTextStyles.headline2Text,
                 ),
-                SizedBox(height: 74.0),
+                const SizedBox(height: 74.0),
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
                   child: RecipesWidget(
                     recipes: _spoonacularController.randomRecipes,
                   ),
                 ),
-                SizedBox(height: 24.0),
+                const SizedBox(height: 24.0),
               ],
             ),
           ),

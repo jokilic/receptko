@@ -7,7 +7,7 @@ class RecipeGridWidget extends StatelessWidget {
   final String text;
   final String icon;
 
-  RecipeGridWidget({
+  const RecipeGridWidget({
     @required this.color,
     @required this.text,
     @required this.icon,
@@ -24,14 +24,14 @@ class RecipeGridWidget extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Image.asset(
             icon,
             width: 60.0,
             height: 60.0,
             color: color,
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           Text(
             text,
             style: MyTextStyles.recipeGrid.copyWith(color: color),

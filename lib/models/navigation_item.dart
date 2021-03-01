@@ -18,7 +18,7 @@ class NavigationItem {
     @required this.iconActive,
   });
 
-  static List<NavigationItem> get items => [
+  static List<NavigationItem> get items => <NavigationItem>[
         NavigationItem(
           page: HomeScreen(),
           icon: Image.asset(

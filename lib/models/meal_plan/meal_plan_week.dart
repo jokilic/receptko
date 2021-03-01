@@ -45,8 +45,8 @@ class Day {
   Day({this.meals, this.nutrients});
 
   Day.fromJson(Map<String, dynamic> json) {
-    List<dynamic> mealsList = json['meals'];
-    meals = mealsList.map((meal) => WeekMeals.fromJson(meal)).toList();
+    final List<dynamic> mealsList = json['meals'];
+    meals = mealsList.map((dynamic meal) => WeekMeals.fromJson(meal)).toList();
     nutrients = WeekNutrients.fromJson(json['nutrients']);
   }
 }

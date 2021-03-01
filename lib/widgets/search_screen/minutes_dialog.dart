@@ -12,7 +12,7 @@ class MinutesDialog extends StatelessWidget {
   final Function minusPressed;
   final Function plusPressed;
 
-  MinutesDialog({
+  const MinutesDialog({
     @required this.title,
     @required this.icon,
     @required this.minutes,
@@ -27,7 +27,7 @@ class MinutesDialog extends StatelessWidget {
       child: Center(
         child: Stack(
           overflow: Overflow.visible,
-          children: [
+          children: <Widget>[
             Container(
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
@@ -37,19 +37,18 @@ class MinutesDialog extends StatelessWidget {
               height: Get.height * 0.25,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Image.asset(
                           icon,
                           height: 56.0,
                           width: 56.0,
                         ),
-                        SizedBox(width: 16.0),
+                        const SizedBox(width: 16.0),
                         Expanded(
                           child: Text(
                             title,
@@ -58,11 +57,10 @@ class MinutesDialog extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 36.0),
+                    const SizedBox(height: 36.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: minusPressed,
@@ -72,12 +70,12 @@ class MinutesDialog extends StatelessWidget {
                             width: 50.0,
                           ),
                         ),
-                        SizedBox(width: 24.0),
+                        const SizedBox(width: 24.0),
                         Text(
                           '$minutes',
                           style: MyTextStyles.searchDialogMinuteText,
                         ),
-                        SizedBox(width: 24.0),
+                        const SizedBox(width: 24.0),
                         GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: plusPressed,

@@ -1,4 +1,4 @@
-List<String> diets = [
+List<String> diets = <String>[
   'gluten free',
   'ketogenic',
   'vegetarian',

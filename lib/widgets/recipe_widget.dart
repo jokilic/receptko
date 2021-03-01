@@ -14,10 +14,10 @@ class RecipeWidget extends StatelessWidget {
 
   const RecipeWidget({
     @required this.image,
-    this.score,
     @required this.title,
     @required this.onTap,
     @required this.color,
+    this.score,
   });
 
   @override
@@ -27,7 +27,7 @@ class RecipeWidget extends StatelessWidget {
       child: Stack(
         overflow: Overflow.visible,
         alignment: Alignment.topCenter,
-        children: [
+        children: <Widget>[
           Container(
             width: 175.0,
             decoration: BoxDecoration(
@@ -35,23 +35,22 @@ class RecipeWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(24.0),
             ),
             child: Padding(
-              padding: EdgeInsets.fromLTRB(12.0, 80.0, 12.0, 6.0),
+              padding: const EdgeInsets.fromLTRB(12.0, 80.0, 12.0, 6.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: <Widget>[
                   if (score != null)
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Image.asset(
                           MyIcons.star,
                           width: 24.0,
                           height: 24.0,
                           color: color,
                         ),
-                        SizedBox(width: 6.0),
+                        const SizedBox(width: 6.0),
                         Padding(
-                          padding: EdgeInsets.only(top: 1.0),
+                          padding: const EdgeInsets.only(top: 1.0),
                           child: Text(
                             '${score.toStringAsFixed(2)} / 5',
                             style: MyTextStyles.overviewRecipeScore
@@ -60,7 +59,7 @@ class RecipeWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                  SizedBox(height: 4.0),
+                  const SizedBox(height: 4.0),
                   Text(
                     title,
                     style:

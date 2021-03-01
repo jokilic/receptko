@@ -7,7 +7,7 @@ class RecipeInstructionWidget extends StatelessWidget {
   final int number;
   final String step;
 
-  RecipeInstructionWidget({
+  const RecipeInstructionWidget({
     @required this.number,
     @required this.step,
   });
@@ -15,21 +15,21 @@ class RecipeInstructionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 32.0),
+      padding: const EdgeInsets.only(bottom: 32.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Text(
             '$number',
             style: MyTextStyles.recipeDirectionNumber,
           ),
-          SizedBox(width: 16.0),
+          const SizedBox(width: 16.0),
           Container(
             width: 4.0,
             height: 36.0,
             color: MyColors.greenColor,
           ),
-          SizedBox(width: 16.0),
+          const SizedBox(width: 16.0),
           Expanded(
             child: Text(
               step,

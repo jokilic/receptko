@@ -65,9 +65,9 @@ class Product {
     generatedText = json['generatedText'];
     upc = json['upc'];
     brand = json['brand'];
-    List ingredientsList = json['ingredients'];
+    final List<dynamic> ingredientsList = json['ingredients'];
     ingredients = ingredientsList
-        .map((ingredient) => ProductIngredients.fromJson(ingredient))
+        .map((dynamic ingredient) => ProductIngredients.fromJson(ingredient))
         .toList();
     ingredientCount = json['ingredientCount'];
     ingredientList = json['ingredientList'];
@@ -94,9 +94,9 @@ class ProductNutrition {
   });
 
   ProductNutrition.fromJson(Map<String, dynamic> json) {
-    List<dynamic> nutrientsList = json['nutrients'];
+    final List<dynamic> nutrientsList = json['nutrients'];
     nutrients = nutrientsList
-        .map((nutrient) => ProductNutrients.fromJson(nutrient))
+        .map((dynamic nutrient) => ProductNutrients.fromJson(nutrient))
         .toList();
     caloricBreakdown =
         ProductCaloricBreakdown.fromJson(json['caloricBreakdown']);

@@ -30,8 +30,9 @@ class Network {
       final Response<dynamic> _response =
           await _api.get('/recipes/random?number=$number&tags=$tag&');
       final List<dynamic> _responseList = _response.data['recipes'];
-      final List<Recipe> _recipes =
-          _responseList.map((_recipe) => Recipe.fromJson(_recipe)).toList();
+      final List<Recipe> _recipes = _responseList
+          .map((dynamic _recipe) => Recipe.fromJson(_recipe))
+          .toList();
 
       return _recipes;
     } catch (e) {
@@ -47,7 +48,7 @@ class Network {
 
       final List<dynamic> _responseList = _response.data;
       final List<SimilarRecipe> _recipes = _responseList
-          .map((_recipe) => SimilarRecipe.fromJson(_recipe))
+          .map((dynamic _recipe) => SimilarRecipe.fromJson(_recipe))
           .toList();
 
       return _recipes;

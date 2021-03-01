@@ -8,9 +8,9 @@ class WineForDishPairing {
   WineForDishPairing.fromJson(Map<String, dynamic> json) {
     pairedWines = json['pairedWines'];
     pairingText = json['pairingText'];
-    List<dynamic> productMatchesList = json['productMatches'];
+    final List<dynamic> productMatchesList = json['productMatches'];
     productMatches = productMatchesList
-        .map((productMatch) => ProductMatches.fromJson(productMatch))
+        .map((dynamic productMatch) => ProductMatches.fromJson(productMatch))
         .toList();
   }
 }

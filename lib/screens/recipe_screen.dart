@@ -10,14 +10,14 @@ import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../models/recipe/recipe.dart';
 import '../widgets/header_widget.dart';
-import '../widgets/recipe_screen/ingredient_widget.dart';
 import '../widgets/kuharko_button.dart';
+import '../widgets/recipe_screen/ingredient_widget.dart';
 import '../widgets/recipe_screen/recipe_boolean_values_widget.dart';
 import '../widgets/recipe_screen/recipe_grid_widget.dart';
 import '../widgets/recipe_screen/recipe_instruction_widget.dart';
 
 class RecipeScreen extends StatelessWidget {
-  static const routeName = '/recipe-screen';
+  static const String routeName = '/recipe-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +26,25 @@ class RecipeScreen extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Obx(
           () {
             final Recipe recipe = _spoonacularController.recipeInformation;
 
-            if (recipe == null)
-              return Container(
+            if (recipe == null) {
+              return SizedBox(
                 height: Get.height,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    HeaderWidget(chefOnly: true),
-                    SizedBox(height: 50.0),
-                    Text(
+                  children: <Widget>[
+                    const HeaderWidget(chefOnly: true),
+                    const SizedBox(height: 50.0),
+                    const Text(
                       'Just a sec...',
                       style: MyTextStyles.headline2Text,
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     SpinKitFoldingCube(
                       color: MyColors.randomColor,
                       size: 36.0,
@@ -52,11 +52,12 @@ class RecipeScreen extends StatelessWidget {
                   ],
                 ),
               );
+            }
 
             return Stack(
-              children: [
+              children: <Widget>[
                 Column(
-                  children: [
+                  children: <Widget>[
                     Transform.scale(
                       scale: 1.2,
                       child: recipe.image == null
@@ -81,36 +82,36 @@ class RecipeScreen extends StatelessWidget {
                       ),
                       child: Stack(
                         overflow: Overflow.visible,
-                        children: [
+                        children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 16.0, vertical: 36.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                              children: <Widget>[
                                 Text(
                                   recipe.title,
                                   style: MyTextStyles.headline1Text,
                                 ),
-                                SizedBox(height: 24.0),
+                                const SizedBox(height: 24.0),
                                 SingleChildScrollView(
-                                  physics: BouncingScrollPhysics(),
+                                  physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
-                                    children: [
+                                    children: <Widget>[
                                       RecipeGridWidget(
                                         color: MyColors.greenRecipeColor,
                                         icon: MyIcons.clock,
                                         text: '${recipe.readyInMinutes} MIN',
                                       ),
-                                      SizedBox(width: 16.0),
+                                      const SizedBox(width: 16.0),
                                       RecipeGridWidget(
                                         color: MyColors.yellowRecipeColor,
                                         icon: MyIcons.popular,
                                         text:
                                             '${recipe.spoonacularScore / 20} / 5',
                                       ),
-                                      SizedBox(width: 16.0),
+                                      const SizedBox(width: 16.0),
                                       RecipeGridWidget(
                                         color: MyColors.blueRecipeColor,
                                         icon: MyIcons.money,
@@ -121,37 +122,37 @@ class RecipeScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 24.0),
-                                Text(
+                                const SizedBox(height: 24.0),
+                                const Text(
                                   'Summary',
                                   style: MyTextStyles.headline2Text,
                                 ),
-                                SizedBox(height: 16.0),
+                                const SizedBox(height: 16.0),
                                 SingleChildScrollView(
-                                  physics: BouncingScrollPhysics(),
+                                  physics: const BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
-                                    children: [
+                                    children: <Widget>[
                                       if (recipe.cheap)
-                                        RecipeBooleanValuesWidget(
+                                        const RecipeBooleanValuesWidget(
                                           color: MyColors.orangeColor,
                                           icon: MyIcons.money,
                                           text: 'Cheap',
                                         ),
                                       if (recipe.vegan)
-                                        RecipeBooleanValuesWidget(
+                                        const RecipeBooleanValuesWidget(
                                           color: MyColors.greenColor,
                                           icon: MyIcons.vegan,
                                           text: 'Vegan',
                                         ),
                                       if (recipe.veryHealthy)
-                                        RecipeBooleanValuesWidget(
+                                        const RecipeBooleanValuesWidget(
                                           color: MyColors.redColor,
                                           icon: MyIcons.healthy,
                                           text: 'Healthy',
                                         ),
                                       if (recipe.veryPopular)
-                                        RecipeBooleanValuesWidget(
+                                        const RecipeBooleanValuesWidget(
                                           color: MyColors.yellowRecipeColor,
                                           icon: MyIcons.popular,
                                           text: 'Popular',
@@ -159,23 +160,23 @@ class RecipeScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 16.0),
+                                const SizedBox(height: 16.0),
                                 Text(
                                   _spoonacularController
                                       .cleanSummary(recipe.summary),
                                   style: MyTextStyles.recipeSummary,
                                 ),
-                                SizedBox(height: 24.0),
-                                Text(
+                                const SizedBox(height: 24.0),
+                                const Text(
                                   'Ingredients',
                                   style: MyTextStyles.headline2Text,
                                 ),
-                                SizedBox(height: 16.0),
-                                Container(
+                                const SizedBox(height: 16.0),
+                                SizedBox(
                                   height: 250.0,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
-                                    physics: BouncingScrollPhysics(),
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount:
                                         recipe.extendedIngredients.length,
                                     itemBuilder:
@@ -194,19 +195,20 @@ class RecipeScreen extends StatelessWidget {
                                     },
                                   ),
                                 ),
-                                SizedBox(height: 4.0),
+                                const SizedBox(height: 4.0),
                                 if (recipe.analyzedInstructions != null &&
                                     recipe.instructions != null &&
                                     (recipe.analyzedInstructions.isNotEmpty ||
                                         recipe.instructions.isNotEmpty))
-                                  Text(
+                                  const Text(
                                     'Directions',
                                     style: MyTextStyles.headline2Text,
                                   ),
-                                SizedBox(height: 16.0),
+                                const SizedBox(height: 16.0),
                                 if (recipe.analyzedInstructions.isNotEmpty)
                                   ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: recipe
                                             .analyzedInstructions[0]['steps']
                                             .length ??
@@ -229,7 +231,7 @@ class RecipeScreen extends StatelessWidget {
                                     recipe.instructions ?? '',
                                     style: MyTextStyles.recipeDirectionText,
                                   ),
-                                SizedBox(height: 24.0),
+                                const SizedBox(height: 24.0),
                                 KuharkoButton(
                                   text: 'See original recipe',
                                   onTap: () => _spoonacularController
@@ -247,7 +249,7 @@ class RecipeScreen extends StatelessWidget {
                               child: Container(
                                 width: 80.0,
                                 height: 80.0,
-                                padding: EdgeInsets.all(20.0),
+                                padding: const EdgeInsets.all(20.0),
                                 decoration: BoxDecoration(
                                   color: MyColors.bodyColor,
                                   shape: BoxShape.circle,
@@ -274,7 +276,7 @@ class RecipeScreen extends StatelessWidget {
                     child: Container(
                       width: 70.0,
                       height: 70.0,
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       decoration: BoxDecoration(
                         color: MyColors.bodyColor,
                         shape: BoxShape.circle,

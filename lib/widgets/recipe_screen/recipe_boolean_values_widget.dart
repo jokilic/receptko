@@ -19,21 +19,21 @@ class RecipeBooleanValuesWidget extends StatelessWidget {
     return Container(
       height: 55.0,
       width: 170.0,
-      margin: EdgeInsets.only(right: 16.0),
+      margin: const EdgeInsets.only(right: 16.0),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(36.0),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Image.asset(
             icon,
             height: 32.0,
             width: 32.0,
             color: MyColors.backgroundColor,
           ),
-          SizedBox(width: 16.0),
+          const SizedBox(width: 16.0),
           Text(
             text,
             style: MyTextStyles.recipeBooleanValues,

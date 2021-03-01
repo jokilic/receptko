@@ -21,11 +21,11 @@ class IngredientWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         Container(
           width: 140.0,
           height: 140.0,
-          margin: EdgeInsets.only(right: 24.0),
+          margin: const EdgeInsets.only(right: 24.0),
           decoration: BoxDecoration(
             boxShadow: Shadows.myShadow,
           ),
@@ -37,12 +37,12 @@ class IngredientWidget extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 10.0),
-        Container(
+        const SizedBox(height: 10.0),
+        SizedBox(
           width: 140.0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Text(
                 title,
                 style: MyTextStyles.recipeIngredientName.copyWith(

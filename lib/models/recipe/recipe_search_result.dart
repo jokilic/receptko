@@ -12,9 +12,9 @@ class RecipeSearchResult {
   });
 
   RecipeSearchResult.fromJson(Map<String, dynamic> json) {
-    List<dynamic> resultsList = json['results'];
+    final List<dynamic> resultsList = json['results'];
     results = resultsList
-        .map((result) => RecipeSearchResults.fromJson(result))
+        .map((dynamic result) => RecipeSearchResults.fromJson(result))
         .toList();
     offset = json['offset'];
     number = json['number'];

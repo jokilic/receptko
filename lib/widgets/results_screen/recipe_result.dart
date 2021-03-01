@@ -37,7 +37,7 @@ class RecipeResult extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.only(bottom: 20.0),
+        margin: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
         height: 150.0,
         decoration: BoxDecoration(
@@ -46,7 +46,7 @@ class RecipeResult extends StatelessWidget {
           boxShadow: Shadows.myShadow,
         ),
         child: Row(
-          children: [
+          children: <Widget>[
             Container(
               height: double.infinity,
               width: 110.0,
@@ -63,19 +63,19 @@ class RecipeResult extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: <Widget>[
                         Text(
                           title,
                           style:
                               MyTextStyles.resultTitle.copyWith(color: color),
                         ),
-                        SizedBox(height: 4.0),
+                        const SizedBox(height: 4.0),
                         Text(
                           description,
                           style: MyTextStyles.resultDescription.copyWith(
@@ -84,30 +84,28 @@ class RecipeResult extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16.0),
                             color: clockColor,
                           ),
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             horizontal: 12.0,
                             vertical: 6.0,
                           ),
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
+                            children: <Widget>[
                               Image.asset(
                                 MyIcons.clock,
                                 color: MyColors.backgroundColor,
                                 height: 16.0,
                                 width: 16.0,
                               ),
-                              SizedBox(width: 8.0),
+                              const SizedBox(width: 8.0),
                               Text(
                                 '$minutes min',
                                 style: MyTextStyles.resultMinutes,
@@ -117,11 +115,10 @@ class RecipeResult extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          children: <Widget>[
                             if (isVegan)
                               Padding(
-                                padding: EdgeInsets.only(right: 4.0),
+                                padding: const EdgeInsets.only(right: 4.0),
                                 child: Image.asset(
                                   MyIcons.vegan,
                                   height: 22.0,
@@ -130,7 +127,7 @@ class RecipeResult extends StatelessWidget {
                               ),
                             if (isHealthy)
                               Padding(
-                                padding: EdgeInsets.only(right: 4.0),
+                                padding: const EdgeInsets.only(right: 4.0),
                                 child: Image.asset(
                                   MyIcons.healthy,
                                   height: 22.0,
@@ -139,7 +136,7 @@ class RecipeResult extends StatelessWidget {
                               ),
                             if (isCheap)
                               Padding(
-                                padding: EdgeInsets.only(right: 4.0),
+                                padding: const EdgeInsets.only(right: 4.0),
                                 child: Image.asset(
                                   MyIcons.cheap,
                                   height: 22.0,
@@ -148,7 +145,7 @@ class RecipeResult extends StatelessWidget {
                               ),
                             if (isPopular)
                               Padding(
-                                padding: EdgeInsets.only(right: 4.0),
+                                padding: const EdgeInsets.only(right: 4.0),
                                 child: Image.asset(
                                   MyIcons.popular,
                                   height: 22.0,

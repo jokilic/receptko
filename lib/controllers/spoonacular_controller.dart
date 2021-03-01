@@ -18,33 +18,33 @@ class SpoonacularController extends GetxController {
   /// ------------------------
 
   SharedPreferences _sharedPreferences;
-  RxString _searchQuery = ''.obs;
-  RxList<Recipe> _randomRecipes = <Recipe>[].obs;
-  RxList<Recipe> _cuisineRecipes = <Recipe>[].obs;
-  RxList<Recipe> _mealTypeRecipes = <Recipe>[].obs;
-  Rx<RecipeSearchResult> _recipeSearchResult = RecipeSearchResult().obs;
-  Rx<Recipe> _recipeInformation = Recipe().obs;
-  RxBool _recipeIsFavorited = false.obs;
-  RxList<dynamic> _favoriteRecipes = [].obs;
-  RxString _randomCuisineName = ''.obs;
-  RxString _randomMealTypeName = ''.obs;
+  final RxString _searchQuery = ''.obs;
+  final RxList<Recipe> _randomRecipes = <Recipe>[].obs;
+  final RxList<Recipe> _cuisineRecipes = <Recipe>[].obs;
+  final RxList<Recipe> _mealTypeRecipes = <Recipe>[].obs;
+  final Rx<RecipeSearchResult> _recipeSearchResult = RecipeSearchResult().obs;
+  final Rx<Recipe> _recipeInformation = Recipe().obs;
+  final RxBool _recipeIsFavorited = false.obs;
+  final RxList<String> _favoriteRecipes = <String>[].obs;
+  final RxString _randomCuisineName = ''.obs;
+  final RxString _randomMealTypeName = ''.obs;
   RxList<String> _wantedCuisinesList = <String>[].obs;
   RxList<String> _wantedDietsList = <String>[].obs;
   RxList<String> _intolerancesList = <String>[].obs;
   RxList<String> _wantedMealTypesList = <String>[].obs;
   RxList<String> _ingredientsInKitchen = <String>[].obs;
   RxList<String> _unwantedIngredientsInKitchen = <String>[].obs;
-  TextEditingController _ingredientsInKitchenController =
+  final TextEditingController _ingredientsInKitchenController =
       TextEditingController();
-  TextEditingController _unwantedIngredientsInKitchenController =
+  final TextEditingController _unwantedIngredientsInKitchenController =
       TextEditingController();
-  RxString _wantedCuisines = ''.obs;
-  RxString _wantedDiets = ''.obs;
-  RxString _nonWantedIntolerances = ''.obs;
-  RxString _wantedIngredients = ''.obs;
-  RxString _nonWantedIngredients = ''.obs;
-  RxString _wantedMealTypes = ''.obs;
-  RxInt _wantedMinutes = 25.obs;
+  final RxString _wantedCuisines = ''.obs;
+  final RxString _wantedDiets = ''.obs;
+  final RxString _nonWantedIntolerances = ''.obs;
+  final RxString _wantedIngredients = ''.obs;
+  final RxString _nonWantedIngredients = ''.obs;
+  final RxString _wantedMealTypes = ''.obs;
+  final RxInt _wantedMinutes = 25.obs;
 
   /// ------------------------
   /// GETTERS
@@ -92,8 +92,7 @@ class SpoonacularController extends GetxController {
       _recipeSearchResult.value = value;
   set recipeInformation(Recipe value) => _recipeInformation.value = value;
   set recipeIsFavorited(bool value) => _recipeIsFavorited.value = value;
-  set favoriteRecipes(List<List<String>> value) =>
-      _favoriteRecipes.assignAll(value);
+  set favoriteRecipes(List<String> value) => _favoriteRecipes.assignAll(value);
   set randomCuisineName(String value) => _randomCuisineName.value = value;
   set randomMealTypeName(String value) => _randomMealTypeName.value = value;
   set wantedCuisinesList(List<String> value) => _wantedCuisinesList = value;
@@ -117,7 +116,7 @@ class SpoonacularController extends GetxController {
   /// ------------------------
 
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     super.onInit();
     _sharedPreferences = await SharedPreferences.getInstance();
     getFavoriteRecipes();
@@ -182,16 +181,20 @@ class SpoonacularController extends GetxController {
 
   String cleanDescription(int index) {
     final String htmlDescription = recipeSearchResult.results[index].summary;
-    final RegExp regExp =
-        RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    final RegExp regExp = RegExp(
+      r"<[^>]*>",
+      multiLine: true,
+    );
     final String cleanDescription = htmlDescription.replaceAll(regExp, '');
 
     return cleanDescription;
   }
 
   String cleanSummary(String summary) {
-    final RegExp regExp =
-        RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    final RegExp regExp = RegExp(
+      r"<[^>]*>",
+      multiLine: true,
+    );
     final String cleanSummary = summary.replaceAll(regExp, '');
 
     return cleanSummary;
@@ -257,13 +260,13 @@ class SpoonacularController extends GetxController {
   void getFavoriteRecipes() {
     favoriteRecipes.clear();
     final Set<String> keys = _sharedPreferences.getKeys();
-    keys.forEach((key) => favoriteRecipes.add(getFavoriteRecipe(key)));
+    keys.forEach((String key) => favoriteRecipes.add(getFavoriteRecipe(key)));
   }
 
   /// ------------------------
   /// URL LAUNCHER
   /// ------------------------
-  void launchURL(String url) async => await launch(url);
+  void launchURL(String url) => launch(url);
 
   /// ------------------------
   /// SEARCH RECIPES

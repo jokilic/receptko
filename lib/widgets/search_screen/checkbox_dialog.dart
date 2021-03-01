@@ -10,10 +10,10 @@ class CheckboxDialog extends StatelessWidget {
   final String icon;
   final List<String> chosenEnums;
   final List<String> chosenControllerList;
-  final Function setJoinedValues;
+  final Function(String) setJoinedValues;
   final bool multiValue;
 
-  CheckboxDialog({
+  const CheckboxDialog({
     @required this.title,
     @required this.icon,
     @required this.chosenEnums,
@@ -29,7 +29,7 @@ class CheckboxDialog extends StatelessWidget {
       child: Center(
         child: Stack(
           overflow: Overflow.visible,
-          children: [
+          children: <Widget>[
             Container(
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
@@ -39,19 +39,18 @@ class CheckboxDialog extends StatelessWidget {
               height: Get.height * 0.5,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Image.asset(
                           icon,
                           height: 56.0,
                           width: 56.0,
                         ),
-                        SizedBox(width: 16.0),
+                        const SizedBox(width: 16.0),
                         Expanded(
                           child: Text(
                             title,
@@ -60,10 +59,10 @@ class CheckboxDialog extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 36.0),
+                    const SizedBox(height: 36.0),
                     ListView.builder(
                       itemCount: chosenEnums.length,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (BuildContext context, int index) {
                         final String value = chosenEnums[index];
@@ -100,7 +99,7 @@ class CheckboxDialog extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: [
+                                children: <Widget>[
                                   Text(
                                     value,
                                     style:

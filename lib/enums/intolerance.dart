@@ -1,4 +1,4 @@
-List<String> intolerances = [
+List<String> intolerances = <String>[
   'dairy',
   'egg',
   'gluten',

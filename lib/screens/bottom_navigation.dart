@@ -4,7 +4,7 @@ import '../constants/colors.dart';
 import '../models/navigation_item.dart';
 
 class BottomNavigation extends StatefulWidget {
-  static const routeName = '/bottom-navigation';
+  static const String routeName = '/bottom-navigation';
 
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
@@ -18,15 +18,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: [
+        children: <Widget>[
           for (final NavigationItem navigationItem in NavigationItem.items)
             navigationItem.page,
         ],
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 80.0,
         child: ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(16.0),
             topLeft: Radius.circular(16.0),
           ),
@@ -39,7 +39,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             showUnselectedLabels: false,
             currentIndex: _currentIndex,
             onTap: (int index) => setState(() => _currentIndex = index),
-            items: [
+            items: <BottomNavigationBarItem>[
               for (int index = 0; index < NavigationItem.items.length; index++)
                 BottomNavigationBarItem(
                   icon: _currentIndex == index

@@ -1,4 +1,4 @@
-List<String> mealTypes = [
+List<String> mealTypes = <String>[
   'main course',
   'side dish',
   'dessert',

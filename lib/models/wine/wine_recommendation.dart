@@ -5,9 +5,10 @@ class WineRecommendation {
   WineRecommendation({this.recommendedWines, this.totalFound});
 
   WineRecommendation.fromJson(Map<String, dynamic> json) {
-    List<dynamic> recommendedWinesList = json['recommendedWines'];
+    final List<dynamic> recommendedWinesList = json['recommendedWines'];
     recommendedWines = recommendedWinesList
-        .map((recommendedWine) => RecommendedWines.fromJson(recommendedWine))
+        .map((dynamic recommendedWine) =>
+            RecommendedWines.fromJson(recommendedWine))
         .toList();
     totalFound = json['totalFound'];
   }

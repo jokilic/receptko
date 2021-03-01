@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 
-import './recipe_screen.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
@@ -10,11 +9,12 @@ import '../controllers/spoonacular_controller.dart';
 import '../models/recipe/recipe_search_result.dart';
 import '../screens/recipe_screen.dart';
 import '../widgets/header_widget.dart';
-import '../widgets/search_widget.dart';
 import '../widgets/results_screen/recipe_result.dart';
+import '../widgets/search_widget.dart';
+import './recipe_screen.dart';
 
 class ResultsScreen extends StatelessWidget {
-  static const routeName = '/results-screen';
+  static const String routeName = '/results-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -24,52 +24,53 @@ class ResultsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 36.0),
-                HeaderWidget(title: 'Search results below'),
-                SizedBox(height: 16.0),
+              children: <Widget>[
+                const SizedBox(height: 36.0),
+                const HeaderWidget(title: 'Search results below'),
+                const SizedBox(height: 16.0),
                 SearchWidget(),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Obx(
                   () {
-                    if (_spoonacularController.recipeSearchResult == null)
+                    if (_spoonacularController.recipeSearchResult == null) {
                       return Column(
-                        children: [
-                          SizedBox(height: 42.0),
+                        children: <Widget>[
+                          const SizedBox(height: 42.0),
                           SpinKitFoldingCube(
                             color: MyColors.randomColor,
                             size: 36.0,
                           ),
-                          SizedBox(height: 32.0),
-                          Text(
+                          const SizedBox(height: 32.0),
+                          const Text(
                             'Just a sec...',
                             style: MyTextStyles.headline2Text,
                             textAlign: TextAlign.center,
                           ),
                         ],
                       );
+                    }
 
                     if (_spoonacularController
                             .recipeSearchResult.totalResults ==
-                        0)
+                        0) {
                       return Center(
                         child: Container(
-                          margin: EdgeInsets.only(top: 16.0),
-                          padding: EdgeInsets.symmetric(horizontal: 36.0),
+                          margin: const EdgeInsets.only(top: 16.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 36.0),
                           child: Column(
-                            children: [
+                            children: <Widget>[
                               Image.asset(
                                 MyIcons.randomIllustration,
                                 height: 156.0,
                                 width: 156.0,
                               ),
-                              SizedBox(height: 16.0),
-                              Text(
+                              const SizedBox(height: 16.0),
+                              const Text(
                                 'Sorry, but there are no recipes here',
                                 textAlign: TextAlign.center,
                                 style: MyTextStyles.headline2Text,
@@ -78,9 +79,10 @@ class ResultsScreen extends StatelessWidget {
                           ),
                         ),
                       );
+                    }
 
                     return ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: _spoonacularController
                           .recipeSearchResult.results.length,
@@ -93,10 +95,8 @@ class ResultsScreen extends StatelessWidget {
                           title: recipe.title.length > 24
                               ? '${recipe.title.substring(0, 24)}...'
                               : recipe.title,
-                          description: _spoonacularController
-                                  .cleanDescription(index)
-                                  .substring(0, 54) +
-                              '...',
+                          description:
+                              '${_spoonacularController.cleanDescription(index).substring(0, 54)}...',
                           image: recipe.image,
                           color: MyColors.randomColor,
                           clockColor: _spoonacularController.clockColor(index),

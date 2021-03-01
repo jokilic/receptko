@@ -10,7 +10,7 @@ import '../widgets/header_widget.dart';
 import '../widgets/recipe_widget.dart';
 
 class FavoritesScreen extends StatelessWidget {
-  static const routeName = '/favorites-screen';
+  static const String routeName = '/favorites-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -21,28 +21,28 @@ class FavoritesScreen extends StatelessWidget {
       backgroundColor: MyColors.bodyColor,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 36.0),
-                HeaderWidget(title: 'Your favorite recipes'),
-                SizedBox(height: 84.0),
-                if (_spoonacularController.favoriteRecipes.length == 0)
+              children: <Widget>[
+                const SizedBox(height: 36.0),
+                const HeaderWidget(title: 'Your favorite recipes'),
+                const SizedBox(height: 84.0),
+                if (_spoonacularController.favoriteRecipes.isEmpty)
                   Center(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 36.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 36.0),
                       child: Column(
-                        children: [
+                        children: <Widget>[
                           Image.asset(
                             MyIcons.randomIllustration,
                             height: 142.0,
                             width: 142.0,
                           ),
-                          SizedBox(height: 16.0),
-                          Text(
-                            'You don\'t have any favorited recipes yet',
+                          const SizedBox(height: 16.0),
+                          const Text(
+                            "You don't have any favorited recipes yet",
                             textAlign: TextAlign.center,
                             style: MyTextStyles.headline2Text,
                           ),
@@ -55,15 +55,16 @@ class FavoritesScreen extends StatelessWidget {
                     clipBehavior: Clip.none,
                     itemCount: _spoonacularController.favoriteRecipes.length,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 80.0,
                       crossAxisSpacing: 20.0,
                       childAspectRatio: 0.85,
                     ),
                     itemBuilder: (BuildContext context, int index) {
-                      final List favoriteRecipe =
+                      final List<dynamic> favoriteRecipe =
                           _spoonacularController.favoriteRecipes[index];
 
                       return RecipeWidget(
@@ -81,7 +82,7 @@ class FavoritesScreen extends StatelessWidget {
                       );
                     },
                   ),
-                SizedBox(height: 24.0),
+                const SizedBox(height: 24.0),
               ],
             ),
           ),

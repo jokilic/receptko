@@ -19,9 +19,10 @@ class MenuItemSearchResult {
 
   MenuItemSearchResult.fromJson(Map<String, dynamic> json) {
     type = json['type'];
-    List<dynamic> menuItemsList = json['menuItems'];
-    menuItems =
-        menuItemsList.map((menuItem) => MenuItems.fromJson(menuItem)).toList();
+    final List<dynamic> menuItemsList = json['menuItems'];
+    menuItems = menuItemsList
+        .map((dynamic menuItem) => MenuItems.fromJson(menuItem))
+        .toList();
     offset = json['offset'];
     number = json['number'];
     totalMenuItems = json['totalMenuItems'];
