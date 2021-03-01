@@ -18,6 +18,7 @@ class MyIcons {
   static const String spicy = 'assets/icons/categories/spicy.png';
   static const String vegan = 'assets/icons/categories/vegan.png';
 
+  static const String back = 'assets/icons/recipe/back.png';
   static const String clock = 'assets/icons/recipe/clock.png';
   static const String money = 'assets/icons/recipe/money.png';
   static const String recipeBook = 'assets/icons/recipe/recipe_book.png';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../constants/images.dart';
 import '../constants/text_styles.dart';
@@ -58,15 +59,13 @@ class _HeaderWidgetState extends State<HeaderWidget>
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     if (widget.chefOnly)
       return Center(
         child: RotationTransition(
           turns: Tween(begin: 0.0, end: 0.03).animate(_curve),
           child: Image.asset(
             MyImages.chefBig,
-            width: size.width * 0.45,
+            width: Get.width * 0.45,
           ),
         ),
       );
@@ -79,7 +78,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: size.width * 0.5,
+              width: Get.width * 0.5,
               child: Text(
                 widget.title,
                 style: MyTextStyles.headline1Text,
@@ -88,7 +87,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
             if (widget.hasSubtitle) ...[
               SizedBox(height: 8.0),
               Container(
-                width: size.width * 0.5,
+                width: Get.width * 0.5,
                 child: Text(
                   widget.subtitle,
                   style: MyTextStyles.headline3Text,
@@ -101,7 +100,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
           turns: Tween(begin: 0.0, end: 0.03).animate(_curve),
           child: Image.asset(
             MyImages.chefBig,
-            width: size.width * 0.35,
+            width: Get.width * 0.35,
           ),
         ),
       ],

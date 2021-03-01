@@ -123,9 +123,9 @@ class SpoonacularController extends GetxController {
     getFavoriteRecipes();
     randomCuisineName = randomCuisine;
     randomMealTypeName = randomMealType;
-    await getRandomRecipes(4);
-    await getCuisineRecipes(3, randomCuisineName);
-    await getMealTypeRecipes(3, randomMealTypeName);
+    await getRandomRecipes(6);
+    await getCuisineRecipes(6, randomCuisineName);
+    await getMealTypeRecipes(6, randomMealTypeName);
   }
 
   /// ------------------------

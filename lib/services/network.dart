@@ -73,7 +73,7 @@ class Network {
       {int number = 10}) async {
     try {
       final Response<dynamic> _response = await _api.get(
-          '/recipes/complexSearch?query=$query&number=$number&addRecipeInformation=true&');
+          '/recipes/complexSearch?query=$query&number=$number&addRecipeInformation=true&sort=random&');
       final RecipeSearchResult _recipeSearchResult =
           RecipeSearchResult.fromJson(_response.data);
 
@@ -95,7 +95,7 @@ class Network {
   }) async {
     try {
       final Response<dynamic> _response = await _api.get(
-          '/recipes/complexSearch?&cuisine=$cuisine&diet=$diet&intolerances=$intolerances&includeIngredients=$includeIngredients&excludeIngredients=$excludeIngredients&type=$type&maxReadyTime=$minutes&number=10&addRecipeInformation=true&');
+          '/recipes/complexSearch?&cuisine=$cuisine&diet=$diet&intolerances=$intolerances&includeIngredients=$includeIngredients&excludeIngredients=$excludeIngredients&type=$type&maxReadyTime=$minutes&number=10&addRecipeInformation=true&sort=random&');
       final RecipeSearchResult _recipeSearchResult =
           RecipeSearchResult.fromJson(_response.data);
 
