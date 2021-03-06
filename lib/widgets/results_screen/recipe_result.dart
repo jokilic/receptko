@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
@@ -39,7 +40,7 @@ class RecipeResult extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
-        height: 150.0,
+        height: Get.height * 0.25,
         decoration: BoxDecoration(
           color: MyColors.bodyColor,
           borderRadius: BorderRadius.circular(16.0),
@@ -63,7 +64,7 @@ class RecipeResult extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -75,7 +76,7 @@ class RecipeResult extends StatelessWidget {
                           style:
                               MyTextStyles.resultTitle.copyWith(color: color),
                         ),
-                        const SizedBox(height: 4.0),
+                        const SizedBox(height: 8.0),
                         Text(
                           description,
                           style: MyTextStyles.resultDescription.copyWith(

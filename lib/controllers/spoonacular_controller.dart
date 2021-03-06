@@ -25,7 +25,7 @@ class SpoonacularController extends GetxController {
   final Rx<RecipeSearchResult> _recipeSearchResult = RecipeSearchResult().obs;
   final Rx<Recipe> _recipeInformation = Recipe().obs;
   final RxBool _recipeIsFavorited = false.obs;
-  final RxList<String> _favoriteRecipes = <String>[].obs;
+  final RxList<List<String>> _favoriteRecipes = <List<String>>[].obs;
   final RxString _randomCuisineName = ''.obs;
   final RxString _randomMealTypeName = ''.obs;
   RxList<String> _wantedCuisinesList = <String>[].obs;
@@ -58,7 +58,7 @@ class SpoonacularController extends GetxController {
   RecipeSearchResult get recipeSearchResult => _recipeSearchResult.value;
   Recipe get recipeInformation => _recipeInformation.value;
   bool get recipeIsFavorited => _recipeIsFavorited.value;
-  List<dynamic> get favoriteRecipes => _favoriteRecipes;
+  List<List<String>> get favoriteRecipes => _favoriteRecipes;
   String get randomCuisineName => _randomCuisineName.value;
   String get randomMealTypeName => _randomMealTypeName.value;
   List<String> get wantedCuisinesList => _wantedCuisinesList;
@@ -92,7 +92,8 @@ class SpoonacularController extends GetxController {
       _recipeSearchResult.value = value;
   set recipeInformation(Recipe value) => _recipeInformation.value = value;
   set recipeIsFavorited(bool value) => _recipeIsFavorited.value = value;
-  set favoriteRecipes(List<String> value) => _favoriteRecipes.assignAll(value);
+  set favoriteRecipes(List<List<String>> value) =>
+      _favoriteRecipes.assignAll(value);
   set randomCuisineName(String value) => _randomCuisineName.value = value;
   set randomMealTypeName(String value) => _randomMealTypeName.value = value;
   set wantedCuisinesList(List<String> value) => _wantedCuisinesList = value;

@@ -64,7 +64,7 @@ class FavoritesScreen extends StatelessWidget {
                       childAspectRatio: 0.85,
                     ),
                     itemBuilder: (BuildContext context, int index) {
-                      final List<dynamic> favoriteRecipe =
+                      final List<String> favoriteRecipe =
                           _spoonacularController.favoriteRecipes[index];
 
                       return RecipeWidget(

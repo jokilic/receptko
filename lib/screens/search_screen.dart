@@ -36,13 +36,10 @@ class SearchScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 36.0),
-                const Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: HeaderWidget(
-                    title: 'Ask Kuharko Marko...',
-                    subtitle: 'Colored words can be tapped',
-                    hasSubtitle: true,
-                  ),
+                const HeaderWidget(
+                  title: 'Ask Kuharko Marko...',
+                  subtitle: 'Colored words can be tapped',
+                  hasSubtitle: true,
                 ),
                 const SizedBox(height: 36.0),
                 Obx(

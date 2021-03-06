@@ -38,9 +38,12 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 36.0),
                 Obx(
-                  () => Text(
-                    'Something from the ${_spoonacularController.randomCuisineName} cuisine',
-                    style: MyTextStyles.headline2Text,
+                  () => Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: Text(
+                      'Something from the ${_spoonacularController.randomCuisineName} cuisine',
+                      style: MyTextStyles.headline2Text,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 24.0),
@@ -50,9 +53,12 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24.0),
                 Obx(
-                  () => Text(
-                    'Some ${_spoonacularController.randomMealTypeName} recipes',
-                    style: MyTextStyles.headline2Text,
+                  () => Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: Text(
+                      'Some ${_spoonacularController.randomMealTypeName} recipes',
+                      style: MyTextStyles.headline2Text,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 24.0),
@@ -61,9 +67,12 @@ class HomeScreen extends StatelessWidget {
                   isBig: true,
                 ),
                 const SizedBox(height: 24.0),
-                const Text(
-                  'Completely random recipes',
-                  style: MyTextStyles.headline2Text,
+                const Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: Text(
+                    'Completely random recipes',
+                    style: MyTextStyles.headline2Text,
+                  ),
                 ),
                 const SizedBox(height: 74.0),
                 Padding(
