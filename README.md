@@ -10,4 +10,3 @@ It will show various recipes fetched from the [Spoonacular API](https://spoonacu
 - [ ] Center icon and Splash screen
 - [ ] Splash screen should be transparent
 - [ ] Test Cuisine and MealType recipes (on the HomeScreen) - Something isn't working
-- [ ] Alphabetize all enums
