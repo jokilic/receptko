@@ -96,7 +96,7 @@ class ResultsScreen extends StatelessWidget {
                               ? '${recipe.title.substring(0, 24)}...'
                               : recipe.title,
                           description:
-                              '${_spoonacularController.cleanDescription(index).substring(0, 54)}...',
+                              '${_spoonacularController.cleanDescription(index).substring(0, 74)}...',
                           image: recipe.image,
                           color: MyColors.randomColor,
                           clockColor: _spoonacularController.clockColor(index),

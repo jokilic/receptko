@@ -40,7 +40,7 @@ class RecipeResult extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
-        height: Get.height * 0.25,
+        height: Get.height * 0.2,
         decoration: BoxDecoration(
           color: MyColors.bodyColor,
           borderRadius: BorderRadius.circular(16.0),

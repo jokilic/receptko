@@ -9,16 +9,16 @@
 Recipes are fetched from [Spoonacular API](https://spoonacular.com/food-api).\
 Many recipes, ingredients, cuisines and products can be found using this source.\
 
-### Robust search
+### Comprehensive search
 
-Kuharko has a robust search solution.\
+Kuharko has very comprehensive search functionality.\
 Search by ingredients you have in your fridge, by the time required to make the meal or many more parameters.\
 Searching with Kuharko will give you a recipe you desire the most.\
 
 
 ### Save the meals you like
 
-Each meal has a button you can tap if you want to save the respective recipe.\
+Each meal has a button you can tap if you want to save the recipe.\
 It will be stored in the application and you will be able to fetch it anytime you wish.\
 
 ### Exotic cuisines
@@ -36,13 +36,8 @@ Just tap him and he will give you an encouraging message.
 ### Kuharko can be downloaded from [HERE](https://play.google.com/store/apps/details?id=com.josipkilic.kuharko).
 &nbsp;
 
-![Multi](https://raw.githubusercontent.com/jokilic/kuharko/main/screenshots/multi.png)
+![Multi](https://raw.githubusercontent.com/jokilic/kuharko/main/screenshots/play.png)
 
 ## To-do
 
-- [ ] Center icon and Splash screen
-- [ ] Splash screen should be transparent
-- [ ] Test Cuisine and MealType recipes (on the HomeScreen) - Something isn't working
 - [ ] Implement Audioplayers when it gets compatible with Flutter 2.0
-- [ ] Create screenshots for Play Store
-- [ ] Publish first version on the Play Store

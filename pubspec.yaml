@@ -31,14 +31,14 @@ flutter_icons:
   ios: true
   image_path: 'assets/icon.png'
   adaptive_icon_background: '#212430'
-  adaptive_icon_foreground: 'assets/icon_dark.png'
+  adaptive_icon_foreground: 'assets/icon.png'
 
 flutter_native_splash:
   android: true
   ios: true
   color: '#ffffff'
   image: 'assets/icon.png'
-  image_dark: 'assets/icon_dark.png'
+  image_dark: 'assets/icon.png'
   color_dark: '#212430'
 
 flutter:
