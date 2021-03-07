@@ -1,16 +1,21 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 
 class Api {
+  final String baseUrl = 'https://api.spoonacular.com';
+  final String apiKey = '651a5342989c4dfbab4d1816234e6ba1';
+
   final Dio _dio = Dio();
 
   Future<Response<dynamic>> get(String path) async {
     try {
-      final Response<dynamic> response = await _dio.get(path);
-      print('[DIO] Success: $response');
+      final Response<dynamic> response =
+          await _dio.get('$baseUrl/${path}apiKey=$apiKey');
+      // log('[DIO] $response');
       return response;
     } catch (e) {
-      print('[DIO] Error: $e');
+      // log('[DIO] $e');
       return null;
     }
   }
@@ -20,10 +25,10 @@ class Api {
     try {
       final Response<dynamic> response =
           await _dio.post(path, data: jsonEncode(params));
-      print('[DIO] Success: $response');
+      // log('[DIO] $response');
       return response;
     } catch (e) {
-      print('[DIO] Error: $e');
+      // log('[DIO] $e');
       return null;
     }
   }

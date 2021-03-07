@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import './screens/home_screen.dart';
+import './screens/screens.dart';
 
-void main() {
-  runApp(Receptko());
-}
+void main() => runApp(Kuharko());
 
-class Receptko extends StatelessWidget {
+class Kuharko extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      title: 'Kuharko',
       debugShowCheckedModeBanner: false,
-      title: 'Receptko',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'VisbyRound',
       ),
-      home: HomeScreen(),
+      initialRoute: BottomNavigation.routeName,
+      getPages: <GetPage>[
+        GetPage(
+            name: BottomNavigation.routeName, page: () => BottomNavigation()),
+        GetPage(name: HomeScreen.routeName, page: () => HomeScreen()),
+        GetPage(name: SearchScreen.routeName, page: () => SearchScreen()),
+        GetPage(
+            name: CategoriesScreen.routeName, page: () => CategoriesScreen()),
+        GetPage(name: FavoritesScreen.routeName, page: () => FavoritesScreen()),
+        GetPage(name: RecipeScreen.routeName, page: () => RecipeScreen()),
+        GetPage(name: ResultsScreen.routeName, page: () => ResultsScreen()),
+      ],
     );
   }
 }
