@@ -40,7 +40,7 @@ class RecipeResult extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
-        height: Get.height < 700 ? Get.height * 0.25 : Get.height * 0.2,
+        height: Get.height < 768 ? Get.height * 0.25 : Get.height * 0.18,
         decoration: BoxDecoration(
           color: MyColors.bodyColor,
           borderRadius: BorderRadius.circular(16.0),
@@ -66,7 +66,7 @@ class RecipeResult extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Column(

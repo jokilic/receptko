@@ -35,7 +35,7 @@ class MinutesDialog extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.0),
                 color: MyColors.bodyColor,
               ),
-              height: Get.height * 0.4,
+              height: Get.height < 768 ? Get.height * 0.35 : Get.height * 0.25,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
