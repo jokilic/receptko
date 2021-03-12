@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const SizedBox(height: 36.0),
+                const SizedBox(height: 24.0),
                 const Padding(
                   padding: EdgeInsets.only(right: 20.0),
                   child: HeaderWidget(title: 'What would you like to Cook?'),
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20.0),
                   child: SearchWidget(),
                 ),
-                const SizedBox(height: 36.0),
+                const SizedBox(height: 24.0),
                 Obx(
                   () => Padding(
                     padding: const EdgeInsets.only(right: 20.0),

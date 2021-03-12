@@ -59,7 +59,7 @@ class RecipesWidget extends StatelessWidget {
 
         if (isBig) {
           return SizedBox(
-            height: 380.0,
+            height: Get.height * 0.45,
             child: ListView.builder(
               clipBehavior: Clip.none,
               itemCount: recipes.length,

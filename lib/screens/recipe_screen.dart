@@ -231,7 +231,7 @@ class RecipeScreen extends StatelessWidget {
                                     recipe.instructions ?? '',
                                     style: MyTextStyles.recipeDirectionText,
                                   ),
-                                const SizedBox(height: 24.0),
+                                const SizedBox(height: 16.0),
                                 KuharkoButton(
                                   text: 'See original recipe',
                                   onTap: () => _spoonacularController
@@ -271,7 +271,7 @@ class RecipeScreen extends StatelessWidget {
                 ),
                 Positioned(
                   left: 24.0,
-                  top: 64.0,
+                  top: Get.height * 0.065,
                   child: GestureDetector(
                     onTap: Get.back,
                     behavior: HitTestBehavior.opaque,

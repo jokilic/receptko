@@ -26,15 +26,16 @@ class MinutesDialog extends StatelessWidget {
       type: MaterialType.transparency,
       child: Center(
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: <Widget>[
             Container(
+              alignment: Alignment.center,
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
                 color: MyColors.bodyColor,
               ),
-              height: Get.height * 0.25,
+              height: Get.height * 0.4,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
