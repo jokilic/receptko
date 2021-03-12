@@ -17,6 +17,7 @@ class KuharkoButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: Center(
         child: Container(
           height: 60.0,

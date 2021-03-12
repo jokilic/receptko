@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kuharko/constants/images.dart';
 
 import '../constants/colors.dart';
@@ -25,8 +26,8 @@ class BigRecipeWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        height: 420.0,
-        width: 280.0,
+        height: Get.height * 0.45,
+        width: Get.width * 0.65,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: <Widget>[

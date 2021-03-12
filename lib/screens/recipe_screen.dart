@@ -81,7 +81,7 @@ class RecipeScreen extends StatelessWidget {
                         color: MyColors.bodyColor,
                       ),
                       child: Stack(
-                        overflow: Overflow.visible,
+                        clipBehavior: Clip.none,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.symmetric(
@@ -231,7 +231,7 @@ class RecipeScreen extends StatelessWidget {
                                     recipe.instructions ?? '',
                                     style: MyTextStyles.recipeDirectionText,
                                   ),
-                                const SizedBox(height: 24.0),
+                                const SizedBox(height: 16.0),
                                 KuharkoButton(
                                   text: 'See original recipe',
                                   onTap: () => _spoonacularController
@@ -246,6 +246,7 @@ class RecipeScreen extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () => _spoonacularController
                                   .toggleFavoriteRecipe(recipe),
+                              behavior: HitTestBehavior.opaque,
                               child: Container(
                                 width: 80.0,
                                 height: 80.0,
@@ -270,12 +271,13 @@ class RecipeScreen extends StatelessWidget {
                 ),
                 Positioned(
                   left: 24.0,
-                  top: 64.0,
+                  top: Get.height * 0.065,
                   child: GestureDetector(
                     onTap: Get.back,
+                    behavior: HitTestBehavior.opaque,
                     child: Container(
-                      width: 70.0,
-                      height: 70.0,
+                      width: 56.0,
+                      height: 56.0,
                       padding: const EdgeInsets.all(20.0),
                       decoration: BoxDecoration(
                         color: MyColors.bodyColor,

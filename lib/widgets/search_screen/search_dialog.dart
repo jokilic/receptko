@@ -30,7 +30,7 @@ class SearchDialog extends StatelessWidget {
       type: MaterialType.transparency,
       child: Center(
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(24.0),
@@ -38,7 +38,7 @@ class SearchDialog extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.0),
                 color: MyColors.bodyColor,
               ),
-              height: Get.height * 0.5,
+              height: Get.height * 0.6,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -141,6 +141,7 @@ class SearchDialog extends StatelessWidget {
                                         chosenControllerList.join(', ');
                                     setJoinedValues(joinedValues);
                                   },
+                                  behavior: HitTestBehavior.opaque,
                                   child: Image.asset(
                                     MyIcons.delete,
                                     height: 44.0,
@@ -161,8 +162,8 @@ class SearchDialog extends StatelessWidget {
               top: -24,
               right: -24,
               child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
                 onTap: Get.back,
+                behavior: HitTestBehavior.opaque,
                 child: Image.asset(
                   MyIcons.delete,
                   height: 60.0,

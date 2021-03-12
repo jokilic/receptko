@@ -26,15 +26,16 @@ class MinutesDialog extends StatelessWidget {
       type: MaterialType.transparency,
       child: Center(
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: <Widget>[
             Container(
+              alignment: Alignment.center,
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
                 color: MyColors.bodyColor,
               ),
-              height: Get.height * 0.25,
+              height: Get.height < 768 ? Get.height * 0.35 : Get.height * 0.25,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -62,8 +63,8 @@ class MinutesDialog extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         GestureDetector(
-                          behavior: HitTestBehavior.opaque,
                           onTap: minusPressed,
+                          behavior: HitTestBehavior.opaque,
                           child: Image.asset(
                             MyIcons.minus,
                             height: 50.0,
@@ -77,8 +78,8 @@ class MinutesDialog extends StatelessWidget {
                         ),
                         const SizedBox(width: 24.0),
                         GestureDetector(
-                          behavior: HitTestBehavior.opaque,
                           onTap: plusPressed,
+                          behavior: HitTestBehavior.opaque,
                           child: Image.asset(
                             MyIcons.plus,
                             height: 50.0,
@@ -95,8 +96,8 @@ class MinutesDialog extends StatelessWidget {
               top: -24,
               right: -24,
               child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
                 onTap: Get.back,
+                behavior: HitTestBehavior.opaque,
                 child: Image.asset(
                   MyIcons.delete,
                   height: 60.0,
