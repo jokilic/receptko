@@ -81,7 +81,7 @@ class RecipeScreen extends StatelessWidget {
                         color: MyColors.bodyColor,
                       ),
                       child: Stack(
-                        overflow: Overflow.visible,
+                        clipBehavior: Clip.none,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.symmetric(
@@ -246,6 +246,7 @@ class RecipeScreen extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () => _spoonacularController
                                   .toggleFavoriteRecipe(recipe),
+                              behavior: HitTestBehavior.opaque,
                               child: Container(
                                 width: 80.0,
                                 height: 80.0,
@@ -273,9 +274,10 @@ class RecipeScreen extends StatelessWidget {
                   top: 64.0,
                   child: GestureDetector(
                     onTap: Get.back,
+                    behavior: HitTestBehavior.opaque,
                     child: Container(
-                      width: 70.0,
-                      height: 70.0,
+                      width: 56.0,
+                      height: 56.0,
                       padding: const EdgeInsets.all(20.0),
                       decoration: BoxDecoration(
                         color: MyColors.bodyColor,

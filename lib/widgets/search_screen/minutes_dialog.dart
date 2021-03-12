@@ -62,8 +62,8 @@ class MinutesDialog extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         GestureDetector(
-                          behavior: HitTestBehavior.opaque,
                           onTap: minusPressed,
+                          behavior: HitTestBehavior.opaque,
                           child: Image.asset(
                             MyIcons.minus,
                             height: 50.0,
@@ -77,8 +77,8 @@ class MinutesDialog extends StatelessWidget {
                         ),
                         const SizedBox(width: 24.0),
                         GestureDetector(
-                          behavior: HitTestBehavior.opaque,
                           onTap: plusPressed,
+                          behavior: HitTestBehavior.opaque,
                           child: Image.asset(
                             MyIcons.plus,
                             height: 50.0,
@@ -95,8 +95,8 @@ class MinutesDialog extends StatelessWidget {
               top: -24,
               right: -24,
               child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
                 onTap: Get.back,
+                behavior: HitTestBehavior.opaque,
                 child: Image.asset(
                   MyIcons.delete,
                   height: 60.0,
