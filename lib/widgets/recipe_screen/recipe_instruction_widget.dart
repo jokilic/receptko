@@ -19,11 +19,15 @@ class RecipeInstructionWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            '$number',
-            style: MyTextStyles.recipeDirectionNumber,
+          Container(
+            width: 36.0,
+            margin: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              '$number',
+              style: MyTextStyles.recipeDirectionNumber,
+            ),
           ),
-          const SizedBox(width: 16.0),
+          const SizedBox(width: 4.0),
           Container(
             width: 4.0,
             height: 36.0,

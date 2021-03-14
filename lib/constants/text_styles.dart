@@ -105,7 +105,7 @@ class MyTextStyles {
   static const TextStyle recipeSummary = TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w500,
-    height: 1.2,
+    height: 1.4,
   );
 
   static const TextStyle recipeIngredientName = TextStyle(
@@ -130,6 +130,7 @@ class MyTextStyles {
     fontSize: 18.0,
     fontWeight: FontWeight.w500,
     color: MyColors.textColor,
+    height: 1.4,
   );
 
   static const TextStyle recipeBooleanValues = TextStyle(
