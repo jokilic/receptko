@@ -11,6 +11,10 @@ class MinutesDialog extends StatelessWidget {
   final int minutes;
   final Function minusPressed;
   final Function plusPressed;
+  final Function plusLongPressStart;
+  final Function plusLongPressEnd;
+  final Function minusLongPressStart;
+  final Function minusLongPressEnd;
 
   const MinutesDialog({
     @required this.title,
@@ -18,6 +22,10 @@ class MinutesDialog extends StatelessWidget {
     @required this.minutes,
     @required this.minusPressed,
     @required this.plusPressed,
+    @required this.plusLongPressStart,
+    @required this.plusLongPressEnd,
+    @required this.minusLongPressStart,
+    @required this.minusLongPressEnd,
   });
 
   @override
@@ -64,6 +72,8 @@ class MinutesDialog extends StatelessWidget {
                       children: <Widget>[
                         GestureDetector(
                           onTap: minusPressed,
+                          onLongPressStart: minusLongPressStart,
+                          onLongPressEnd: minusLongPressEnd,
                           behavior: HitTestBehavior.opaque,
                           child: Image.asset(
                             MyIcons.minus,
@@ -79,6 +89,8 @@ class MinutesDialog extends StatelessWidget {
                         const SizedBox(width: 24.0),
                         GestureDetector(
                           onTap: plusPressed,
+                          onLongPressStart: plusLongPressStart,
+                          onLongPressEnd: plusLongPressEnd,
                           behavior: HitTestBehavior.opaque,
                           child: Image.asset(
                             MyIcons.plus,

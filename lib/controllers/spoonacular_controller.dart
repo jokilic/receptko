@@ -45,6 +45,7 @@ class SpoonacularController extends GetxController {
   final RxString _nonWantedIngredients = ''.obs;
   final RxString _wantedMealTypes = ''.obs;
   final RxInt _wantedMinutes = 25.obs;
+  final RxBool _minutesPressed = false.obs;
 
   /// ------------------------
   /// GETTERS
@@ -79,6 +80,7 @@ class SpoonacularController extends GetxController {
   String get nonWantedIngredients => _nonWantedIngredients.value;
   String get wantedMealTypes => _wantedMealTypes.value;
   int get wantedMinutes => _wantedMinutes.value;
+  bool get longpressActive => _minutesPressed.value;
 
   /// ------------------------
   /// SETTERS
@@ -111,6 +113,7 @@ class SpoonacularController extends GetxController {
   set nonWantedIngredients(String value) => _nonWantedIngredients.value = value;
   set wantedMealTypes(String value) => _wantedMealTypes.value = value;
   set wantedMinutes(int value) => _wantedMinutes.value = value;
+  set longpressActive(bool value) => _minutesPressed.value = value;
 
   /// ------------------------
   /// INIT
@@ -223,6 +226,34 @@ class SpoonacularController extends GetxController {
 
     return MyColors.blueColor;
   }
+
+  void incrementMinutes() => wantedMinutes++;
+
+  void decrementMinutes() {}
+
+  Future<void> minusLongPressStart(_) async {
+    longpressActive = true;
+    do {
+      if (wantedMinutes > 1) {
+        wantedMinutes--;
+      }
+      await Future<Duration>.delayed(
+        const Duration(milliseconds: 150),
+      );
+    } while (longpressActive);
+  }
+
+  Future<void> plusLongPressStart(_) async {
+    longpressActive = true;
+    do {
+      wantedMinutes++;
+      await Future<Duration>.delayed(
+        const Duration(milliseconds: 150),
+      );
+    } while (longpressActive);
+  }
+
+  void disableLongPress() => longpressActive = false;
 
   /// ------------------------
   /// SHARED PREFERENCES

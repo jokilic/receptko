@@ -25,7 +25,7 @@ class RecipeWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Stack(
-        overflow: Overflow.visible,
+        clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
         children: <Widget>[
           Container(
