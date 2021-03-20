@@ -7,6 +7,7 @@ import '../../models/recipe/recipe.dart';
 import '../../screens/recipe_screen.dart';
 import '../../widgets/big_recipe_widget.dart';
 import '../../widgets/recipe_widget.dart';
+import '../loading_widgets/big_recipe_loading_widget.dart';
 
 class RecipesWidget extends StatelessWidget {
   final List<Recipe> recipes;
@@ -58,6 +59,25 @@ class RecipesWidget extends StatelessWidget {
         }
 
         if (isBig) {
+          if (recipes.isEmpty) {
+            return SizedBox(
+              height: Get.height * 0.45,
+              child: ListView.builder(
+                clipBehavior: Clip.none,
+                itemCount: 6,
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: BigRecipeLoadingWidget(),
+                  );
+                },
+              ),
+            );
+          }
+
           return SizedBox(
             height: Get.height * 0.45,
             child: ListView.builder(
