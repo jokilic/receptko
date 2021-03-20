@@ -37,7 +37,3 @@ Just tap him and he will give you an encouraging message.
 &nbsp;
 
 ![Multi](https://raw.githubusercontent.com/jokilic/kuharko/main/screenshots/play.png)
-
-## To-do
-
-- [ ] Implement Audioplayers when it gets compatible with Flutter 2.0
