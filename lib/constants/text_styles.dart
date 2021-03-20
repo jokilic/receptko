@@ -166,4 +166,8 @@ class MyTextStyles {
     fontSize: 20.0,
     fontWeight: FontWeight.w700,
   );
+
+  static const TextStyle errorDialogText = TextStyle(
+    fontSize: 20.0,
+  );
 }

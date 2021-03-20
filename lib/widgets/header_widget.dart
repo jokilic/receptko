@@ -10,12 +10,14 @@ class HeaderWidget extends StatefulWidget {
   final bool chefOnly;
   final String subtitle;
   final bool hasSubtitle;
+  final bool errorHeader;
 
   const HeaderWidget({
     this.title,
     this.chefOnly = false,
     this.subtitle,
     this.hasSubtitle = false,
+    this.errorHeader = false,
   });
 
   @override
@@ -82,6 +84,49 @@ class _HeaderWidgetState extends State<HeaderWidget>
       );
     }
 
+    if (widget.errorHeader) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                width: Get.width * 0.3,
+                child: Text(
+                  widget.title,
+                  style: MyTextStyles.headline2Text,
+                ),
+              ),
+              if (widget.hasSubtitle) ...<Widget>[
+                const SizedBox(height: 4.0),
+                SizedBox(
+                  width: Get.width * 0.3,
+                  child: Text(
+                    widget.subtitle,
+                    style: MyTextStyles.headline3Text,
+                  ),
+                ),
+              ],
+            ],
+          ),
+          RotationTransition(
+            turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
+            child: GestureDetector(
+              onLongPress: () =>
+                  _spoonacularController.audioPlayer.play('boom.wav'),
+              behavior: HitTestBehavior.translucent,
+              child: Image.asset(
+                MyImages.chefBig,
+                width: Get.width * 0.25,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -105,7 +150,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
                   style: MyTextStyles.headline3Text,
                 ),
               ),
-            ]
+            ],
           ],
         ),
         RotationTransition(

@@ -1,6 +1,10 @@
 import 'dart:convert';
-// import 'dart:developer';
+import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart' as getx;
+
+import '../widgets/error_dialog.dart';
 
 class Api {
   final String baseUrl = 'https://api.spoonacular.com';
@@ -12,10 +16,11 @@ class Api {
     try {
       final Response<dynamic> response =
           await _dio.get('$baseUrl/${path}apiKey=$apiKey');
-      // log('[DIO] $response');
+      log('[DIO] $response');
       return response;
     } catch (e) {
-      // log('[DIO] $e');
+      log('[DIO] $e');
+      getx.Get.dialog(ErrorDialog());
       return null;
     }
   }
@@ -23,8 +28,10 @@ class Api {
   Future<Response<dynamic>> post(String path,
       {Map<String, dynamic> params}) async {
     try {
-      final Response<dynamic> response =
-          await _dio.post(path, data: jsonEncode(params));
+      final Response<dynamic> response = await _dio.post(
+        path,
+        data: jsonEncode(params),
+      );
       // log('[DIO] $response');
       return response;
     } catch (e) {
