@@ -161,4 +161,9 @@ class MyTextStyles {
     fontSize: 18.0,
     fontWeight: FontWeight.w700,
   );
+
+  static const TextStyle showMoreSummaryButton = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w700,
+  );
 }

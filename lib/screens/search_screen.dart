@@ -276,8 +276,9 @@ class SearchScreen extends StatelessWidget {
                       style: MyTextStyles.searchText,
                       children: <TextSpan>[
                         TextSpan(
-                          text:
-                              '${_spoonacularController.wantedMinutes} MINUTES',
+                          text: _spoonacularController.wantedMinutesChosen
+                              ? '${_spoonacularController.wantedMinutes} MINUTES'
+                              : '_____',
                           style: MyTextStyles.searchDynamicText
                               .copyWith(color: MyColors.randomColor),
                           recognizer: TapGestureRecognizer()
@@ -288,22 +289,28 @@ class SearchScreen extends StatelessWidget {
                                       icon: MyIcons.timer,
                                       minutes:
                                           _spoonacularController.wantedMinutes,
-                                      minusPressed: () {
-                                        if (_spoonacularController
-                                                .wantedMinutes >
-                                            1) {
+                                      minusPressed: _spoonacularController
+                                          .decrementMinutes,
+                                      minusLongPressStart: (_) =>
                                           _spoonacularController
-                                              .wantedMinutes--;
-                                        }
-                                      },
-                                      plusPressed: () => _spoonacularController
-                                          .wantedMinutes++,
+                                              .minusLongPressStart(_),
+                                      minusLongPressEnd: (_) =>
+                                          _spoonacularController
+                                              .disableLongPress(),
+                                      plusPressed: _spoonacularController
+                                          .incrementMinutes,
+                                      plusLongPressStart: (_) =>
+                                          _spoonacularController
+                                              .plusLongPressStart(_),
+                                      plusLongPressEnd: (_) =>
+                                          _spoonacularController
+                                              .disableLongPress(),
                                     ),
                                   ),
                                 ),
                         ),
                         const TextSpan(
-                          text: '.',
+                          text: ' or less.',
                         ),
                       ],
                     ),

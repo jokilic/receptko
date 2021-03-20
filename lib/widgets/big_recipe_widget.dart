@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuharko/constants/images.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
+import '../constants/images.dart';
 import '../constants/text_styles.dart';
 
 class BigRecipeWidget extends StatelessWidget {

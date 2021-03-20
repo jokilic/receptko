@@ -7,19 +7,19 @@
 ### Spoonacular API
 
 Recipes are fetched from [Spoonacular API](https://spoonacular.com/food-api).\
-Many recipes, ingredients, cuisines and products can be found using this source.\
+Many recipes, ingredients, cuisines and products can be found using this source.
 
 ### Comprehensive search
 
 Kuharko has very comprehensive search functionality.\
 Search by ingredients you have in your fridge, by the time required to make the meal or many more parameters.\
-Searching with Kuharko will give you a recipe you desire the most.\
+Searching with Kuharko will give you a recipe you desire the most.
 
 
 ### Save the meals you like
 
 Each meal has a button you can tap if you want to save the recipe.\
-It will be stored in the application and you will be able to fetch it anytime you wish.\
+It will be stored in the application and you will be able to fetch it anytime you wish.
 
 ### Exotic cuisines
 
@@ -37,7 +37,3 @@ Just tap him and he will give you an encouraging message.
 &nbsp;
 
 ![Multi](https://raw.githubusercontent.com/jokilic/kuharko/main/screenshots/play.png)
-
-## To-do
-
-- [ ] Implement Audioplayers when it gets compatible with Flutter 2.0

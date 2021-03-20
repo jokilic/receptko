@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 import '../constants/colors.dart';
 import '../enums/cuisine.dart';
@@ -18,6 +19,7 @@ class SpoonacularController extends GetxController {
   /// ------------------------
 
   SharedPreferences _sharedPreferences;
+  final AudioCache _audioPlayer = AudioCache();
   final RxString _searchQuery = ''.obs;
   final RxList<Recipe> _randomRecipes = <Recipe>[].obs;
   final RxList<Recipe> _cuisineRecipes = <Recipe>[].obs;
@@ -45,12 +47,16 @@ class SpoonacularController extends GetxController {
   final RxString _nonWantedIngredients = ''.obs;
   final RxString _wantedMealTypes = ''.obs;
   final RxInt _wantedMinutes = 25.obs;
+  final RxBool _wantedMinutesChosen = false.obs;
+  final RxBool _longpressActive = false.obs;
+  final RxBool _showMoreSummary = false.obs;
 
   /// ------------------------
   /// GETTERS
   /// ------------------------
 
   SharedPreferences get sharedPreferences => _sharedPreferences;
+  AudioCache get audioPlayer => _audioPlayer;
   String get searchQuery => _searchQuery.value;
   List<Recipe> get randomRecipes => _randomRecipes;
   List<Recipe> get cuisineRecipes => _cuisineRecipes;
@@ -79,6 +85,9 @@ class SpoonacularController extends GetxController {
   String get nonWantedIngredients => _nonWantedIngredients.value;
   String get wantedMealTypes => _wantedMealTypes.value;
   int get wantedMinutes => _wantedMinutes.value;
+  bool get wantedMinutesChosen => _wantedMinutesChosen.value;
+  bool get longpressActive => _longpressActive.value;
+  bool get showMoreSummary => _showMoreSummary.value;
 
   /// ------------------------
   /// SETTERS
@@ -111,6 +120,9 @@ class SpoonacularController extends GetxController {
   set nonWantedIngredients(String value) => _nonWantedIngredients.value = value;
   set wantedMealTypes(String value) => _wantedMealTypes.value = value;
   set wantedMinutes(int value) => _wantedMinutes.value = value;
+  set wantedMinutesChosen(bool value) => _wantedMinutesChosen.value = value;
+  set longpressActive(bool value) => _longpressActive.value = value;
+  set showMoreSummary(bool value) => _showMoreSummary.value = value;
 
   /// ------------------------
   /// INIT
@@ -167,12 +179,13 @@ class SpoonacularController extends GetxController {
       includeIngredients: wantedIngredients,
       excludeIngredients: nonWantedIngredients,
       type: wantedMealTypes,
-      minutes: wantedMinutes,
+      minutes: wantedMinutesChosen ? wantedMinutes : null,
     );
     recipeSearchResult = _fetchedRecipeSearchResult;
   }
 
   Future<void> getRecipeInformation(int id) async {
+    showMoreSummary = false;
     recipeInformation = null;
     final Recipe _fetchedRecipeInformation =
         await _network.getRecipeInformation(id);
@@ -224,6 +237,42 @@ class SpoonacularController extends GetxController {
     return MyColors.blueColor;
   }
 
+  void incrementMinutes() {
+    wantedMinutesChosen = true;
+    wantedMinutes++;
+  }
+
+  void decrementMinutes() {
+    wantedMinutesChosen = true;
+    if (wantedMinutes > 1) {
+      wantedMinutes--;
+    }
+  }
+
+  Future<void> minusLongPressStart(_) async {
+    longpressActive = true;
+    do {
+      decrementMinutes();
+      await Future<Duration>.delayed(
+        const Duration(milliseconds: 150),
+      );
+    } while (longpressActive);
+  }
+
+  Future<void> plusLongPressStart(_) async {
+    longpressActive = true;
+    do {
+      incrementMinutes();
+      await Future<Duration>.delayed(
+        const Duration(milliseconds: 150),
+      );
+    } while (longpressActive);
+  }
+
+  void disableLongPress() => longpressActive = false;
+
+  void enableShowMoreSummary() => showMoreSummary = true;
+
   /// ------------------------
   /// SHARED PREFERENCES
   /// ------------------------
@@ -268,9 +317,4 @@ class SpoonacularController extends GetxController {
   /// URL LAUNCHER
   /// ------------------------
   void launchURL(String url) => launch(url);
-
-  /// ------------------------
-  /// SEARCH RECIPES
-  /// ------------------------
-
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:kuharko/widgets/recipe_screen/heart_animation_widget.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
@@ -85,7 +86,9 @@ class RecipeScreen extends StatelessWidget {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 36.0),
+                              horizontal: 16.0,
+                              vertical: 36.0,
+                            ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -161,11 +164,39 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 16.0),
-                                Text(
-                                  _spoonacularController
-                                      .cleanSummary(recipe.summary),
-                                  style: MyTextStyles.recipeSummary,
-                                ),
+                                if (_spoonacularController
+                                            .cleanSummary(recipe.summary)
+                                            .length >
+                                        256 &&
+                                    !_spoonacularController
+                                        .showMoreSummary) ...<Widget>[
+                                  Text(
+                                    '${_spoonacularController.cleanSummary(recipe.summary).substring(0, 256)}...',
+                                    style: MyTextStyles.recipeSummary,
+                                  ),
+                                  GestureDetector(
+                                    onTap: _spoonacularController
+                                        .enableShowMoreSummary,
+                                    behavior: HitTestBehavior.translucent,
+                                    child: Container(
+                                      height: 48.0,
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'see more',
+                                        style: MyTextStyles
+                                            .showMoreSummaryButton
+                                            .copyWith(
+                                          color: MyColors.randomColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ] else
+                                  Text(
+                                    _spoonacularController
+                                        .cleanSummary(recipe.summary),
+                                    style: MyTextStyles.recipeSummary,
+                                  ),
                                 const SizedBox(height: 24.0),
                                 const Text(
                                   'Ingredients',
@@ -246,21 +277,12 @@ class RecipeScreen extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () => _spoonacularController
                                   .toggleFavoriteRecipe(recipe),
-                              behavior: HitTestBehavior.opaque,
-                              child: Container(
-                                width: 74.0,
-                                height: 74.0,
-                                padding: const EdgeInsets.all(20.0),
-                                decoration: BoxDecoration(
-                                  color: MyColors.bodyColor,
-                                  shape: BoxShape.circle,
-                                  boxShadow: Shadows.myShadow,
-                                ),
-                                child: Image.asset(
-                                  _spoonacularController.recipeIsFavorited
-                                      ? MyIcons.favoriteFull
-                                      : MyIcons.favoriteOutline,
-                                ),
+                              behavior: HitTestBehavior.translucent,
+                              child: HeartAnimationWidget(
+                                heartIcon:
+                                    _spoonacularController.recipeIsFavorited
+                                        ? MyIcons.favoriteFull
+                                        : MyIcons.favoriteOutline,
                               ),
                             ),
                           ),
@@ -274,7 +296,7 @@ class RecipeScreen extends StatelessWidget {
                   top: Get.height * 0.065,
                   child: GestureDetector(
                     onTap: Get.back,
-                    behavior: HitTestBehavior.opaque,
+                    behavior: HitTestBehavior.translucent,
                     child: Container(
                       width: 56.0,
                       height: 56.0,
