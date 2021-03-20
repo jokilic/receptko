@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:kuharko/widgets/recipe_screen/heart_animation_widget.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
@@ -85,7 +86,9 @@ class RecipeScreen extends StatelessWidget {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 36.0),
+                              horizontal: 16.0,
+                              vertical: 36.0,
+                            ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -247,20 +250,11 @@ class RecipeScreen extends StatelessWidget {
                               onTap: () => _spoonacularController
                                   .toggleFavoriteRecipe(recipe),
                               behavior: HitTestBehavior.opaque,
-                              child: Container(
-                                width: 74.0,
-                                height: 74.0,
-                                padding: const EdgeInsets.all(20.0),
-                                decoration: BoxDecoration(
-                                  color: MyColors.bodyColor,
-                                  shape: BoxShape.circle,
-                                  boxShadow: Shadows.myShadow,
-                                ),
-                                child: Image.asset(
-                                  _spoonacularController.recipeIsFavorited
-                                      ? MyIcons.favoriteFull
-                                      : MyIcons.favoriteOutline,
-                                ),
+                              child: HeartAnimationWidget(
+                                heartIcon:
+                                    _spoonacularController.recipeIsFavorited
+                                        ? MyIcons.favoriteFull
+                                        : MyIcons.favoriteOutline,
                               ),
                             ),
                           ),
