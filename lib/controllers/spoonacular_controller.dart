@@ -45,7 +45,8 @@ class SpoonacularController extends GetxController {
   final RxString _nonWantedIngredients = ''.obs;
   final RxString _wantedMealTypes = ''.obs;
   final RxInt _wantedMinutes = 25.obs;
-  final RxBool _minutesPressed = false.obs;
+  final RxBool _wantedMinutesChosen = false.obs;
+  final RxBool _longpressActive = false.obs;
 
   /// ------------------------
   /// GETTERS
@@ -80,7 +81,8 @@ class SpoonacularController extends GetxController {
   String get nonWantedIngredients => _nonWantedIngredients.value;
   String get wantedMealTypes => _wantedMealTypes.value;
   int get wantedMinutes => _wantedMinutes.value;
-  bool get longpressActive => _minutesPressed.value;
+  bool get wantedMinutesChosen => _wantedMinutesChosen.value;
+  bool get longpressActive => _longpressActive.value;
 
   /// ------------------------
   /// SETTERS
@@ -113,7 +115,8 @@ class SpoonacularController extends GetxController {
   set nonWantedIngredients(String value) => _nonWantedIngredients.value = value;
   set wantedMealTypes(String value) => _wantedMealTypes.value = value;
   set wantedMinutes(int value) => _wantedMinutes.value = value;
-  set longpressActive(bool value) => _minutesPressed.value = value;
+  set wantedMinutesChosen(bool value) => _wantedMinutesChosen.value = value;
+  set longpressActive(bool value) => _longpressActive.value = value;
 
   /// ------------------------
   /// INIT
@@ -170,7 +173,7 @@ class SpoonacularController extends GetxController {
       includeIngredients: wantedIngredients,
       excludeIngredients: nonWantedIngredients,
       type: wantedMealTypes,
-      minutes: wantedMinutes,
+      minutes: wantedMinutesChosen ? wantedMinutes : null,
     );
     recipeSearchResult = _fetchedRecipeSearchResult;
   }
@@ -227,16 +230,22 @@ class SpoonacularController extends GetxController {
     return MyColors.blueColor;
   }
 
-  void incrementMinutes() => wantedMinutes++;
+  void incrementMinutes() {
+    wantedMinutesChosen = true;
+    wantedMinutes++;
+  }
 
-  void decrementMinutes() {}
+  void decrementMinutes() {
+    wantedMinutesChosen = true;
+    if (wantedMinutes > 1) {
+      wantedMinutes--;
+    }
+  }
 
   Future<void> minusLongPressStart(_) async {
     longpressActive = true;
     do {
-      if (wantedMinutes > 1) {
-        wantedMinutes--;
-      }
+      decrementMinutes();
       await Future<Duration>.delayed(
         const Duration(milliseconds: 150),
       );
@@ -246,7 +255,7 @@ class SpoonacularController extends GetxController {
   Future<void> plusLongPressStart(_) async {
     longpressActive = true;
     do {
-      wantedMinutes++;
+      incrementMinutes();
       await Future<Duration>.delayed(
         const Duration(milliseconds: 150),
       );

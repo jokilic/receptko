@@ -276,8 +276,9 @@ class SearchScreen extends StatelessWidget {
                       style: MyTextStyles.searchText,
                       children: <TextSpan>[
                         TextSpan(
-                          text:
-                              '${_spoonacularController.wantedMinutes} MINUTES',
+                          text: _spoonacularController.wantedMinutesChosen
+                              ? '${_spoonacularController.wantedMinutes} MINUTES'
+                              : '_____',
                           style: MyTextStyles.searchDynamicText
                               .copyWith(color: MyColors.randomColor),
                           recognizer: TapGestureRecognizer()

@@ -94,9 +94,12 @@ class Network {
     int minutes,
     int number = 10,
   }) async {
+    final String properMinutes =
+        minutes == null ? '' : '&maxReadyTime=$minutes';
+
     try {
       final Response<dynamic> _response = await _api.get(
-          '/recipes/complexSearch?&cuisine=$cuisine&diet=$diet&intolerances=$intolerances&includeIngredients=$includeIngredients&excludeIngredients=$excludeIngredients&type=$type&maxReadyTime=$minutes&number=10&addRecipeInformation=true&sort=random&');
+          '/recipes/complexSearch?&cuisine=$cuisine&diet=$diet&intolerances=$intolerances&includeIngredients=$includeIngredients$properMinutes&excludeIngredients=$excludeIngredients&type=$type&number=10&addRecipeInformation=true&sort=random&');
       final RecipeSearchResult _recipeSearchResult =
           RecipeSearchResult.fromJson(_response.data);
 
