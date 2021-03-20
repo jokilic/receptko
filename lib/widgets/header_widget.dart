@@ -93,7 +93,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                width: Get.width * 0.3,
+                width: Get.width * 0.35,
                 child: Text(
                   widget.title,
                   style: MyTextStyles.headline2Text,
