@@ -74,7 +74,7 @@ class MinutesDialog extends StatelessWidget {
                           onTap: minusPressed,
                           onLongPressStart: minusLongPressStart,
                           onLongPressEnd: minusLongPressEnd,
-                          behavior: HitTestBehavior.opaque,
+                          behavior: HitTestBehavior.translucent,
                           child: Image.asset(
                             MyIcons.minus,
                             height: 50.0,
@@ -91,7 +91,7 @@ class MinutesDialog extends StatelessWidget {
                           onTap: plusPressed,
                           onLongPressStart: plusLongPressStart,
                           onLongPressEnd: plusLongPressEnd,
-                          behavior: HitTestBehavior.opaque,
+                          behavior: HitTestBehavior.translucent,
                           child: Image.asset(
                             MyIcons.plus,
                             height: 50.0,
@@ -109,7 +109,7 @@ class MinutesDialog extends StatelessWidget {
               right: -24,
               child: GestureDetector(
                 onTap: Get.back,
-                behavior: HitTestBehavior.opaque,
+                behavior: HitTestBehavior.translucent,
                 child: Image.asset(
                   MyIcons.delete,
                   height: 60.0,

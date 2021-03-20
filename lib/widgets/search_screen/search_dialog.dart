@@ -141,7 +141,7 @@ class SearchDialog extends StatelessWidget {
                                         chosenControllerList.join(', ');
                                     setJoinedValues(joinedValues);
                                   },
-                                  behavior: HitTestBehavior.opaque,
+                                  behavior: HitTestBehavior.translucent,
                                   child: Image.asset(
                                     MyIcons.delete,
                                     height: 44.0,
@@ -163,7 +163,7 @@ class SearchDialog extends StatelessWidget {
               right: -24,
               child: GestureDetector(
                 onTap: Get.back,
-                behavior: HitTestBehavior.opaque,
+                behavior: HitTestBehavior.translucent,
                 child: Image.asset(
                   MyIcons.delete,
                   height: 60.0,

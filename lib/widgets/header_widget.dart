@@ -72,6 +72,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
           child: GestureDetector(
             onLongPress: () =>
                 _spoonacularController.audioPlayer.play('boom.wav'),
+            behavior: HitTestBehavior.translucent,
             child: Image.asset(
               MyImages.chefBig,
               width: Get.width * 0.45,
@@ -112,6 +113,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
           child: GestureDetector(
             onLongPress: () =>
                 _spoonacularController.audioPlayer.play('boom.wav'),
+            behavior: HitTestBehavior.translucent,
             child: Image.asset(
               MyImages.chefBig,
               width: Get.width * 0.35,

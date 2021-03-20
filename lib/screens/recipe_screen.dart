@@ -249,7 +249,7 @@ class RecipeScreen extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () => _spoonacularController
                                   .toggleFavoriteRecipe(recipe),
-                              behavior: HitTestBehavior.opaque,
+                              behavior: HitTestBehavior.translucent,
                               child: HeartAnimationWidget(
                                 heartIcon:
                                     _spoonacularController.recipeIsFavorited
@@ -268,7 +268,7 @@ class RecipeScreen extends StatelessWidget {
                   top: Get.height * 0.065,
                   child: GestureDetector(
                     onTap: Get.back,
-                    behavior: HitTestBehavior.opaque,
+                    behavior: HitTestBehavior.translucent,
                     child: Container(
                       width: 56.0,
                       height: 56.0,

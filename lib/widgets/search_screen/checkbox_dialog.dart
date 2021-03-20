@@ -92,7 +92,7 @@ class CheckboxDialog extends StatelessWidget {
                               Get.back();
                             }
                           },
-                          behavior: HitTestBehavior.opaque,
+                          behavior: HitTestBehavior.translucent,
                           child: Obx(
                             () => Container(
                               margin: const EdgeInsets.only(bottom: 8.0),
@@ -133,7 +133,7 @@ class CheckboxDialog extends StatelessWidget {
               right: -24,
               child: GestureDetector(
                 onTap: Get.back,
-                behavior: HitTestBehavior.opaque,
+                behavior: HitTestBehavior.translucent,
                 child: Image.asset(
                   MyIcons.delete,
                   height: 60.0,
