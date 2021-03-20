@@ -49,6 +49,7 @@ class SpoonacularController extends GetxController {
   final RxInt _wantedMinutes = 25.obs;
   final RxBool _wantedMinutesChosen = false.obs;
   final RxBool _longpressActive = false.obs;
+  final RxBool _showMoreSummary = false.obs;
 
   /// ------------------------
   /// GETTERS
@@ -86,6 +87,7 @@ class SpoonacularController extends GetxController {
   int get wantedMinutes => _wantedMinutes.value;
   bool get wantedMinutesChosen => _wantedMinutesChosen.value;
   bool get longpressActive => _longpressActive.value;
+  bool get showMoreSummary => _showMoreSummary.value;
 
   /// ------------------------
   /// SETTERS
@@ -120,6 +122,7 @@ class SpoonacularController extends GetxController {
   set wantedMinutes(int value) => _wantedMinutes.value = value;
   set wantedMinutesChosen(bool value) => _wantedMinutesChosen.value = value;
   set longpressActive(bool value) => _longpressActive.value = value;
+  set showMoreSummary(bool value) => _showMoreSummary.value = value;
 
   /// ------------------------
   /// INIT
@@ -182,6 +185,7 @@ class SpoonacularController extends GetxController {
   }
 
   Future<void> getRecipeInformation(int id) async {
+    showMoreSummary = false;
     recipeInformation = null;
     final Recipe _fetchedRecipeInformation =
         await _network.getRecipeInformation(id);
@@ -267,6 +271,8 @@ class SpoonacularController extends GetxController {
 
   void disableLongPress() => longpressActive = false;
 
+  void enableShowMoreSummary() => showMoreSummary = true;
+
   /// ------------------------
   /// SHARED PREFERENCES
   /// ------------------------
@@ -311,9 +317,4 @@ class SpoonacularController extends GetxController {
   /// URL LAUNCHER
   /// ------------------------
   void launchURL(String url) => launch(url);
-
-  /// ------------------------
-  /// SEARCH RECIPES
-  /// ------------------------
-
 }

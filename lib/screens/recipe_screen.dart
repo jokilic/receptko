@@ -164,11 +164,39 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 16.0),
-                                Text(
-                                  _spoonacularController
-                                      .cleanSummary(recipe.summary),
-                                  style: MyTextStyles.recipeSummary,
-                                ),
+                                if (_spoonacularController
+                                            .cleanSummary(recipe.summary)
+                                            .length >
+                                        256 &&
+                                    !_spoonacularController
+                                        .showMoreSummary) ...<Widget>[
+                                  Text(
+                                    '${_spoonacularController.cleanSummary(recipe.summary).substring(0, 256)}...',
+                                    style: MyTextStyles.recipeSummary,
+                                  ),
+                                  GestureDetector(
+                                    onTap: _spoonacularController
+                                        .enableShowMoreSummary,
+                                    behavior: HitTestBehavior.translucent,
+                                    child: Container(
+                                      height: 48.0,
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'see more',
+                                        style: MyTextStyles
+                                            .showMoreSummaryButton
+                                            .copyWith(
+                                          color: MyColors.randomColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ] else
+                                  Text(
+                                    _spoonacularController
+                                        .cleanSummary(recipe.summary),
+                                    style: MyTextStyles.recipeSummary,
+                                  ),
                                 const SizedBox(height: 24.0),
                                 const Text(
                                   'Ingredients',
