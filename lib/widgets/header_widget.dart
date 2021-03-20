@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../constants/images.dart';
 import '../constants/text_styles.dart';
+import '../controllers/spoonacular_controller.dart';
 
 class HeaderWidget extends StatefulWidget {
   final String title;
@@ -38,15 +39,17 @@ class _HeaderWidgetState extends State<HeaderWidget>
       curve: Curves.easeInOutBack,
     );
 
-    _chefAnimationController.addStatusListener((AnimationStatus status) async {
-      if (status == AnimationStatus.completed) {
-        await Future<Duration>.delayed(const Duration(seconds: 3));
-        _chefAnimationController.reverse();
-      } else if (status == AnimationStatus.dismissed) {
-        await Future<Duration>.delayed(const Duration(seconds: 3));
-        _chefAnimationController.forward();
-      }
-    });
+    _chefAnimationController.addStatusListener(
+      (AnimationStatus status) async {
+        if (status == AnimationStatus.completed) {
+          await Future<Duration>.delayed(const Duration(seconds: 3));
+          _chefAnimationController.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          await Future<Duration>.delayed(const Duration(seconds: 3));
+          _chefAnimationController.forward();
+        }
+      },
+    );
 
     _chefAnimationController.forward();
   }
@@ -59,13 +62,20 @@ class _HeaderWidgetState extends State<HeaderWidget>
 
   @override
   Widget build(BuildContext context) {
+    final SpoonacularController _spoonacularController =
+        Get.find<SpoonacularController>();
+
     if (widget.chefOnly) {
       return Center(
         child: RotationTransition(
           turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
-          child: Image.asset(
-            MyImages.chefBig,
-            width: Get.width * 0.45,
+          child: GestureDetector(
+            onLongPress: () =>
+                _spoonacularController.audioPlayer.play('boom.wav'),
+            child: Image.asset(
+              MyImages.chefBig,
+              width: Get.width * 0.45,
+            ),
           ),
         ),
       );
@@ -99,9 +109,13 @@ class _HeaderWidgetState extends State<HeaderWidget>
         ),
         RotationTransition(
           turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
-          child: Image.asset(
-            MyImages.chefBig,
-            width: Get.width * 0.35,
+          child: GestureDetector(
+            onLongPress: () =>
+                _spoonacularController.audioPlayer.play('boom.wav'),
+            child: Image.asset(
+              MyImages.chefBig,
+              width: Get.width * 0.35,
+            ),
           ),
         ),
       ],

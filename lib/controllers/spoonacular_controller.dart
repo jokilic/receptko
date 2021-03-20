@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 import '../constants/colors.dart';
 import '../enums/cuisine.dart';
@@ -18,6 +19,7 @@ class SpoonacularController extends GetxController {
   /// ------------------------
 
   SharedPreferences _sharedPreferences;
+  final AudioCache _audioPlayer = AudioCache();
   final RxString _searchQuery = ''.obs;
   final RxList<Recipe> _randomRecipes = <Recipe>[].obs;
   final RxList<Recipe> _cuisineRecipes = <Recipe>[].obs;
@@ -53,6 +55,7 @@ class SpoonacularController extends GetxController {
   /// ------------------------
 
   SharedPreferences get sharedPreferences => _sharedPreferences;
+  AudioCache get audioPlayer => _audioPlayer;
   String get searchQuery => _searchQuery.value;
   List<Recipe> get randomRecipes => _randomRecipes;
   List<Recipe> get cuisineRecipes => _cuisineRecipes;
