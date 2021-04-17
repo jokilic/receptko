@@ -1,3 +1,4 @@
+import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -75,9 +76,11 @@ class _HeaderWidgetState extends State<HeaderWidget>
             onLongPress: () =>
                 _spoonacularController.audioPlayer.play('boom.wav'),
             behavior: HitTestBehavior.translucent,
-            child: Image.asset(
-              MyImages.chefBig,
-              width: Get.width * 0.45,
+            child: PressableDough(
+              child: Image.asset(
+                MyImages.chefBig,
+                width: Get.width * 0.45,
+              ),
             ),
           ),
         ),
@@ -117,9 +120,11 @@ class _HeaderWidgetState extends State<HeaderWidget>
               onLongPress: () =>
                   _spoonacularController.audioPlayer.play('boom.wav'),
               behavior: HitTestBehavior.translucent,
-              child: Image.asset(
-                MyImages.chefBig,
-                width: Get.width * 0.25,
+              child: PressableDough(
+                child: Image.asset(
+                  MyImages.chefBig,
+                  width: Get.width * 0.25,
+                ),
               ),
             ),
           ),
@@ -159,9 +164,11 @@ class _HeaderWidgetState extends State<HeaderWidget>
             onLongPress: () =>
                 _spoonacularController.audioPlayer.play('boom.wav'),
             behavior: HitTestBehavior.translucent,
-            child: Image.asset(
-              MyImages.chefBig,
-              width: Get.width * 0.35,
+            child: PressableDough(
+              child: Image.asset(
+                MyImages.chefBig,
+                width: Get.width * 0.35,
+              ),
             ),
           ),
         ),

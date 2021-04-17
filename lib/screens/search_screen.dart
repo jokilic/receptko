@@ -1,3 +1,4 @@
+import 'package:dough/dough.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -140,10 +141,12 @@ class SearchScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 36.0),
                 Center(
-                  child: Image.asset(
-                    MyIcons.randomIllustration,
-                    height: 142.0,
-                    width: 142.0,
+                  child: PressableDough(
+                    child: Image.asset(
+                      MyIcons.randomIllustration,
+                      height: 142.0,
+                      width: 142.0,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 36.0),
@@ -226,10 +229,12 @@ class SearchScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 36.0),
                 Center(
-                  child: Image.asset(
-                    MyIcons.randomIllustration,
-                    height: 142.0,
-                    width: 142.0,
+                  child: PressableDough(
+                    child: Image.asset(
+                      MyIcons.randomIllustration,
+                      height: 142.0,
+                      width: 142.0,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 36.0),

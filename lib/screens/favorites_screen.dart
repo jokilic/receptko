@@ -1,3 +1,4 @@
+import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,10 +36,12 @@ class FavoritesScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 36.0),
                       child: Column(
                         children: <Widget>[
-                          Image.asset(
-                            MyIcons.randomIllustration,
-                            height: 142.0,
-                            width: 142.0,
+                          PressableDough(
+                            child: Image.asset(
+                              MyIcons.randomIllustration,
+                              height: 142.0,
+                              width: 142.0,
+                            ),
                           ),
                           const SizedBox(height: 16.0),
                           const Text(

@@ -1,7 +1,7 @@
+import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:kuharko/widgets/recipe_screen/heart_animation_widget.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
@@ -12,6 +12,7 @@ import '../controllers/spoonacular_controller.dart';
 import '../models/recipe/recipe.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/kuharko_button.dart';
+import '../widgets/recipe_screen/heart_animation_widget.dart';
 import '../widgets/recipe_screen/ingredient_widget.dart';
 import '../widgets/recipe_screen/recipe_boolean_values_widget.dart';
 import '../widgets/recipe_screen/recipe_grid_widget.dart';
@@ -297,20 +298,22 @@ class RecipeScreen extends StatelessWidget {
                   child: GestureDetector(
                     onTap: Get.back,
                     behavior: HitTestBehavior.translucent,
-                    child: Container(
-                      width: 56.0,
-                      height: 56.0,
-                      padding: const EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        color: MyColors.bodyColor,
-                        shape: BoxShape.circle,
-                        boxShadow: Shadows.myShadow,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0),
-                        child: Image.asset(
-                          MyIcons.back,
-                          color: MyColors.randomColor,
+                    child: PressableDough(
+                      child: Container(
+                        width: 56.0,
+                        height: 56.0,
+                        padding: const EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                          color: MyColors.bodyColor,
+                          shape: BoxShape.circle,
+                          boxShadow: Shadows.myShadow,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 5.0),
+                          child: Image.asset(
+                            MyIcons.back,
+                            color: MyColors.randomColor,
+                          ),
                         ),
                       ),
                     ),

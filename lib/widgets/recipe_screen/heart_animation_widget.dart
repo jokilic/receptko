@@ -1,3 +1,4 @@
+import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -66,16 +67,18 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget>
             ? _animationController.forward()
             : _animationController.reset();
 
-        return Container(
-          width: 74.0,
-          height: 74.0,
-          padding: EdgeInsets.all(_sizeAnimation.value),
-          decoration: BoxDecoration(
-            color: MyColors.bodyColor,
-            shape: BoxShape.circle,
-            boxShadow: Shadows.myShadow,
+        return PressableDough(
+          child: Container(
+            width: 74.0,
+            height: 74.0,
+            padding: EdgeInsets.all(_sizeAnimation.value),
+            decoration: BoxDecoration(
+              color: MyColors.bodyColor,
+              shape: BoxShape.circle,
+              boxShadow: Shadows.myShadow,
+            ),
+            child: child,
           ),
-          child: child,
         );
       },
       child: Image.asset(
