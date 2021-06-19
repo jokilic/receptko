@@ -71,9 +71,7 @@ class Nutrition {
 
   Nutrition.fromJson(Map<String, dynamic> json) {
     final List<dynamic> nutrientsList = json['nutrients'];
-    nutrients = nutrientsList
-        .map((dynamic nutrient) => MenuItemNutrients.fromJson(nutrient))
-        .toList();
+    nutrients = nutrientsList.map((nutrient) => MenuItemNutrients.fromJson(nutrient)).toList();
     caloricBreakdown = CaloricBreakdown.fromJson(json['caloricBreakdown']);
     calories = json['calories'];
     fat = json['fat'];

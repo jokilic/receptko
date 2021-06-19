@@ -5,6 +5,7 @@ import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/images.dart';
 import '../constants/text_styles.dart';
+import '../controllers/theme_controller.dart';
 
 class BigRecipeWidget extends StatelessWidget {
   final Function onTap;
@@ -23,6 +24,8 @@ class BigRecipeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return InkWell(
       onTap: onTap,
       child: SizedBox(
@@ -53,7 +56,7 @@ class BigRecipeWidget extends StatelessWidget {
               margin: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24.0),
-                color: MyColors.bodyColor,
+                color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 16.0),
@@ -73,9 +76,10 @@ class BigRecipeWidget extends StatelessWidget {
                             const SizedBox(height: 4.0),
                             Text(
                               mealType,
-                              style:
-                                  MyTextStyles.bigRecipeWidgetSubtitle.copyWith(
-                                color: MyColors.textColor.withOpacity(0.4),
+                              style: MyTextStyles.bigRecipeWidgetSubtitle.copyWith(
+                                color: _isDark
+                                    ? DarkColors.textColor.withOpacity(0.4)
+                                    : LightColors.textColor.withOpacity(0.4),
                               ),
                             ),
                           ],
@@ -89,7 +93,7 @@ class BigRecipeWidget extends StatelessWidget {
                           MyIcons.favoriteOutline,
                           width: 44.0,
                           height: 44.0,
-                          color: MyColors.textColor,
+                          color: _isDark ? DarkColors.textColor : LightColors.textColor,
                         ),
                         const SizedBox(height: 4.0),
                         Text(

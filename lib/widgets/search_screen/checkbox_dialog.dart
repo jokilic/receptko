@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../constants/text_styles.dart';
+import '../../controllers/theme_controller.dart';
 
 class CheckboxDialog extends StatelessWidget {
   final String title;
@@ -24,6 +25,8 @@ class CheckboxDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return Material(
       type: MaterialType.transparency,
       child: Center(
@@ -34,7 +37,7 @@ class CheckboxDialog extends StatelessWidget {
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
-                color: MyColors.bodyColor,
+                color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               height: Get.height * 0.6,
               width: Get.width * 0.8,
@@ -70,16 +73,14 @@ class CheckboxDialog extends StatelessWidget {
 
                         return GestureDetector(
                           onTap: () {
-                            final bool isChecked =
-                                chosenControllerList.contains(value);
+                            final bool isChecked = chosenControllerList.contains(value);
                             if (multiValue) {
                               if (isChecked) {
                                 chosenControllerList.remove(value);
                               } else {
                                 chosenControllerList.add(value);
                               }
-                              final String joinedValues =
-                                  chosenControllerList.join(', ');
+                              final String joinedValues = chosenControllerList.join(', ');
                               setJoinedValues(joinedValues);
                             } else {
                               chosenControllerList.clear();
@@ -98,17 +99,13 @@ class CheckboxDialog extends StatelessWidget {
                               margin: const EdgeInsets.only(bottom: 8.0),
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text(
                                     value,
-                                    style:
-                                        MyTextStyles.searchDialogText.copyWith(
+                                    style: MyTextStyles.searchDialogText.copyWith(
                                       fontWeight:
-                                          chosenControllerList.contains(value)
-                                              ? FontWeight.w800
-                                              : FontWeight.w500,
+                                          chosenControllerList.contains(value) ? FontWeight.w800 : FontWeight.w500,
                                     ),
                                   ),
                                   if (chosenControllerList.contains(value))

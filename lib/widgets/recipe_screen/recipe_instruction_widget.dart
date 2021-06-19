@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/text_styles.dart';
+import '../../controllers/theme_controller.dart';
 
 class RecipeInstructionWidget extends StatelessWidget {
   final int number;
@@ -14,6 +16,8 @@ class RecipeInstructionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 32.0),
       child: Row(
@@ -31,7 +35,7 @@ class RecipeInstructionWidget extends StatelessWidget {
           Container(
             width: 4.0,
             height: 36.0,
-            color: MyColors.greenColor,
+            color: _isDark ? DarkColors.greenColor : LightColors.greenColor,
           ),
           const SizedBox(width: 16.0),
           Expanded(

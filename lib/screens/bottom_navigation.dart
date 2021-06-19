@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../constants/colors.dart';
+import '../controllers/theme_controller.dart';
 import '../models/navigation_item.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -15,12 +17,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
         children: <Widget>[
-          for (final NavigationItem navigationItem in NavigationItem.items)
-            navigationItem.page,
+          for (final NavigationItem navigationItem in NavigationItem.items) navigationItem.page,
         ],
       ),
       bottomNavigationBar: SizedBox(
@@ -32,9 +35,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            backgroundColor: MyColors.textColor,
-            selectedItemColor: MyColors.orangeColor,
-            unselectedItemColor: MyColors.purpleColor,
+            backgroundColor: _isDark ? DarkColors.textColor : LightColors.textColor,
+            selectedItemColor: _isDark ? DarkColors.orangeColor : LightColors.orangeColor,
+            unselectedItemColor: _isDark ? DarkColors.purpleColor : LightColors.purpleColor,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             currentIndex: _currentIndex,

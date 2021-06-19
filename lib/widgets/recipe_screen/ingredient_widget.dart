@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
+import '../../controllers/theme_controller.dart';
 
 class IngredientWidget extends StatelessWidget {
   final String image;
@@ -19,6 +21,8 @@ class IngredientWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -46,13 +50,13 @@ class IngredientWidget extends StatelessWidget {
               Text(
                 title,
                 style: MyTextStyles.recipeIngredientName.copyWith(
-                  color: MyColors.textColor.withOpacity(0.8),
+                  color: _isDark ? DarkColors.textColor.withOpacity(0.8) : LightColors.textColor.withOpacity(0.8),
                 ),
               ),
               Text(
                 '${amount.toStringAsFixed(1)} $unit',
                 style: MyTextStyles.recipeIngredientAmount.copyWith(
-                  color: MyColors.textColor.withOpacity(0.4),
+                  color: _isDark ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
                 ),
               ),
             ],

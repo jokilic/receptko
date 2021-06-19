@@ -22,9 +22,7 @@ class ProductSearchResult {
   ProductSearchResult.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     final List<dynamic> productsList = json['products'];
-    products = productsList
-        .map((dynamic product) => Products.fromJson(product))
-        .toList();
+    products = productsList.map((product) => Products.fromJson(product)).toList();
     offset = json['offset'];
     number = json['number'];
     totalProducts = json['totalProducts'];

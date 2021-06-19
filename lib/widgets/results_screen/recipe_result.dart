@@ -5,6 +5,7 @@ import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
+import '../../controllers/theme_controller.dart';
 
 class RecipeResult extends StatelessWidget {
   final String title;
@@ -35,6 +36,8 @@ class RecipeResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -42,7 +45,7 @@ class RecipeResult extends StatelessWidget {
         width: double.infinity,
         height: Get.height < 768 ? Get.height * 0.25 : Get.height * 0.18,
         decoration: BoxDecoration(
-          color: MyColors.bodyColor,
+          color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
           borderRadius: BorderRadius.circular(16.0),
           boxShadow: Shadows.myShadow,
         ),
@@ -74,14 +77,15 @@ class RecipeResult extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           title,
-                          style:
-                              MyTextStyles.resultTitle.copyWith(color: color),
+                          style: MyTextStyles.resultTitle.copyWith(color: color),
                         ),
                         const SizedBox(height: 8.0),
                         Text(
                           description,
                           style: MyTextStyles.resultDescription.copyWith(
-                            color: MyColors.textColor.withOpacity(0.8),
+                            color: _isDark
+                                ? DarkColors.textColor.withOpacity(0.8)
+                                : LightColors.textColor.withOpacity(0.8),
                           ),
                         ),
                       ],
@@ -103,7 +107,7 @@ class RecipeResult extends StatelessWidget {
                             children: <Widget>[
                               Image.asset(
                                 MyIcons.clock,
-                                color: MyColors.backgroundColor,
+                                color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
                                 height: 16.0,
                                 width: 16.0,
                               ),

@@ -14,8 +14,7 @@ class IngredientSearchResult {
   IngredientSearchResult.fromJson(Map<String, dynamic> json) {
     final List<dynamic> ingredientSearchResultsList = json['results'];
     results = ingredientSearchResultsList
-        .map((dynamic ingredientSearchResult) =>
-            IngredientSearchResults.fromJson(ingredientSearchResult))
+        .map((ingredientSearchResult) => IngredientSearchResults.fromJson(ingredientSearchResult))
         .toList();
     offset = json['offset'];
     number = json['number'];

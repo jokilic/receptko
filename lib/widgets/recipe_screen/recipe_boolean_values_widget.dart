@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/text_styles.dart';
+import '../../controllers/theme_controller.dart';
 
 class RecipeBooleanValuesWidget extends StatelessWidget {
   final Color color;
@@ -16,6 +18,8 @@ class RecipeBooleanValuesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return Container(
       height: 55.0,
       width: 170.0,
@@ -31,7 +35,7 @@ class RecipeBooleanValuesWidget extends StatelessWidget {
             icon,
             height: 32.0,
             width: 32.0,
-            color: MyColors.backgroundColor,
+            color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
           ),
           const SizedBox(width: 16.0),
           Text(

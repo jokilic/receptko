@@ -6,7 +6,7 @@ class MealPlanDay {
 
   MealPlanDay.fromJson(Map<String, dynamic> json) {
     final List<dynamic> mealsList = json['meals'];
-    meals = mealsList.map((dynamic meal) => Meals.fromJson(meal)).toList();
+    meals = mealsList.map((meal) => Meals.fromJson(meal)).toList();
     nutrients = Nutrients.fromJson(json['nutrients']);
   }
 }

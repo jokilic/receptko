@@ -6,6 +6,7 @@ import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
+import '../controllers/theme_controller.dart';
 import '../models/recipe/recipe_search_result.dart';
 import '../screens/recipe_screen.dart';
 import '../widgets/header_widget.dart';
@@ -18,8 +19,8 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController =
-        Get.find<SpoonacularController>();
+    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
 
     return Scaffold(
       body: SafeArea(
@@ -42,11 +43,11 @@ class ResultsScreen extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 42.0),
                           SpinKitFoldingCube(
-                            color: MyColors.randomColor,
+                            color: _isDark ? DarkColors.randomColor : LightColors.randomColor,
                             size: 36.0,
                           ),
                           const SizedBox(height: 32.0),
-                          const Text(
+                          Text(
                             'Just a sec...',
                             style: MyTextStyles.headline2Text,
                             textAlign: TextAlign.center,
@@ -55,9 +56,7 @@ class ResultsScreen extends StatelessWidget {
                       );
                     }
 
-                    if (_spoonacularController
-                            .recipeSearchResult.totalResults ==
-                        0) {
+                    if (_spoonacularController.recipeSearchResult.totalResults == 0) {
                       return Center(
                         child: Container(
                           margin: const EdgeInsets.only(top: 16.0),
@@ -70,7 +69,7 @@ class ResultsScreen extends StatelessWidget {
                                 width: 156.0,
                               ),
                               const SizedBox(height: 16.0),
-                              const Text(
+                              Text(
                                 'Sorry, but there are no recipes here',
                                 textAlign: TextAlign.center,
                                 style: MyTextStyles.headline2Text,
@@ -84,26 +83,20 @@ class ResultsScreen extends StatelessWidget {
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: _spoonacularController
-                          .recipeSearchResult.results.length,
+                      itemCount: _spoonacularController.recipeSearchResult.results.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final RecipeSearchResults recipe =
-                            _spoonacularController
-                                .recipeSearchResult.results[index];
+                        final RecipeSearchResults recipe = _spoonacularController.recipeSearchResult.results[index];
 
                         return RecipeResult(
-                          title: recipe.title.length > 24
-                              ? '${recipe.title.substring(0, 24)}...'
-                              : recipe.title,
+                          title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                           description: Get.height < 700
                               ? '${_spoonacularController.cleanDescription(index).substring(0, 64)}...'
                               : '${_spoonacularController.cleanDescription(index).substring(0, 80)}...',
                           image: recipe.image,
-                          color: MyColors.randomColor,
+                          color: _isDark ? DarkColors.randomColor : LightColors.randomColor,
                           clockColor: _spoonacularController.clockColor(index),
                           onTap: () {
-                            _spoonacularController
-                                .getRecipeInformation(recipe.id);
+                            _spoonacularController.getRecipeInformation(recipe.id);
                             Get.toNamed(RecipeScreen.routeName);
                           },
                           minutes: recipe.readyInMinutes,

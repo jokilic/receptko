@@ -14,31 +14,29 @@ class RecipeGridWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 160.0,
-      width: 135.0,
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.15),
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            icon,
-            width: 60.0,
-            height: 60.0,
-            color: color,
-          ),
-          const SizedBox(height: 16.0),
-          Text(
-            text,
-            style: MyTextStyles.recipeGrid.copyWith(color: color),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+        height: 160.0,
+        width: 135.0,
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              icon,
+              width: 60.0,
+              height: 60.0,
+              color: color,
+            ),
+            const SizedBox(height: 16.0),
+            Text(
+              text,
+              style: MyTextStyles.recipeGrid.copyWith(color: color),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      );
 }

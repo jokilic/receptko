@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
+import '../controllers/theme_controller.dart';
 import './header_widget.dart';
 
 class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(Get.height);
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: Get.width * 0.1,
@@ -19,7 +21,7 @@ class ErrorDialog extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
-        color: MyColors.bodyColor,
+        color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
         child: Stack(
           alignment: Alignment.center,
           clipBehavior: Clip.none,

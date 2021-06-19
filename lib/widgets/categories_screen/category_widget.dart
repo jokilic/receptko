@@ -1,9 +1,11 @@
 import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
+import '../../controllers/theme_controller.dart';
 
 class CategoryWidget extends StatelessWidget {
   final String icon;
@@ -20,13 +22,15 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Get.find<ThemeController>().darkTheme;
+
     return InkWell(
       onTap: onTap,
       child: PressableDough(
         child: Container(
           margin: const EdgeInsets.all(12.0),
           decoration: BoxDecoration(
-            color: MyColors.bodyColor,
+            color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
             borderRadius: BorderRadius.circular(16.0),
             boxShadow: Shadows.myShadow,
           ),

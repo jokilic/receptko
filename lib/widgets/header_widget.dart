@@ -25,8 +25,7 @@ class HeaderWidget extends StatefulWidget {
   _HeaderWidgetState createState() => _HeaderWidgetState();
 }
 
-class _HeaderWidgetState extends State<HeaderWidget>
-    with SingleTickerProviderStateMixin {
+class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderStateMixin {
   AnimationController _chefAnimationController;
   Animation<dynamic> _curve;
 
@@ -36,7 +35,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
     _chefAnimationController = AnimationController(
       duration: const Duration(milliseconds: 1600),
       vsync: this,
-    );
+    )..forward();
     _curve = CurvedAnimation(
       parent: _chefAnimationController,
       curve: Curves.easeInOutBack,
@@ -46,15 +45,13 @@ class _HeaderWidgetState extends State<HeaderWidget>
       (AnimationStatus status) async {
         if (status == AnimationStatus.completed) {
           await Future<Duration>.delayed(const Duration(seconds: 3));
-          _chefAnimationController.reverse();
+          await _chefAnimationController.reverse();
         } else if (status == AnimationStatus.dismissed) {
           await Future<Duration>.delayed(const Duration(seconds: 3));
-          _chefAnimationController.forward();
+          await _chefAnimationController.forward();
         }
       },
     );
-
-    _chefAnimationController.forward();
   }
 
   @override
@@ -65,16 +62,14 @@ class _HeaderWidgetState extends State<HeaderWidget>
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController =
-        Get.find<SpoonacularController>();
+    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
 
     if (widget.chefOnly) {
       return Center(
         child: RotationTransition(
           turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
           child: GestureDetector(
-            onLongPress: () =>
-                _spoonacularController.audioPlayer.play('boom.wav'),
+            onLongPress: () => _spoonacularController.audioPlayer.play('boom.wav'),
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
               child: Image.asset(
@@ -117,8 +112,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
           RotationTransition(
             turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
             child: GestureDetector(
-              onLongPress: () =>
-                  _spoonacularController.audioPlayer.play('boom.wav'),
+              onLongPress: () => _spoonacularController.audioPlayer.play('boom.wav'),
               behavior: HitTestBehavior.translucent,
               child: PressableDough(
                 child: Image.asset(
@@ -161,8 +155,7 @@ class _HeaderWidgetState extends State<HeaderWidget>
         RotationTransition(
           turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
           child: GestureDetector(
-            onLongPress: () =>
-                _spoonacularController.audioPlayer.play('boom.wav'),
+            onLongPress: () => _spoonacularController.audioPlayer.play('boom.wav'),
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
               child: Image.asset(
