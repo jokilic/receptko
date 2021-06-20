@@ -4,13 +4,14 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../controllers/spoonacular_controller.dart';
+import '../controllers/theme_controller.dart';
 import '../screens/results_screen.dart';
 
 class SearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController =
-        Get.find<SpoonacularController>();
+    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return TextField(
       onSubmitted: (String value) {
@@ -19,36 +20,40 @@ class SearchWidget extends StatelessWidget {
       },
       onChanged: (String value) => _spoonacularController.searchQuery = value,
       textCapitalization: TextCapitalization.sentences,
-      style: const TextStyle(
-        color: MyColors.textColor,
+      style: TextStyle(
+        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
         fontWeight: FontWeight.w600,
       ),
-      cursorColor: MyColors.textColor,
+      cursorColor: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
       decoration: InputDecoration(
         prefixIcon: Image.asset(
           MyIcons.search,
           width: 30.0,
-          color: MyColors.textColor,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
         ),
         hintText: 'Search for a meal...',
-        hintStyle: TextStyle(color: MyColors.textColor.withOpacity(0.4)),
+        hintStyle: TextStyle(
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.4)
+              : LightColors.textColor.withOpacity(0.4),
+        ),
         border: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: MyColors.backgroundColor,
+          borderSide: BorderSide(
+            color: _themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
           ),
           borderRadius: BorderRadius.circular(16.0),
         ),
         filled: true,
-        fillColor: MyColors.backgroundColor,
+        fillColor: _themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: MyColors.backgroundColor,
+          borderSide: BorderSide(
+            color: _themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
           ),
           borderRadius: BorderRadius.circular(16.0),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: MyColors.backgroundColor,
+          borderSide: BorderSide(
+            color: _themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
           ),
           borderRadius: BorderRadius.circular(16.0),
         ),

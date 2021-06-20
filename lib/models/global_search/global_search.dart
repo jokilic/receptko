@@ -30,9 +30,7 @@ class GlobalSearch {
     limit = json['limit'];
     offset = json['offset'];
     final List<dynamic> searchResultsList = json['searchResults'];
-    searchResults = searchResultsList
-        .map((dynamic searchResult) => SearchResults.fromJson(searchResult))
-        .toList();
+    searchResults = searchResultsList.map((searchResult) => SearchResults.fromJson(searchResult)).toList();
     expires = json['expires'];
   }
 }
@@ -55,8 +53,7 @@ class SearchResults {
     type = json['type'];
     totalResults = json['totalResults'];
     final List<dynamic> resultsList = json['results'];
-    results =
-        resultsList.map((dynamic result) => Results.fromJson(result)).toList();
+    results = resultsList.map((result) => Results.fromJson(result)).toList();
   }
 }
 

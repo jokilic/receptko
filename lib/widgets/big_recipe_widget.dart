@@ -5,6 +5,7 @@ import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/images.dart';
 import '../constants/text_styles.dart';
+import '../controllers/theme_controller.dart';
 
 class BigRecipeWidget extends StatelessWidget {
   final Function onTap;
@@ -23,6 +24,8 @@ class BigRecipeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController _themeController = Get.find<ThemeController>();
+
     return InkWell(
       onTap: onTap,
       child: SizedBox(
@@ -47,58 +50,65 @@ class BigRecipeWidget extends StatelessWidget {
                       width: double.infinity,
                     ),
             ),
-            Container(
-              height: 120.0,
-              width: double.infinity,
-              margin: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24.0),
-                color: MyColors.bodyColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 16.0),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              title,
-                              style: MyTextStyles.bigRecipeWidgetTitle,
-                            ),
-                            const SizedBox(height: 4.0),
-                            Text(
-                              mealType,
-                              style:
-                                  MyTextStyles.bigRecipeWidgetSubtitle.copyWith(
-                                color: MyColors.textColor.withOpacity(0.4),
+            Obx(
+              () => Container(
+                height: 120.0,
+                width: double.infinity,
+                margin: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24.0),
+                  color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 16.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                title,
+                                style: MyTextStyles.bigRecipeWidgetTitle.copyWith(
+                                  color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                ),
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 4.0),
+                              Text(
+                                mealType,
+                                style: MyTextStyles.bigRecipeWidgetSubtitle.copyWith(
+                                  color: _themeController.darkTheme
+                                      ? DarkColors.textColor.withOpacity(0.4)
+                                      : LightColors.textColor.withOpacity(0.4),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          MyIcons.favoriteOutline,
-                          width: 44.0,
-                          height: 44.0,
-                          color: MyColors.textColor,
-                        ),
-                        const SizedBox(height: 4.0),
-                        Text(
-                          '$score',
-                          style: MyTextStyles.bigRecipeWidgetRating,
-                        ),
-                      ],
-                    ),
-                  ],
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            MyIcons.favoriteOutline,
+                            width: 44.0,
+                            height: 44.0,
+                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          ),
+                          const SizedBox(height: 4.0),
+                          Text(
+                            '$score',
+                            style: MyTextStyles.bigRecipeWidgetRating.copyWith(
+                              color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

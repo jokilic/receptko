@@ -9,9 +9,7 @@ class WineForDishPairing {
     pairedWines = json['pairedWines'];
     pairingText = json['pairingText'];
     final List<dynamic> productMatchesList = json['productMatches'];
-    productMatches = productMatchesList
-        .map((dynamic productMatch) => ProductMatches.fromJson(productMatch))
-        .toList();
+    productMatches = productMatchesList.map((productMatch) => ProductMatches.fromJson(productMatch)).toList();
   }
 }
 

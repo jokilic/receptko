@@ -66,9 +66,7 @@ class Product {
     upc = json['upc'];
     brand = json['brand'];
     final List<dynamic> ingredientsList = json['ingredients'];
-    ingredients = ingredientsList
-        .map((dynamic ingredient) => ProductIngredients.fromJson(ingredient))
-        .toList();
+    ingredients = ingredientsList.map((ingredient) => ProductIngredients.fromJson(ingredient)).toList();
     ingredientCount = json['ingredientCount'];
     ingredientList = json['ingredientList'];
     images = json['images'];
@@ -95,11 +93,8 @@ class ProductNutrition {
 
   ProductNutrition.fromJson(Map<String, dynamic> json) {
     final List<dynamic> nutrientsList = json['nutrients'];
-    nutrients = nutrientsList
-        .map((dynamic nutrient) => ProductNutrients.fromJson(nutrient))
-        .toList();
-    caloricBreakdown =
-        ProductCaloricBreakdown.fromJson(json['caloricBreakdown']);
+    nutrients = nutrientsList.map((nutrient) => ProductNutrients.fromJson(nutrient)).toList();
+    caloricBreakdown = ProductCaloricBreakdown.fromJson(json['caloricBreakdown']);
     calories = json['calories'];
     fat = json['fat'];
     protein = json['protein'];
@@ -133,8 +128,7 @@ class ProductCaloricBreakdown {
   double percentFat;
   double percentCarbs;
 
-  ProductCaloricBreakdown(
-      {this.percentProtein, this.percentFat, this.percentCarbs});
+  ProductCaloricBreakdown({this.percentProtein, this.percentFat, this.percentCarbs});
 
   ProductCaloricBreakdown.fromJson(Map<String, dynamic> json) {
     percentProtein = json['percentProtein'];

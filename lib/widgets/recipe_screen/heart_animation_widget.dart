@@ -1,9 +1,11 @@
+import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/shadows.dart';
 import '../../controllers/spoonacular_controller.dart';
+import '../../controllers/theme_controller.dart';
 
 class HeartAnimationWidget extends StatefulWidget {
   final String heartIcon;
@@ -16,12 +18,10 @@ class HeartAnimationWidget extends StatefulWidget {
   _HeartAnimationWidgetState createState() => _HeartAnimationWidgetState();
 }
 
-class _HeartAnimationWidgetState extends State<HeartAnimationWidget>
-    with SingleTickerProviderStateMixin {
+class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<double> _sizeAnimation;
-  final SpoonacularController _spoonacularController =
-      Get.find<SpoonacularController>();
+  final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
 
   @override
   void initState() {
@@ -59,23 +59,25 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget>
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController _themeController = Get.find<ThemeController>();
+
     return AnimatedBuilder(
       animation: _animationController,
       builder: (BuildContext context, Widget child) {
-        _spoonacularController.recipeIsFavorited
-            ? _animationController.forward()
-            : _animationController.reset();
+        _spoonacularController.recipeIsFavorited ? _animationController.forward() : _animationController.reset();
 
-        return Container(
-          width: 74.0,
-          height: 74.0,
-          padding: EdgeInsets.all(_sizeAnimation.value),
-          decoration: BoxDecoration(
-            color: MyColors.bodyColor,
-            shape: BoxShape.circle,
-            boxShadow: Shadows.myShadow,
+        return PressableDough(
+          child: Container(
+            width: 74.0,
+            height: 74.0,
+            padding: EdgeInsets.all(_sizeAnimation.value),
+            decoration: BoxDecoration(
+              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+              shape: BoxShape.circle,
+              boxShadow: Shadows.myShadow,
+            ),
+            child: child,
           ),
-          child: child,
         );
       },
       child: Image.asset(

@@ -36,10 +36,8 @@ class SpoonacularController extends GetxController {
   RxList<String> _wantedMealTypesList = <String>[].obs;
   RxList<String> _ingredientsInKitchen = <String>[].obs;
   RxList<String> _unwantedIngredientsInKitchen = <String>[].obs;
-  final TextEditingController _ingredientsInKitchenController =
-      TextEditingController();
-  final TextEditingController _unwantedIngredientsInKitchenController =
-      TextEditingController();
+  final TextEditingController _ingredientsInKitchenController = TextEditingController();
+  final TextEditingController _unwantedIngredientsInKitchenController = TextEditingController();
   final RxString _wantedCuisines = ''.obs;
   final RxString _wantedDiets = ''.obs;
   final RxString _nonWantedIntolerances = ''.obs;
@@ -72,12 +70,9 @@ class SpoonacularController extends GetxController {
   List<String> get intolerancesList => _intolerancesList;
   List<String> get wantedMealTypesList => _wantedMealTypesList;
   List<String> get ingredientsInKitchen => _ingredientsInKitchen;
-  List<String> get unwantedIngredientsInKitchen =>
-      _unwantedIngredientsInKitchen;
-  TextEditingController get ingredientsInKitchenController =>
-      _ingredientsInKitchenController;
-  TextEditingController get unwantedIngredientsInKitchenController =>
-      _unwantedIngredientsInKitchenController;
+  List<String> get unwantedIngredientsInKitchen => _unwantedIngredientsInKitchen;
+  TextEditingController get ingredientsInKitchenController => _ingredientsInKitchenController;
+  TextEditingController get unwantedIngredientsInKitchenController => _unwantedIngredientsInKitchenController;
   String get wantedCuisines => _wantedCuisines.value;
   String get wantedDiets => _wantedDiets.value;
   String get nonWantedIntolerances => _nonWantedIntolerances.value;
@@ -97,12 +92,10 @@ class SpoonacularController extends GetxController {
   set randomRecipes(List<Recipe> value) => _randomRecipes.assignAll(value);
   set cuisineRecipes(List<Recipe> value) => _cuisineRecipes.assignAll(value);
   set mealTypeRecipes(List<Recipe> value) => _mealTypeRecipes.assignAll(value);
-  set recipeSearchResult(RecipeSearchResult value) =>
-      _recipeSearchResult.value = value;
+  set recipeSearchResult(RecipeSearchResult value) => _recipeSearchResult.value = value;
   set recipeInformation(Recipe value) => _recipeInformation.value = value;
   set recipeIsFavorited(bool value) => _recipeIsFavorited.value = value;
-  set favoriteRecipes(List<List<String>> value) =>
-      _favoriteRecipes.assignAll(value);
+  set favoriteRecipes(List<List<String>> value) => _favoriteRecipes.assignAll(value);
   set randomCuisineName(String value) => _randomCuisineName.value = value;
   set randomMealTypeName(String value) => _randomMealTypeName.value = value;
   set wantedCuisinesList(List<String> value) => _wantedCuisinesList = value;
@@ -110,12 +103,10 @@ class SpoonacularController extends GetxController {
   set intolerancesList(List<String> value) => _intolerancesList = value;
   set wantedMealTypesList(List<String> value) => _wantedMealTypesList = value;
   set ingredientsInKitchen(List<String> value) => _ingredientsInKitchen = value;
-  set unwantedIngredientsInKitchen(List<String> value) =>
-      _unwantedIngredientsInKitchen = value;
+  set unwantedIngredientsInKitchen(List<String> value) => _unwantedIngredientsInKitchen = value;
   set wantedCuisines(String value) => _wantedCuisines.value = value;
   set wantedDiets(String value) => _wantedDiets.value = value;
-  set nonWantedIntolerances(String value) =>
-      _nonWantedIntolerances.value = value;
+  set nonWantedIntolerances(String value) => _nonWantedIntolerances.value = value;
   set wantedIngredients(String value) => _wantedIngredients.value = value;
   set nonWantedIngredients(String value) => _nonWantedIngredients.value = value;
   set wantedMealTypes(String value) => _wantedMealTypes.value = value;
@@ -145,34 +136,29 @@ class SpoonacularController extends GetxController {
   /// ------------------------
 
   Future<void> getRandomRecipes(int number) async {
-    final List<Recipe> _fetchedRandomRecipes =
-        await _network.getRandomRecipes(number: number);
+    final List<Recipe> _fetchedRandomRecipes = await _network.getRandomRecipes(number: number);
     randomRecipes = _fetchedRandomRecipes;
   }
 
   Future<void> getCuisineRecipes(int number, String tag) async {
-    final List<Recipe> _fetchedCuisineRecipes =
-        await _network.getRandomRecipes(number: number, tag: tag);
+    final List<Recipe> _fetchedCuisineRecipes = await _network.getRandomRecipes(number: number, tag: tag);
     cuisineRecipes = _fetchedCuisineRecipes;
   }
 
   Future<void> getMealTypeRecipes(int number, String tag) async {
-    final List<Recipe> _fetchedMealTypeRecipes =
-        await _network.getRandomRecipes(number: number, tag: tag);
+    final List<Recipe> _fetchedMealTypeRecipes = await _network.getRandomRecipes(number: number, tag: tag);
     mealTypeRecipes = _fetchedMealTypeRecipes;
   }
 
   Future<void> searchRecipes(String query) async {
     recipeSearchResult = null;
-    final RecipeSearchResult _fetchedRecipeSearchResult =
-        await _network.searchRecipes(query);
+    final RecipeSearchResult _fetchedRecipeSearchResult = await _network.searchRecipes(query);
     recipeSearchResult = _fetchedRecipeSearchResult;
   }
 
   Future<void> complexRecipeSearch() async {
     recipeSearchResult = null;
-    final RecipeSearchResult _fetchedRecipeSearchResult =
-        await _network.complexRecipeSearch(
+    final RecipeSearchResult _fetchedRecipeSearchResult = await _network.complexRecipeSearch(
       cuisine: wantedCuisines,
       diet: wantedDiets,
       intolerances: nonWantedIntolerances,
@@ -187,8 +173,7 @@ class SpoonacularController extends GetxController {
   Future<void> getRecipeInformation(int id) async {
     showMoreSummary = false;
     recipeInformation = null;
-    final Recipe _fetchedRecipeInformation =
-        await _network.getRecipeInformation(id);
+    final Recipe _fetchedRecipeInformation = await _network.getRecipeInformation(id);
     recipeInformation = _fetchedRecipeInformation;
     getRecipeIsFavorited(id);
   }
@@ -196,7 +181,7 @@ class SpoonacularController extends GetxController {
   String cleanDescription(int index) {
     final String htmlDescription = recipeSearchResult.results[index].summary;
     final RegExp regExp = RegExp(
-      r"<[^>]*>",
+      '<[^>]*>',
       multiLine: true,
     );
     final String cleanDescription = htmlDescription.replaceAll(regExp, '');
@@ -206,7 +191,7 @@ class SpoonacularController extends GetxController {
 
   String cleanSummary(String summary) {
     final RegExp regExp = RegExp(
-      r"<[^>]*>",
+      '<[^>]*>',
       multiLine: true,
     );
     final String cleanSummary = summary.replaceAll(regExp, '');
@@ -230,11 +215,17 @@ class SpoonacularController extends GetxController {
 
   Color clockColor(int index) {
     final int minutes = recipeSearchResult.results[index].readyInMinutes;
-    if (minutes > 0 && minutes <= 40) return MyColors.greenColor;
-    if (minutes > 40 && minutes <= 70) return MyColors.orangeColor;
-    if (minutes > 70) return MyColors.redColor;
+    if (minutes > 0 && minutes <= 40) {
+      return LightColors.greenColor;
+    }
+    if (minutes > 40 && minutes <= 70) {
+      return LightColors.orangeColor;
+    }
+    if (minutes > 70) {
+      return LightColors.redColor;
+    }
 
-    return MyColors.blueColor;
+    return LightColors.blueColor;
   }
 
   void incrementMinutes() {
@@ -278,15 +269,12 @@ class SpoonacularController extends GetxController {
   /// ------------------------
 
   Future<void> toggleFavoriteRecipe(Recipe chosenRecipe) async {
-    recipeIsFavorited
-        ? await removeFavoriteRecipe('${chosenRecipe.id}')
-        : await setFavoriteRecipe(chosenRecipe);
+    recipeIsFavorited ? await removeFavoriteRecipe('${chosenRecipe.id}') : await setFavoriteRecipe(chosenRecipe);
     recipeIsFavorited = !recipeIsFavorited;
     getFavoriteRecipes();
   }
 
-  void getRecipeIsFavorited(int recipeId) =>
-      recipeIsFavorited = getFavoriteRecipe('$recipeId') != null;
+  void getRecipeIsFavorited(int recipeId) => recipeIsFavorited = getFavoriteRecipe('$recipeId') != null;
 
   Future<void> setFavoriteRecipe(Recipe favoritedRecipe) async {
     final List<String> favoritedRecipeList = <String>[
@@ -296,21 +284,19 @@ class SpoonacularController extends GetxController {
       '${favoritedRecipe.spoonacularScore}',
     ];
 
-    return _sharedPreferences.setStringList(
-        '${favoritedRecipe.id}', favoritedRecipeList);
+    return _sharedPreferences.setStringList('${favoritedRecipe.id}', favoritedRecipeList);
   }
 
-  List<String> getFavoriteRecipe(String key) =>
-      _sharedPreferences.getStringList(key);
+  List<String> getFavoriteRecipe(String key) => _sharedPreferences.getStringList(key);
 
-  Future<bool> removeFavoriteRecipe(String key) async =>
-      _sharedPreferences.remove(key);
+  Future<bool> removeFavoriteRecipe(String key) async => _sharedPreferences.remove(key);
 
   /// Get all favorited recipes
   void getFavoriteRecipes() {
     favoriteRecipes.clear();
-    final Set<String> keys = _sharedPreferences.getKeys();
-    keys.forEach((String key) => favoriteRecipes.add(getFavoriteRecipe(key)));
+    _sharedPreferences.getKeys().forEach(
+          (String key) => key != 'darkTheme' ? favoriteRecipes.add(getFavoriteRecipe(key)) : null,
+        );
   }
 
   /// ------------------------

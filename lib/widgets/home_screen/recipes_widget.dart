@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../controllers/spoonacular_controller.dart';
+import '../../controllers/theme_controller.dart';
 import '../../models/recipe/recipe.dart';
 import '../../screens/recipe_screen.dart';
 import '../../widgets/big_recipe_widget.dart';
@@ -22,8 +23,8 @@ class RecipesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController =
-        Get.find<SpoonacularController>();
+    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Obx(
       () {
@@ -43,12 +44,10 @@ class RecipesWidget extends StatelessWidget {
               final Recipe recipe = recipes[index];
 
               return RecipeWidget(
-                color: MyColors.randomColor,
+                color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                 image: recipe.image,
                 score: recipe.spoonacularScore / 20 ?? 0.0,
-                title: recipe.title.length > 24
-                    ? '${recipe.title.substring(0, 24)}...'
-                    : recipe.title,
+                title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                 onTap: () {
                   _spoonacularController.getRecipeInformation(recipe.id);
                   Get.toNamed(RecipeScreen.routeName);
@@ -68,12 +67,10 @@ class RecipesWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: BigRecipeLoadingWidget(),
-                  );
-                },
+                itemBuilder: (BuildContext context, int index) => Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: BigRecipeLoadingWidget(),
+                ),
               ),
             );
           }
@@ -92,13 +89,10 @@ class RecipesWidget extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(right: 20.0),
                   child: BigRecipeWidget(
-                    mealType:
-                        recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
+                    mealType: recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
                     image: recipe.image,
                     score: recipe.spoonacularScore / 20 ?? 0.0,
-                    title: recipe.title.length > 20
-                        ? '${recipe.title.substring(0, 20)}...'
-                        : recipe.title,
+                    title: recipe.title.length > 20 ? '${recipe.title.substring(0, 20)}...' : recipe.title,
                     onTap: () {
                       _spoonacularController.getRecipeInformation(recipe.id);
                       Get.toNamed(RecipeScreen.routeName);
@@ -124,12 +118,10 @@ class RecipesWidget extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: RecipeWidget(
-                  color: MyColors.randomColor,
+                  color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                   image: recipe.image,
                   score: recipe.spoonacularScore / 20 ?? 0.0,
-                  title: recipe.title.length > 24
-                      ? '${recipe.title.substring(0, 24)}...'
-                      : recipe.title,
+                  title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                   onTap: () {
                     _spoonacularController.getRecipeInformation(recipe.id);
                     Get.toNamed(RecipeScreen.routeName);

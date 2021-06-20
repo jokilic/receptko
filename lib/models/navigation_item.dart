@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
+import '../controllers/theme_controller.dart';
 import '../screens/screens.dart';
 
 class NavigationItem {
@@ -18,70 +20,82 @@ class NavigationItem {
     @required this.iconActive,
   });
 
-  static List<NavigationItem> get items => <NavigationItem>[
-        NavigationItem(
-          page: HomeScreen(),
-          icon: Image.asset(
-            MyIcons.home,
-            width: 44.0,
-            height: 44.0,
-            color: MyColors.backgroundColor.withOpacity(0.2),
-          ),
-          iconActive: Image.asset(
-            MyIcons.home,
-            width: 44.0,
-            height: 44.0,
-            color: MyColors.backgroundColor,
-          ),
-          title: 'Home',
+  static List<NavigationItem> get items {
+    final ThemeController _themeController = Get.find<ThemeController>();
+
+    return <NavigationItem>[
+      NavigationItem(
+        page: HomeScreen(),
+        icon: Image.asset(
+          MyIcons.home,
+          width: 44.0,
+          height: 44.0,
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.2)
+              : LightColors.backgroundColor.withOpacity(0.2),
         ),
-        NavigationItem(
-          page: SearchScreen(),
-          icon: Image.asset(
-            MyIcons.search,
-            width: 44.0,
-            height: 44.0,
-            color: MyColors.backgroundColor.withOpacity(0.2),
-          ),
-          iconActive: Image.asset(
-            MyIcons.search,
-            width: 44.0,
-            height: 44.0,
-            color: MyColors.backgroundColor,
-          ),
-          title: 'Search',
+        iconActive: Image.asset(
+          MyIcons.home,
+          width: 44.0,
+          height: 44.0,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
-        NavigationItem(
-          page: CategoriesScreen(),
-          icon: Image.asset(
-            MyIcons.categories,
-            width: 44.0,
-            height: 44.0,
-            color: MyColors.backgroundColor.withOpacity(0.2),
-          ),
-          iconActive: Image.asset(
-            MyIcons.categories,
-            width: 44.0,
-            height: 44.0,
-            color: MyColors.backgroundColor,
-          ),
-          title: 'Categories',
+        title: 'Home',
+      ),
+      NavigationItem(
+        page: SearchScreen(),
+        icon: Image.asset(
+          MyIcons.search,
+          width: 44.0,
+          height: 44.0,
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.2)
+              : LightColors.backgroundColor.withOpacity(0.2),
         ),
-        NavigationItem(
-          page: FavoritesScreen(),
-          icon: Image.asset(
-            MyIcons.heart,
-            width: 44.0,
-            height: 44.0,
-            color: MyColors.backgroundColor.withOpacity(0.2),
-          ),
-          iconActive: Image.asset(
-            MyIcons.heart,
-            width: 44.0,
-            height: 44.0,
-            color: MyColors.backgroundColor,
-          ),
-          title: 'Favorites',
+        iconActive: Image.asset(
+          MyIcons.search,
+          width: 44.0,
+          height: 44.0,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
-      ];
+        title: 'Search',
+      ),
+      NavigationItem(
+        page: CategoriesScreen(),
+        icon: Image.asset(
+          MyIcons.categories,
+          width: 44.0,
+          height: 44.0,
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.2)
+              : LightColors.backgroundColor.withOpacity(0.2),
+        ),
+        iconActive: Image.asset(
+          MyIcons.categories,
+          width: 44.0,
+          height: 44.0,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+        ),
+        title: 'Categories',
+      ),
+      NavigationItem(
+        page: FavoritesScreen(),
+        icon: Image.asset(
+          MyIcons.heart,
+          width: 44.0,
+          height: 44.0,
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.2)
+              : LightColors.backgroundColor.withOpacity(0.2),
+        ),
+        iconActive: Image.asset(
+          MyIcons.heart,
+          width: 44.0,
+          height: 44.0,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+        ),
+        title: 'Favorites',
+      ),
+    ];
+  }
 }
