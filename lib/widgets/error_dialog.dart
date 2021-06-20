@@ -40,15 +40,25 @@ class ErrorDialog extends StatelessWidget {
                   Text(
                     'Sadly, the limit for fetching recipes has been reached.',
                     style: Get.height < 700
-                        ? MyTextStyles.errorDialogText.copyWith(fontSize: 18.0)
-                        : MyTextStyles.errorDialogText,
+                        ? MyTextStyles.errorDialogText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            fontSize: 18.0,
+                          )
+                        : MyTextStyles.errorDialogText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          ),
                   ),
                   const SizedBox(height: 16.0),
                   Text(
                     'Please try again tomorrow, when the quota gets reset.',
                     style: Get.height < 700
-                        ? MyTextStyles.errorDialogText.copyWith(fontSize: 18.0)
-                        : MyTextStyles.errorDialogText,
+                        ? MyTextStyles.errorDialogText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            fontSize: 18.0,
+                          )
+                        : MyTextStyles.errorDialogText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          ),
                   ),
                 ],
               ),
