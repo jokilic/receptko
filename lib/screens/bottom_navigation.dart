@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,11 +26,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Obx(
       () => Scaffold(
         backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-        body: IndexedStack(
-          index: _currentIndex,
-          children: <Widget>[
-            for (final NavigationItem navigationItem in NavigationItem.items) navigationItem.page,
-          ],
+        body: PageTransitionSwitcher(
+          duration: const Duration(milliseconds: 400),
+          transitionBuilder: (child, primaryAnimation, secondaryAnimation) => FadeThroughTransition(
+            animation: primaryAnimation,
+            secondaryAnimation: secondaryAnimation,
+            fillColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+            child: child,
+          ),
+          child: NavigationItem.items[_currentIndex].page,
         ),
         bottomNavigationBar: SizedBox(
           height: 80.0,
