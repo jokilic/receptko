@@ -21,7 +21,7 @@ class IngredientWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,16 +47,24 @@ class IngredientWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                title,
-                style: MyTextStyles.recipeIngredientName.copyWith(
-                  color: _isDark ? DarkColors.textColor.withOpacity(0.8) : LightColors.textColor.withOpacity(0.8),
+              Obx(
+                () => Text(
+                  title,
+                  style: MyTextStyles.recipeIngredientName.copyWith(
+                    color: _themeController.darkTheme
+                        ? DarkColors.textColor.withOpacity(0.8)
+                        : LightColors.textColor.withOpacity(0.8),
+                  ),
                 ),
               ),
-              Text(
-                '${amount.toStringAsFixed(1)} $unit',
-                style: MyTextStyles.recipeIngredientAmount.copyWith(
-                  color: _isDark ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
+              Obx(
+                () => Text(
+                  '${amount.toStringAsFixed(1)} $unit',
+                  style: MyTextStyles.recipeIngredientAmount.copyWith(
+                    color: _themeController.darkTheme
+                        ? DarkColors.textColor.withOpacity(0.4)
+                        : LightColors.textColor.withOpacity(0.4),
+                  ),
                 ),
               ),
             ],

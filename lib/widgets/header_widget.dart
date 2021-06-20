@@ -2,9 +2,11 @@ import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constants/colors.dart';
 import '../constants/images.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
+import '../controllers/theme_controller.dart';
 
 class HeaderWidget extends StatefulWidget {
   final String title;
@@ -63,13 +65,17 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     if (widget.chefOnly) {
       return Center(
         child: RotationTransition(
           turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
           child: GestureDetector(
-            onLongPress: () => _spoonacularController.audioPlayer.play('boom.wav'),
+            onLongPress: () {
+              _themeController.toggleTheme();
+              _spoonacularController.audioPlayer.play('boom.wav');
+            },
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
               child: Image.asset(
@@ -92,18 +98,26 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
             children: <Widget>[
               SizedBox(
                 width: Get.width * 0.35,
-                child: Text(
-                  widget.title,
-                  style: MyTextStyles.headline2Text,
+                child: Obx(
+                  () => Text(
+                    widget.title,
+                    style: MyTextStyles.headline2Text.copyWith(
+                      color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                    ),
+                  ),
                 ),
               ),
               if (widget.hasSubtitle) ...<Widget>[
                 const SizedBox(height: 4.0),
                 SizedBox(
                   width: Get.width * 0.3,
-                  child: Text(
-                    widget.subtitle,
-                    style: MyTextStyles.headline3Text,
+                  child: Obx(
+                    () => Text(
+                      widget.subtitle,
+                      style: MyTextStyles.headline3Text.copyWith(
+                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -112,7 +126,10 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           RotationTransition(
             turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
             child: GestureDetector(
-              onLongPress: () => _spoonacularController.audioPlayer.play('boom.wav'),
+              onLongPress: () {
+                _themeController.toggleTheme();
+                _spoonacularController.audioPlayer.play('boom.wav');
+              },
               behavior: HitTestBehavior.translucent,
               child: PressableDough(
                 child: Image.asset(
@@ -135,18 +152,26 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           children: <Widget>[
             SizedBox(
               width: Get.width * 0.5,
-              child: Text(
-                widget.title,
-                style: MyTextStyles.headline1Text,
+              child: Obx(
+                () => Text(
+                  widget.title,
+                  style: MyTextStyles.headline1Text.copyWith(
+                    color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                  ),
+                ),
               ),
             ),
             if (widget.hasSubtitle) ...<Widget>[
               const SizedBox(height: 8.0),
               SizedBox(
                 width: Get.width * 0.5,
-                child: Text(
-                  widget.subtitle,
-                  style: MyTextStyles.headline3Text,
+                child: Obx(
+                  () => Text(
+                    widget.subtitle,
+                    style: MyTextStyles.headline3Text.copyWith(
+                      color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -155,7 +180,10 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
         RotationTransition(
           turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
           child: GestureDetector(
-            onLongPress: () => _spoonacularController.audioPlayer.play('boom.wav'),
+            onLongPress: () {
+              _themeController.toggleTheme();
+              _spoonacularController.audioPlayer.play('boom.wav');
+            },
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
               child: Image.asset(

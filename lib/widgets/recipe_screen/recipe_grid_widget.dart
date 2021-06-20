@@ -33,7 +33,9 @@ class RecipeGridWidget extends StatelessWidget {
             const SizedBox(height: 16.0),
             Text(
               text,
-              style: MyTextStyles.recipeGrid.copyWith(color: color),
+              style: MyTextStyles.recipeGrid.copyWith(
+                color: color,
+              ),
               textAlign: TextAlign.center,
             ),
           ],

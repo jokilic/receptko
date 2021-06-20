@@ -30,10 +30,6 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const SizedBox(height: 24.0),
-                  KuharkoButton(
-                    text: 'Dark theme',
-                    onTap: _themeController.toggleTheme,
-                  ),
                   const Padding(
                     padding: EdgeInsets.only(right: 20.0),
                     child: HeaderWidget(title: 'What would you like to Cook?'),
@@ -49,7 +45,9 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20.0),
                       child: Text(
                         'Something from the ${_spoonacularController.randomCuisineName} cuisine',
-                        style: MyTextStyles.headline2Text,
+                        style: MyTextStyles.headline2Text.copyWith(
+                          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        ),
                       ),
                     ),
                   ),
@@ -64,7 +62,9 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20.0),
                       child: Text(
                         'Some ${_spoonacularController.randomMealTypeName} recipes',
-                        style: MyTextStyles.headline2Text,
+                        style: MyTextStyles.headline2Text.copyWith(
+                          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        ),
                       ),
                     ),
                   ),
@@ -74,11 +74,15 @@ class HomeScreen extends StatelessWidget {
                     isBig: true,
                   ),
                   const SizedBox(height: 24.0),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: Text(
-                      'Completely random recipes',
-                      style: MyTextStyles.headline2Text,
+                  Obx(
+                    () => Padding(
+                      padding: const EdgeInsets.only(right: 20.0),
+                      child: Text(
+                        'Completely random recipes',
+                        style: MyTextStyles.headline2Text.copyWith(
+                          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 74.0),

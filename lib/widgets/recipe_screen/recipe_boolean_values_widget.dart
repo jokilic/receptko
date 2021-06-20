@@ -17,33 +17,31 @@ class RecipeBooleanValuesWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
-
-    return Container(
-      height: 55.0,
-      width: 170.0,
-      margin: const EdgeInsets.only(right: 16.0),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(36.0),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            icon,
-            height: 32.0,
-            width: 32.0,
-            color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
-          ),
-          const SizedBox(width: 16.0),
-          Text(
-            text,
-            style: MyTextStyles.recipeBooleanValues,
-          ),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+        height: 55.0,
+        width: 170.0,
+        margin: const EdgeInsets.only(right: 16.0),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(36.0),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              icon,
+              height: 32.0,
+              width: 32.0,
+              color: LightColors.backgroundColor,
+            ),
+            const SizedBox(width: 16.0),
+            Text(
+              text,
+              style: MyTextStyles.recipeBooleanValues.copyWith(
+                color: LightColors.backgroundColor,
+              ),
+            ),
+          ],
+        ),
+      );
 }

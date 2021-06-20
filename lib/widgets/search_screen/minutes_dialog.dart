@@ -31,7 +31,7 @@ class MinutesDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Material(
       type: MaterialType.transparency,
@@ -44,7 +44,7 @@ class MinutesDialog extends StatelessWidget {
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
-                color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+                color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               height: Get.height < 768 ? Get.height * 0.35 : Get.height * 0.25,
               width: Get.width * 0.8,
@@ -62,9 +62,13 @@ class MinutesDialog extends StatelessWidget {
                         ),
                         const SizedBox(width: 16.0),
                         Expanded(
-                          child: Text(
-                            title,
-                            style: MyTextStyles.searchDialogHeadingText,
+                          child: Obx(
+                            () => Text(
+                              title,
+                              style: MyTextStyles.searchDialogHeadingText.copyWith(
+                                color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -85,9 +89,13 @@ class MinutesDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 24.0),
-                        Text(
-                          '$minutes',
-                          style: MyTextStyles.searchDialogMinuteText,
+                        Obx(
+                          () => Text(
+                            '$minutes',
+                            style: MyTextStyles.searchDialogMinuteText.copyWith(
+                              color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            ),
+                          ),
                         ),
                         const SizedBox(width: 24.0),
                         GestureDetector(

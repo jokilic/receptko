@@ -59,7 +59,7 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
 
   @override
   Widget build(BuildContext context) {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return AnimatedBuilder(
       animation: _animationController,
@@ -72,7 +72,7 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
             height: 74.0,
             padding: EdgeInsets.all(_sizeAnimation.value),
             decoration: BoxDecoration(
-              color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               shape: BoxShape.circle,
               boxShadow: Shadows.myShadow,
             ),

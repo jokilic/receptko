@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 
@@ -6,11 +8,12 @@ import './colors.dart';
 
 class Shadows {
   static List<BoxShadow> get myShadow {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return <BoxShadow>[
       BoxShadow(
-        color: _isDark ? DarkColors.textColor.withOpacity(0.1) : LightColors.textColor.withOpacity(0.1),
+        color:
+            _themeController.darkTheme ? DarkColors.blueColor.withOpacity(0.1) : LightColors.textColor.withOpacity(0.1),
         spreadRadius: 2,
         blurRadius: 10,
         offset: const Offset(3, 3),

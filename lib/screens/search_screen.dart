@@ -2,6 +2,7 @@ import 'package:dough/dough.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kuharko/controllers/theme_controller.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
@@ -24,9 +25,10 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Scaffold(
-      backgroundColor: LightColors.bodyColor,
+      backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -46,13 +48,17 @@ class SearchScreen extends StatelessWidget {
                   () => RichText(
                     text: TextSpan(
                       text: 'I want recipes from ',
-                      style: MyTextStyles.searchText,
+                      style: MyTextStyles.searchText.copyWith(
+                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: _spoonacularController.wantedCuisines.isEmpty
                               ? '_____'
                               : _spoonacularController.wantedCuisines.toUpperCase(),
-                          style: MyTextStyles.searchDynamicText.copyWith(color: LightColors.randomColor),
+                          style: MyTextStyles.searchDynamicText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                          ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
                                   CheckboxDialog(
@@ -72,7 +78,9 @@ class SearchScreen extends StatelessWidget {
                           text: _spoonacularController.wantedDiets.isEmpty
                               ? '_____'
                               : _spoonacularController.wantedDiets.toUpperCase(),
-                          style: MyTextStyles.searchDynamicText.copyWith(color: LightColors.randomColor),
+                          style: MyTextStyles.searchDynamicText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                          ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
                                   CheckboxDialog(
@@ -98,13 +106,17 @@ class SearchScreen extends StatelessWidget {
                   () => RichText(
                     text: TextSpan(
                       text: "I'm ",
-                      style: MyTextStyles.searchText,
+                      style: MyTextStyles.searchText.copyWith(
+                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: _spoonacularController.nonWantedIntolerances.isEmpty
                               ? '_____'
                               : _spoonacularController.nonWantedIntolerances.toUpperCase(),
-                          style: MyTextStyles.searchDynamicText.copyWith(color: LightColors.randomColor),
+                          style: MyTextStyles.searchDynamicText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                          ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
                                   CheckboxDialog(
@@ -139,13 +151,17 @@ class SearchScreen extends StatelessWidget {
                   () => RichText(
                     text: TextSpan(
                       text: 'The ingredients I have in my kitchen are ',
-                      style: MyTextStyles.searchText,
+                      style: MyTextStyles.searchText.copyWith(
+                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: _spoonacularController.wantedIngredients.isEmpty
                               ? '_____'
                               : _spoonacularController.wantedIngredients.toUpperCase(),
-                          style: MyTextStyles.searchDynamicText.copyWith(color: LightColors.randomColor),
+                          style: MyTextStyles.searchDynamicText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                          ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
                                   SearchDialog(
@@ -172,13 +188,17 @@ class SearchScreen extends StatelessWidget {
                   () => RichText(
                     text: TextSpan(
                       text: "I don't want ",
-                      style: MyTextStyles.searchText,
+                      style: MyTextStyles.searchText.copyWith(
+                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: _spoonacularController.nonWantedIngredients.isEmpty
                               ? '_____'
                               : _spoonacularController.nonWantedIngredients.toUpperCase(),
-                          style: MyTextStyles.searchDynamicText.copyWith(color: LightColors.randomColor),
+                          style: MyTextStyles.searchDynamicText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                          ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
                                   SearchDialog(
@@ -215,13 +235,17 @@ class SearchScreen extends StatelessWidget {
                   () => RichText(
                     text: TextSpan(
                       text: "I'm trying to find ",
-                      style: MyTextStyles.searchText,
+                      style: MyTextStyles.searchText.copyWith(
+                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: _spoonacularController.wantedMealTypes.isEmpty
                               ? '_____'
                               : _spoonacularController.wantedMealTypes.toUpperCase(),
-                          style: MyTextStyles.searchDynamicText.copyWith(color: LightColors.randomColor),
+                          style: MyTextStyles.searchDynamicText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                          ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
                                   CheckboxDialog(
@@ -247,13 +271,17 @@ class SearchScreen extends StatelessWidget {
                   () => RichText(
                     text: TextSpan(
                       text: 'I want my food to be ready in ',
-                      style: MyTextStyles.searchText,
+                      style: MyTextStyles.searchText.copyWith(
+                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: _spoonacularController.wantedMinutesChosen
                               ? '${_spoonacularController.wantedMinutes} MINUTES'
                               : '_____',
-                          style: MyTextStyles.searchDynamicText.copyWith(color: LightColors.randomColor),
+                          style: MyTextStyles.searchDynamicText.copyWith(
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                          ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
                                   Obx(

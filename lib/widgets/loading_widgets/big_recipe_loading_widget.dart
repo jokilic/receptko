@@ -8,7 +8,7 @@ import '../../controllers/theme_controller.dart';
 class BigRecipeLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return SizedBox(
       height: Get.height * 0.45,
@@ -22,7 +22,7 @@ class BigRecipeLoadingWidget extends StatelessWidget {
               baseColor: Colors.grey[400],
               highlightColor: Colors.grey[100],
               child: Container(
-                color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+                color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                 height: double.infinity,
                 width: double.infinity,
               ),
@@ -34,7 +34,7 @@ class BigRecipeLoadingWidget extends StatelessWidget {
             margin: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24.0),
-              color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
             ),
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 16.0),
@@ -51,7 +51,7 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                             baseColor: Colors.grey[400],
                             highlightColor: Colors.grey[100],
                             child: Container(
-                              color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+                              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                               width: Get.width * 0.35,
                               height: 36.0,
                             ),
@@ -61,7 +61,7 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                             baseColor: Colors.grey[300],
                             highlightColor: Colors.grey[100],
                             child: Container(
-                              color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+                              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                               width: Get.width * 0.2,
                               height: 24.0,
                             ),
@@ -77,7 +77,7 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                         baseColor: Colors.grey[300],
                         highlightColor: Colors.grey[100],
                         child: Container(
-                          color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+                          color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                           width: 48.0,
                           height: 48.0,
                         ),
@@ -87,7 +87,7 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                         baseColor: Colors.grey[400],
                         highlightColor: Colors.grey[100],
                         child: Container(
-                          color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+                          color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                           width: Get.width * 0.1,
                           height: 24.0,
                         ),

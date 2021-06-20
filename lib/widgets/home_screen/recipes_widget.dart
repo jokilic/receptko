@@ -24,7 +24,7 @@ class RecipesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Obx(
       () {
@@ -44,7 +44,7 @@ class RecipesWidget extends StatelessWidget {
               final Recipe recipe = recipes[index];
 
               return RecipeWidget(
-                color: _isDark ? DarkColors.randomColor : LightColors.randomColor,
+                color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                 image: recipe.image,
                 score: recipe.spoonacularScore / 20 ?? 0.0,
                 title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
@@ -118,7 +118,7 @@ class RecipesWidget extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: RecipeWidget(
-                  color: _isDark ? DarkColors.randomColor : LightColors.randomColor,
+                  color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                   image: recipe.image,
                   score: recipe.spoonacularScore / 20 ?? 0.0,
                   title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,

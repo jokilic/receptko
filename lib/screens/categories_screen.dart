@@ -17,10 +17,10 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
     final CategoryController _categoryController = Get.put(CategoryController());
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Scaffold(
-      backgroundColor: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+      backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),

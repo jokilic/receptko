@@ -17,10 +17,10 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Scaffold(
-      backgroundColor: _isDark ? LightColors.bodyColor : LightColors.bodyColor,
+      backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -45,10 +45,14 @@ class FavoritesScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 16.0),
-                          Text(
-                            "You don't have any favorited recipes yet",
-                            textAlign: TextAlign.center,
-                            style: MyTextStyles.headline2Text,
+                          Obx(
+                            () => Text(
+                              "You don't have any favorited recipes yet",
+                              textAlign: TextAlign.center,
+                              style: MyTextStyles.headline2Text.copyWith(
+                                color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -70,7 +74,7 @@ class FavoritesScreen extends StatelessWidget {
                       final List<String> favoriteRecipe = _spoonacularController.favoriteRecipes[index];
 
                       return RecipeWidget(
-                        color: _isDark ? DarkColors.randomColor : LightColors.randomColor,
+                        color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                         title: favoriteRecipe[1].length > 24
                             ? '${favoriteRecipe[1].substring(0, 24)}...'
                             : favoriteRecipe[1],

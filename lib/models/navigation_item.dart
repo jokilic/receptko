@@ -21,7 +21,7 @@ class NavigationItem {
   });
 
   static List<NavigationItem> get items {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return <NavigationItem>[
       NavigationItem(
@@ -30,13 +30,15 @@ class NavigationItem {
           MyIcons.home,
           width: 44.0,
           height: 44.0,
-          color: _isDark ? DarkColors.backgroundColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.2)
+              : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.home,
           width: 44.0,
           height: 44.0,
-          color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Home',
       ),
@@ -46,13 +48,15 @@ class NavigationItem {
           MyIcons.search,
           width: 44.0,
           height: 44.0,
-          color: _isDark ? DarkColors.backgroundColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.2)
+              : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.search,
           width: 44.0,
           height: 44.0,
-          color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Search',
       ),
@@ -62,13 +66,15 @@ class NavigationItem {
           MyIcons.categories,
           width: 44.0,
           height: 44.0,
-          color: _isDark ? DarkColors.backgroundColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.2)
+              : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.categories,
           width: 44.0,
           height: 44.0,
-          color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Categories',
       ),
@@ -78,13 +84,15 @@ class NavigationItem {
           MyIcons.heart,
           width: 44.0,
           height: 44.0,
-          color: _isDark ? DarkColors.backgroundColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
+          color: _themeController.darkTheme
+              ? DarkColors.textColor.withOpacity(0.2)
+              : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.heart,
           width: 44.0,
           height: 44.0,
-          color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
+          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Favorites',
       ),

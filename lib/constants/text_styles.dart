@@ -1,64 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../controllers/theme_controller.dart';
-import './colors.dart';
 
 class MyTextStyles {
-  static final bool _isDark = Get.find<ThemeController>().darkTheme;
+  static const TextStyle headline1Text = TextStyle(
+    fontSize: 32.0,
+    fontWeight: FontWeight.w800,
+    height: 1.2,
+  );
 
-  static TextStyle get headline1Text => TextStyle(
-        fontSize: 32.0,
-        color: _isDark ? DarkColors.textColor : LightColors.textColor,
-        fontWeight: FontWeight.w800,
-        height: 1.2,
-      );
-
-  static TextStyle headline2Text = TextStyle(
+  static const TextStyle headline2Text = TextStyle(
     fontSize: 28.0,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
     fontWeight: FontWeight.w700,
     height: 1.2,
   );
 
-  static TextStyle headline3Text = TextStyle(
+  static const TextStyle headline3Text = TextStyle(
     fontSize: 16.0,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
     fontWeight: FontWeight.w700,
     height: 1.2,
   );
 
-  static TextStyle searchText = TextStyle(
+  static const TextStyle searchText = TextStyle(
     fontSize: 22.0,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
     fontWeight: FontWeight.w500,
     fontFamily: 'VisbyRound',
   );
 
-  static TextStyle searchDialogHeadingText = TextStyle(
+  static const TextStyle searchDialogHeadingText = TextStyle(
     fontSize: 24.0,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
     fontWeight: FontWeight.w700,
     fontFamily: 'VisbyRound',
   );
 
-  static TextStyle searchDialogMinuteText = TextStyle(
+  static const TextStyle searchDialogMinuteText = TextStyle(
     fontSize: 52.0,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
     fontWeight: FontWeight.w700,
     fontFamily: 'VisbyRound',
   );
 
-  static TextStyle searchDialogText = TextStyle(
+  static const TextStyle searchDialogText = TextStyle(
     fontSize: 20.0,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
     fontWeight: FontWeight.w500,
     fontFamily: 'VisbyRound',
   );
 
-  static TextStyle searchDynamicText = TextStyle(
+  static const TextStyle searchDynamicText = TextStyle(
     fontSize: 22.0,
-    color: _isDark ? DarkColors.randomColor : LightColors.randomColor,
     fontWeight: FontWeight.w700,
     fontFamily: 'VisbyRound',
     height: 1.6,
@@ -72,12 +58,6 @@ class MyTextStyles {
   static const TextStyle overviewRecipeScore = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.w500,
-  );
-
-  static TextStyle overviewRecipePrice = TextStyle(
-    fontSize: 20.0,
-    fontWeight: FontWeight.w800,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
   );
 
   static const TextStyle categoryTitle = TextStyle(
@@ -98,7 +78,6 @@ class MyTextStyles {
   static const TextStyle resultMinutes = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.w800,
-    color: LightColors.backgroundColor,
   );
 
   static const TextStyle recipeGrid = TextStyle(
@@ -112,47 +91,40 @@ class MyTextStyles {
     height: 1.4,
   );
 
-  static TextStyle recipeIngredientName = TextStyle(
+  static const TextStyle recipeIngredientName = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w800,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
   );
 
-  static TextStyle recipeIngredientAmount = TextStyle(
+  static const TextStyle recipeIngredientAmount = TextStyle(
     fontSize: 16.0,
     fontWeight: FontWeight.w700,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
   );
 
-  static TextStyle recipeDirectionNumber = TextStyle(
+  static const TextStyle recipeDirectionNumber = TextStyle(
     fontSize: 26.0,
     fontWeight: FontWeight.w800,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
   );
 
-  static TextStyle recipeDirectionText = TextStyle(
+  static const TextStyle recipeDirectionText = TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w500,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
     height: 1.4,
   );
 
-  static TextStyle recipeBooleanValues = TextStyle(
+  static const TextStyle recipeBooleanValues = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w700,
-    color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
   );
 
-  static TextStyle recipeOriginal = TextStyle(
+  static const TextStyle recipeOriginal = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w800,
-    color: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
   );
 
-  static TextStyle bigRecipeWidgetTitle = TextStyle(
+  static const TextStyle bigRecipeWidgetTitle = TextStyle(
     fontSize: 22.0,
     fontWeight: FontWeight.w800,
-    color: _isDark ? DarkColors.textColor : LightColors.textColor,
     height: 1.0,
   );
 

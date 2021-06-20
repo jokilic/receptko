@@ -27,7 +27,7 @@ class SearchDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Material(
       type: MaterialType.transparency,
@@ -39,7 +39,7 @@ class SearchDialog extends StatelessWidget {
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
-                color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+                color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               height: Get.height * 0.6,
               width: Get.width * 0.8,
@@ -57,9 +57,13 @@ class SearchDialog extends StatelessWidget {
                         ),
                         const SizedBox(width: 16.0),
                         Expanded(
-                          child: Text(
-                            title,
-                            style: MyTextStyles.searchDialogHeadingText,
+                          child: Obx(
+                            () => Text(
+                              title,
+                              style: MyTextStyles.searchDialogHeadingText.copyWith(
+                                color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -77,43 +81,45 @@ class SearchDialog extends StatelessWidget {
                       controller: chosenTextController,
                       textCapitalization: TextCapitalization.sentences,
                       style: TextStyle(
-                        color: _isDark ? DarkColors.textColor : LightColors.textColor,
+                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         fontWeight: FontWeight.w600,
                       ),
-                      cursorColor: _isDark ? DarkColors.textColor : LightColors.textColor,
+                      cursorColor: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       decoration: InputDecoration(
                         prefixIcon: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Image.asset(
                             hintIcon,
                             width: 30.0,
-                            color: _isDark
+                            color: _themeController.darkTheme
                                 ? DarkColors.textColor.withOpacity(0.8)
                                 : LightColors.textColor.withOpacity(0.8),
                           ),
                         ),
                         hintText: hintText,
                         hintStyle: TextStyle(
-                          color:
-                              _isDark ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
+                          color: _themeController.darkTheme
+                              ? DarkColors.textColor.withOpacity(0.4)
+                              : LightColors.textColor.withOpacity(0.4),
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _isDark ? DarkColors.textColor : LightColors.textColor,
+                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                         filled: false,
-                        fillColor: _isDark ? DarkColors.backgroundColor : LightColors.backgroundColor,
+                        fillColor:
+                            _themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _isDark ? DarkColors.textColor : LightColors.textColor,
+                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _isDark ? DarkColors.textColor : LightColors.textColor,
+                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                           borderRadius: BorderRadius.circular(16.0),
                         ),
@@ -132,9 +138,13 @@ class SearchDialog extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Expanded(
-                                child: Text(
-                                  chosenControllerList[index],
-                                  style: MyTextStyles.searchDialogText,
+                                child: Obx(
+                                  () => Text(
+                                    chosenControllerList[index],
+                                    style: MyTextStyles.searchDialogText.copyWith(
+                                      color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                    ),
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 12.0),

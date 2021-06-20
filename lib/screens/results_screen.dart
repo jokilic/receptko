@@ -20,9 +20,10 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Scaffold(
+      backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -43,14 +44,18 @@ class ResultsScreen extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 42.0),
                           SpinKitFoldingCube(
-                            color: _isDark ? DarkColors.randomColor : LightColors.randomColor,
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                             size: 36.0,
                           ),
                           const SizedBox(height: 32.0),
-                          Text(
-                            'Just a sec...',
-                            style: MyTextStyles.headline2Text,
-                            textAlign: TextAlign.center,
+                          Obx(
+                            () => Text(
+                              'Just a sec...',
+                              style: MyTextStyles.headline2Text.copyWith(
+                                color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ],
                       );
@@ -69,10 +74,14 @@ class ResultsScreen extends StatelessWidget {
                                 width: 156.0,
                               ),
                               const SizedBox(height: 16.0),
-                              Text(
-                                'Sorry, but there are no recipes here',
-                                textAlign: TextAlign.center,
-                                style: MyTextStyles.headline2Text,
+                              Obx(
+                                () => Text(
+                                  'Sorry, but there are no recipes here',
+                                  textAlign: TextAlign.center,
+                                  style: MyTextStyles.headline2Text.copyWith(
+                                    color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -93,7 +102,7 @@ class ResultsScreen extends StatelessWidget {
                               ? '${_spoonacularController.cleanDescription(index).substring(0, 64)}...'
                               : '${_spoonacularController.cleanDescription(index).substring(0, 80)}...',
                           image: recipe.image,
-                          color: _isDark ? DarkColors.randomColor : LightColors.randomColor,
+                          color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           clockColor: _spoonacularController.clockColor(index),
                           onTap: () {
                             _spoonacularController.getRecipeInformation(recipe.id);

@@ -52,7 +52,9 @@ class RecipeWidget extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 1.0),
                             child: Text(
                               '${score.toStringAsFixed(2)} / 5',
-                              style: MyTextStyles.overviewRecipeScore.copyWith(color: color),
+                              style: MyTextStyles.overviewRecipeScore.copyWith(
+                                color: color,
+                              ),
                             ),
                           ),
                         ],
@@ -60,7 +62,9 @@ class RecipeWidget extends StatelessWidget {
                     const SizedBox(height: 4.0),
                     Text(
                       title,
-                      style: MyTextStyles.overviewRecipeTitle.copyWith(color: color),
+                      style: MyTextStyles.overviewRecipeTitle.copyWith(
+                        color: color,
+                      ),
                     ),
                   ],
                 ),

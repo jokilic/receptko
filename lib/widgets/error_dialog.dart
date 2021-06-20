@@ -10,7 +10,7 @@ import './header_widget.dart';
 class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -21,7 +21,7 @@ class ErrorDialog extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
-        color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
+        color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
         child: Stack(
           alignment: Alignment.center,
           clipBehavior: Clip.none,

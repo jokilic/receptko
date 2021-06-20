@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
+// import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
 
@@ -14,10 +15,10 @@ class Api {
   Future<Response<dynamic>> get(String path) async {
     try {
       final Response<dynamic> response = await _dio.get('$baseUrl/${path}apiKey=$apiKey');
-      log('[DIO] $response');
+      // log('[DIO] $response');
       return response;
     } catch (e) {
-      log('[DIO] $e');
+      // log('[DIO] $e');
       await getx.Get.dialog(ErrorDialog());
       return null;
     }

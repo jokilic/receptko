@@ -22,32 +22,36 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _isDark = Get.find<ThemeController>().darkTheme;
+    final ThemeController _themeController = Get.find<ThemeController>();
 
     return InkWell(
       onTap: onTap,
       child: PressableDough(
-        child: Container(
-          margin: const EdgeInsets.all(12.0),
-          decoration: BoxDecoration(
-            color: _isDark ? DarkColors.bodyColor : LightColors.bodyColor,
-            borderRadius: BorderRadius.circular(16.0),
-            boxShadow: Shadows.myShadow,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                icon,
-                width: 64.0,
-                height: 64.0,
-              ),
-              const SizedBox(height: 20.0),
-              Text(
-                title,
-                style: MyTextStyles.categoryTitle.copyWith(color: color),
-              ),
-            ],
+        child: Obx(
+          () => Container(
+            margin: const EdgeInsets.all(12.0),
+            decoration: BoxDecoration(
+              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+              borderRadius: BorderRadius.circular(16.0),
+              boxShadow: Shadows.myShadow,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  icon,
+                  width: 64.0,
+                  height: 64.0,
+                ),
+                const SizedBox(height: 20.0),
+                Text(
+                  title,
+                  style: MyTextStyles.categoryTitle.copyWith(
+                    color: color,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
