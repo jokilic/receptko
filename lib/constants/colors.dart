@@ -26,7 +26,6 @@ class LightColors {
   static Color get randomColor => (overviewRecipeColors..shuffle()).first;
 }
 
-/// TODO: Create Dark colors
 class DarkColors {
   static const Color textColor = Color(0xFFFDFDFF);
   static const Color bodyColor = Color(0xFF1F1D2B);
