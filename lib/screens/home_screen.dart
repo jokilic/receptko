@@ -7,7 +7,6 @@ import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/home_screen/recipes_widget.dart';
-import '../widgets/kuharko_button.dart';
 import '../widgets/search_widget.dart';
 
 class HomeScreen extends StatelessWidget {

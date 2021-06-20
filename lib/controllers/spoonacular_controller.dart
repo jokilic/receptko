@@ -294,7 +294,9 @@ class SpoonacularController extends GetxController {
   /// Get all favorited recipes
   void getFavoriteRecipes() {
     favoriteRecipes.clear();
-    _sharedPreferences.getKeys().forEach((String key) => favoriteRecipes.add(getFavoriteRecipe(key)));
+    _sharedPreferences.getKeys().forEach(
+          (String key) => key != 'darkTheme' ? favoriteRecipes.add(getFavoriteRecipe(key)) : null,
+        );
   }
 
   /// ------------------------

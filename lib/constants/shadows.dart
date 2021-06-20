@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 

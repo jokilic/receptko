@@ -17,7 +17,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeController _themeController = Get.put<ThemeController>(
+      ThemeController(),
+      permanent: true,
+    );
 
     return Obx(
       () => Scaffold(

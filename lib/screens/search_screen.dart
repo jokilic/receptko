@@ -2,12 +2,12 @@ import 'package:dough/dough.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuharko/controllers/theme_controller.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
+import '../controllers/theme_controller.dart';
 import '../enums/cuisine.dart';
 import '../enums/diets.dart';
 import '../enums/intolerance.dart';
