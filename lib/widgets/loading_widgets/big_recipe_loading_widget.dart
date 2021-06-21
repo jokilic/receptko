@@ -19,8 +19,8 @@ class BigRecipeLoadingWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(24.0),
             child: Shimmer.fromColors(
-              baseColor: Colors.grey[400],
-              highlightColor: Colors.grey[100],
+              baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+              highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
               child: Container(
                 color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                 height: double.infinity,
@@ -48,8 +48,8 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Shimmer.fromColors(
-                            baseColor: Colors.grey[400],
-                            highlightColor: Colors.grey[100],
+                            baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+                            highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
                             child: Container(
                               color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                               width: Get.width * 0.35,
@@ -58,8 +58,8 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0),
                           Shimmer.fromColors(
-                            baseColor: Colors.grey[300],
-                            highlightColor: Colors.grey[100],
+                            baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+                            highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
                             child: Container(
                               color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                               width: Get.width * 0.2,
@@ -74,8 +74,8 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Shimmer.fromColors(
-                        baseColor: Colors.grey[300],
-                        highlightColor: Colors.grey[100],
+                        baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+                        highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
                         child: Container(
                           color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                           width: 48.0,
@@ -84,8 +84,8 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 8.0),
                       Shimmer.fromColors(
-                        baseColor: Colors.grey[400],
-                        highlightColor: Colors.grey[100],
+                        baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+                        highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
                         child: Container(
                           color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                           width: Get.width * 0.1,
