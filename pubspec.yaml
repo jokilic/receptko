@@ -21,6 +21,7 @@ dependencies:
   shimmer: ^2.0.0
   url_launcher: ^6.0.6
   animations: ^2.0.0
+  google_nav_bar: ^5.0.5
 
 dev_dependencies:
   flutter_test:

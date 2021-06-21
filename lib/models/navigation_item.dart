@@ -28,16 +28,16 @@ class NavigationItem {
         page: HomeScreen(),
         icon: Image.asset(
           MyIcons.home,
-          width: 44.0,
-          height: 44.0,
+          width: 40.0,
+          height: 40.0,
           color: _themeController.darkTheme
               ? DarkColors.textColor.withOpacity(0.2)
               : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.home,
-          width: 44.0,
-          height: 44.0,
+          width: 48.0,
+          height: 48.0,
           color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Home',
@@ -46,16 +46,16 @@ class NavigationItem {
         page: SearchScreen(),
         icon: Image.asset(
           MyIcons.search,
-          width: 44.0,
-          height: 44.0,
+          width: 40.0,
+          height: 40.0,
           color: _themeController.darkTheme
               ? DarkColors.textColor.withOpacity(0.2)
               : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.search,
-          width: 44.0,
-          height: 44.0,
+          width: 48.0,
+          height: 48.0,
           color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Search',
@@ -64,16 +64,16 @@ class NavigationItem {
         page: CategoriesScreen(),
         icon: Image.asset(
           MyIcons.categories,
-          width: 44.0,
-          height: 44.0,
+          width: 40.0,
+          height: 40.0,
           color: _themeController.darkTheme
               ? DarkColors.textColor.withOpacity(0.2)
               : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.categories,
-          width: 44.0,
-          height: 44.0,
+          width: 48.0,
+          height: 48.0,
           color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Categories',
@@ -82,16 +82,16 @@ class NavigationItem {
         page: FavoritesScreen(),
         icon: Image.asset(
           MyIcons.heart,
-          width: 44.0,
-          height: 44.0,
+          width: 40.0,
+          height: 40.0,
           color: _themeController.darkTheme
               ? DarkColors.textColor.withOpacity(0.2)
               : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.heart,
-          width: 44.0,
-          height: 44.0,
+          width: 48.0,
+          height: 48.0,
           color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Favorites',
